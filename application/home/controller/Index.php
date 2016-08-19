@@ -1,9 +1,9 @@
 <?php
-namespace app\admin\controller;
+namespace app\home\controller;
 
 use think\Controller;
 
-class IndexController extends Controller
+class Index extends Controller
 {
     public function index()
     {
@@ -12,36 +12,36 @@ class IndexController extends Controller
 
     public function flot()
     {
-      return $this->fetch('Template/flot');
+      return $this->fetch('template/flot');
     }
 
     public function forms()
     {
-      return $this->fetch('Template/forms');
+      return $this->fetch('template/forms');
     }
 
     public function buttons()
     {
-      return $this->fetch('Template/buttons');
+      return $this->fetch('template/buttons');
     }
 
     public function icons()
     {
-      return $this->fetch('Template/icons');
+      return $this->fetch('template/icons');
     }
 
     public function notifications()
     {
-      return $this->fetch('Template/notifications');
+      return $this->fetch('template/notifications');
     }
 
     public function tables()
     {
-      return $this->fetch('Template/tables');
+      return $this->fetch('template/tables');
     }
 
     public function typography()
     {
-      return $this->fetch('Template/typography');
+      return $this->fetch('template/typography');
     }
 }
