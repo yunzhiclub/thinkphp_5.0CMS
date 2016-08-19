@@ -1,9 +1,9 @@
 <?php
 namespace app\home\controller;
 
-use think\Controller;
+use app\home\controller\Parenter
 
-class Index extends Controller
+class Index extends Parenter
 {
     public function index()
     {
