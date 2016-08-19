@@ -9,29 +9,29 @@ class Index extends Controller
     {
         return $this->fetch();
     }
-     public function about()
+     public function buttons()
     {
-        return $this->fetch('template/about');
+        return $this->fetch('template/buttons');
     }
 
-    public function contact()
+    public function chart()
     {
-        return $this->fetch('template/contact');
+        return $this->fetch('template/chart');
     }
 
-    public function portfolio()
+    public function forms()
     {
-        return $this->fetch('template/portfolio');
+        return $this->fetch('template/forms');
     }
 
-    public function pricing()
+    public function grid()
     {
-        return $this->fetch('template/pricing');
+        return $this->fetch('template/grid');
     }
 
-    public function services()
+    public function icons()
     {
-        return $this->fetch('template/services');
+        return $this->fetch('template/icons');
     }
 
 
