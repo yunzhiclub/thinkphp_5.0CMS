@@ -1,17 +1,33 @@
-<div id="footer" style="clear:both;display:block">
-    {block name="footer"}
-        <p class="text-center">
-            &copy;<?php echo date("Y"); ?>&nbsp;<a target="_blank" href="http://clxy.hebut.edu.cn">CMS</a>&nbsp;&nbsp;&nbsp;&nbsp;<br />技术支持:<a target="_blank" href="http://www.yunzhi.club" alt="河北工业大学梦云智软件开发团队">梦云智软件开发团队</a>
-        </p>
-    <script src="__SELECT2__/select2.min.js"></script>
-    <script src="__BOW__/bootstrap/dist/js/bootstrap.min.js"></script>
+{block name="footer"}
+    <!-- start: JavaScript-->
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/thinkphp_5.0CMS/public/home/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="/thinkphp_5.0CMS/public/home/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="/thinkphp_5.0CMS/public/home/dist/js/sb-admin-2.js"></script>
+    <!--webuploader-->
+    <js href="/thinkphp_5.0CMS/public/lib/webuploader/webuploader.min.js" />
+    <js href="/thinkphp_5.0CMS/public/yunzhi.php/Webuploader/config.html" />
+    
+    <!--ueditor-->
+    <js href="/thinkphp_5.0CMS/public/lib/ueditor/ueditor.config.js" />
+    <js href="/thinkphp_5.0CMS/public/lib/ueditor/ueditor.all.min.js" />
+    <js href="/thinkphp_5.0CMS/public/lib/ueditor/lang/zh-cn/zh-cn.js" />
+
+    <!--uploadify-->
+    <js href="/thinkphp_5.0CMS/public/lib/uploadify/jquery.uploadify.min.js" />
+    <js href="/thinkphp_5.0CMS/public/js/js.js" />
+
+    <!--datapickir-->
+    <js href="/thinkphp_5.0CMS/public/home/bower_components/datatimepicker/bootstrap-datetimepicker.js" />
+    <js href="/thinkphp_5.0CMS/public/home/bower_components/datatimepicker/bootstrap-datetimepicker.zh-CN.js" />
+    <link href="/thinkphp_5.0CMS/public/home/bower_components/datatimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    {block name="footerCssJs"}
     {/block}
-    <style type="text/css">
-    #footer
-    {
-        margin-top:20px;
-        border-top:1px solid #ccc;
-        padding-top:5px;
-    }
-    </style>
-</div>
+
+    <!-- end: JavaScript-->
+{/block}
