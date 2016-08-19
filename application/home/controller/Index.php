@@ -1,7 +1,7 @@
 <?php
 namespace app\home\controller;
 
-use app\home\controller\Parenter
+use app\home\controller\Parenter;
 
 class Index extends Parenter
 {
