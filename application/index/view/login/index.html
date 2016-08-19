@@ -1,0 +1,67 @@
+<!--tangzhenjie-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TPCMS</title>
+    <!-- Bootstrap -->
+    <link href="/thinkphp_5.0CMS/public/index/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div class="content">
+        <div class="container">
+            <div class="row main">
+                <div class="col-md-12 text-center">
+                    <h3 class="title" style="padding-top: 50px;
+padding-bottom: 20px;">新闻产品公司</h3>
+                </div>
+                <br />
+                <br />
+                <div class="col-md-4 col-lg-4 col-md-push-4 login-form">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading text-center">
+                            请登录
+                        </div>
+                        <div class="panel-body">
+                            <form role="form" method="post" class="login form-horizontal" action="{:url('login')}">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">账号&nbsp;<i class="text-primary glyphicon glyphicon-user"></i>：</label>
+                                    <div class="col-md-8">
+                                        <input type="text" name="username" id="username" placeholder="账号" class="form-control" autofocus/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">密码&nbsp;<i class="text-danger glyphicon glyphicon-lock"></i>：</label>
+                                    <div class="col-md-8">
+                                        <input placeholder="密码" class="form-control" name="password" id="password" type="password" />
+                                    </div>
+                                </div>
+                                <button class="btn btn-md btn-block btn-info">
+                                    登录
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid footer">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                &copy2016 -
+                <script>
+                document.write(new Date().getFullYear());
+                </script>&nbsp;
+                <br />
+                <span style="color:#888">技术支持： 汤振杰</span>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
