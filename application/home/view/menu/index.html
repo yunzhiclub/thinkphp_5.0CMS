@@ -1,7 +1,9 @@
 {extend name="index" /} {block name="body"}
 <div class="container">
     <div class="row-fluid">
-        <div class="col-md-12">
+
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
             <form action="" method="post">
                 <div class="row">
                     <div class="col-md-2">
@@ -24,7 +26,8 @@
                         </div>
                     </div>
                     <div class="col-md-2 col-md-offset-5">
-                        <a href="{:url('Menu/add')}" class="btn btn-info"><i class="glyphicon glyphicon-plus"></i> 新增</a>
+                        <div class="col-md-2"><a href="{:url('Menu/add')}" class="btn btn-primary" style="margin-left: 40px;
+"><i class="glyphicon glyphicon-plus"></i>&nbsp;增加</a></div>
                     </div>
                 </div>
             </form>
@@ -34,9 +37,9 @@
                     </div>
                     <!-- /input-group -->
                     <!-- Table -->
-                    <table class="table table-bordered table-striped table-hover">
+                    <table class="table table-bordered table table-hover">
                         <thead>
-                            <tr>
+                            <tr class="info">
                                 <th>序号</th>
                                 <th>名称</th>
                                 <th>类别</th>
@@ -66,6 +69,7 @@
                 </nav>
             </div>
         </div>
+        <div class="col-md-1"></div>
     </div>
 </div>
 {/block}
