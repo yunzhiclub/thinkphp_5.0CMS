@@ -16,4 +16,13 @@ class Category extends Parenter
 		//返回编辑的页面
 		return $this->fetch();
 	}
+    
+    public function update()
+    {
+    	return $this->redirect(url('index'));
+    }
+	public function delete()
+	{
+		return $this->redirect(url('index'));
+	}
 }
