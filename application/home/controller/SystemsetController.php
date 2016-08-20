@@ -3,7 +3,7 @@ namespace app\home\controller;
 
 use app\home\controller\Parenter;
 
-class Systemset extends Parenter
+class SystemsetController extends ParenterController
 {
 	public function index()
 	{
