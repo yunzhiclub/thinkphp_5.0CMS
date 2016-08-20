@@ -1,4 +1,5 @@
-{extend name="index" /} {block name="body"}
+{extend name="index" /}
+{block name="body"}
 <div class="container">
     <div class="row">
         <div class="col-md-1">
@@ -6,15 +7,18 @@
         <div class="col-md-7">
             <form class="form-horizontal" action="{:url('insert')}" method="post">
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">姓名</label>
+                    <label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
                     <div class="col-sm-10">
                         <input type="email" class="form-control" id="inputEmail3" placeholder="Name">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">性别</label>
-                    <div class="col-sm-10">
-                        <input type="email" class="form-control" id="inputEmail3" placeholder="Sex">
+                    <label for="sex" class="col-md-2 control-label">性别:</label>
+                    <div class="col-md-10">
+                        <input id="man" type="radio" name="sex" value="0" />
+                        <label for="man">&nbsp;男</label>&nbsp;
+                        <input id="woman" type="radio" name="sex" value="1" />
+                        <label for="woman">&nbsp;女</label>
                     </div>
                 </div>
                 <div class="form-group">
@@ -34,10 +38,10 @@
                     <div class="col-sm-10">
                         <div class="btn-group">
                             <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Small button <span class="caret"></span>
+                                冻结 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                ...
+                                解冻
                             </ul>
                         </div>
                     </div>
