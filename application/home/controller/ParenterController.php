@@ -6,7 +6,7 @@ use think\Controller;
 /**
 *@tangzhenjie
 */
-class Parenter extends Controller
+class ParenterController extends Controller
 {
 	public function __construct()
 	{
