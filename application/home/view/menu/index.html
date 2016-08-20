@@ -1,20 +1,10 @@
 {extend name="index" /} {block name="body"}
 <div class="container">
     <div class="row-fluid">
-
         <div class="col-md-1"></div>
         <div class="col-md-10">
             <form action="" method="post">
                 <div class="row">
-                    <div class="col-md-2">
-                        <select class="form-control">
-                            <foreach name="" item="module">
-                                <option value="">前台菜单</option>
-                                <option value="">后台菜单</option>
-                                <option value="">全部</option>
-                            </foreach>
-                        </select>
-                    </div>
                     <div class="col-md-3">
                         <div class="input-group custom-search-form">
                             <input class="form-control" name="" placeholder="标题..." type="text" value="" />
@@ -24,6 +14,8 @@
                                 </button>
                             </span>
                         </div>
+                    </div>
+                    <div class="col-md-2">
                     </div>
                     <div class="col-md-2 col-md-offset-5">
                         <div class="col-md-2"><a href="{:url('Menu/add')}" class="btn btn-primary" style="margin-left: 40px;
@@ -42,7 +34,6 @@
                             <tr class="info">
                                 <th>序号</th>
                                 <th>名称</th>
-                                <th>类别</th>
                                 <th>权重</th>
                                 <th>状态</th>
                                 <th>操作</th>
@@ -50,17 +41,45 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>1</td>
+                                <td>首页</td>
+                                <td>1</td>
+                                <td>显示</td>
                                 <td>
                                     <a class="btn btn-md btn-primary" href="{:url('Menu/edit')}"><i class="fa fa-pencil"></i> 编辑</a>
                                     <a class="btn btn-md btn-danger" href="{:url('delete')}"><i class="fa fa-trash-o "></i> 删除</a>
                                 </td>
                             </tr>
-                            </foreach>
+                             <tr>
+                                <td>2</td>
+                                <td>新闻通知</td>
+                                <td>2</td>
+                                <td>不显示</td>
+                                <td>
+                                    <a class="btn btn-md btn-primary" href="{:url('Menu/edit')}"><i class="fa fa-pencil"></i> 编辑</a>
+                                    <a class="btn btn-md btn-danger" href="{:url('delete')}"><i class="fa fa-trash-o "></i> 删除</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>产品列表</td>
+                                <td>3</td>
+                                <td>显示</td>
+                                <td>
+                                    <a class="btn btn-md btn-primary" href="{:url('Menu/edit')}"><i class="fa fa-pencil"></i> 编辑</a>
+                                    <a class="btn btn-md btn-danger" href="{:url('delete')}"><i class="fa fa-trash-o "></i> 删除</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>关于我们</td>
+                                <td>3</td>
+                                <td>不显示</td>
+                                <td>
+                                    <a class="btn btn-md btn-primary" href="{:url('Menu/edit')}"><i class="fa fa-pencil"></i> 编辑</a>
+                                    <a class="btn btn-md btn-danger" href="{:url('delete')}"><i class="fa fa-trash-o "></i> 删除</a>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
