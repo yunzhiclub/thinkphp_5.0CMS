@@ -45,7 +45,12 @@ class UsermanageController extends ParenterController
 	public function delete()
 	{
 		//删除用户
-		return $this->redirect(url('index'));
+		var_dump(input('get.'));
+		var_dump(input('get.id'));
+		var_dump(input(''));
+		var_dump(input('id/d'));
+
+		// return $this->redirect(url('index'));
 	}
 
 	public function edit()
