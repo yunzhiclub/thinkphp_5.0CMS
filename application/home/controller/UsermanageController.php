@@ -54,6 +54,10 @@ class UsermanageController extends ParenterController
 		return $this->fetch();
 	}
 
+	/**
+	 * [save description]
+	 * @return [type] [description]
+	 */
 	public function save()
 	{
 		//保存进入数据库

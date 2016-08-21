@@ -40,6 +40,6 @@ class Usermanage extends Model
 			return $Status[$value];
 		}
 
-		return $Status
+		return $Status['0'];
 	}
 }
