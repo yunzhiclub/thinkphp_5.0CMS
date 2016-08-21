@@ -4,7 +4,7 @@ namespace app\home\controller;
 /**
 * @author gaoliming
 */
-class Category extends Parenter
+class CategoryController extends ParenterController
 {
 	public function index()
 	{

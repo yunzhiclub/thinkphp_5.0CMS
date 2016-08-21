@@ -6,7 +6,7 @@ use think\Controller;
 /**
 *@tangzhenjie
 */
-class Login extends Controller
+class LoginController extends Controller
 {
     //登录不成功时执行的方法
 	public function index()
