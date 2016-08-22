@@ -2,6 +2,7 @@
 namespace app\home\controller;
 
 use think\Controller;
+use app\model\User;
 
 /**
 *@tangzhenjie
@@ -18,15 +19,25 @@ class LoginController extends Controller
     
 	public function login()
 	{
-		echo '执行登录操作，并登录成功';
-		return $this->redirect(url('Index/index'));
+		/**
+		*@tangzhenjie
+		*/
+		if(User::login(input('post.username') , input('post.password')))
+        {
+        	return $this->success('登录成功' , url('Index/index'));
+        }else{
+        	return $this->error('登录失败' , url('index'));
+        }
 	}
 
 	//注销
 	public function logout()
 	{
-		echo '执行注销操作';
-		return $this->redirect(url('Login/index'));
+		/**
+		*@tangzhenjie
+		*/
+		session('userId', null);
+		return $this->success('注销成功' , url('index'));
 	}
 
 }
