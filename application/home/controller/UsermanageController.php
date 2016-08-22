@@ -32,45 +32,157 @@ class UsermanageController extends ParenterController
 	 */
 	public function add()
 	{
-		//取出一个空对象
-		$User = new Usermanage;
-
-		//向V层传递数据
-		$this->assign('User', $User);
-
 		//添加用户
 		return $this->fetch();
 	}
 
+	/**
+	 * 删除数据
+	 * @author gaoliming
+	 */
 	public function delete()
 	{
-		//删除用户
-		return $this->redirect(url('index'));
+		//接收id
+		$id = input('id');
+
+		//取出对象
+		$User = Usermanage::get($id);
+
+		if (null === $User) {
+
+			return $this->error('未找到相关记录');
+		}
+
+		//删除数据
+		if (false === $User->delete()) {
+			
+			return $this->error('删除失败' . $User->getError());
+		}
+
+		return $this->success('删除成功', url('index'));
 	}
 
+	/**
+	 * 编辑数据
+	 * @author gaoliming	
+	 */
 	public function edit()
 	{
-		//编辑用户
+		//获取id
+		$id = input('id');
+
+		//取出对象
+		$User = Usermanage::get($id);
+
+		//向V层传值
+		$this->assign('User', $User);
+		
+		//返回用户
 		return $this->fetch();
 	}
 
 	/**
-	 * [save description]
-	 * @return [type] [description]
+	 * @author  gaoliming
 	 */
 	public function save()
 	{
-		//保存进入数据库
+		//判断两次的密码是否一样
+		if (input('post.password') !== input('post.newpassword')) {
+			
+			return $this->error('两次的密码不一样');
+		}
+		//判断是更新还是增加
+		$id = input('post.id');
+		if (null === $id) {
+			//新增
+			$User =  new Usermanage;
+			
+		} else {
+
+			//更新
+			$User = Usermanage::get($id);
+		}
+
+		//对对象进行一一赋值
+		$data = array(
+			'name' => input('post.name'),
+			'username' => input('post.username'),
+			'password' => input('password'),
+			'status' => input('post.status'),
+			'sex' => input('sex'),
+			'email' => input('post.email'),
+			);
+
+		//验证并保存
+		if (false === $User->validate(true)->save($data)) {
+			
+			return $this->error('保存错误' . $User->getError());
+		}
+
+		//返回首页
+		return $this->success('保存成功', url('index'));
 	}
 
+	/**
+	 * 改变状态
+	 * @author gaoliming
+	 */
 	public function state()
 	{
-		//改变用户状态
-		return $this->redirect(url('index'));
+		//接收传过来的ID值
+		$id = input('id');
+
+		//取出对象
+		$User = Usermanage::get($id);
+
+		//获取状态
+		$status = $User->getData('status');
+
+		//修改状态
+		if ($status === 0) {
+			
+			//解冻
+			$User->status = 1;
+
+		} else {
+
+			//冻结
+			$User->status = 0;
+
+		}
+
+		//进行保存
+		if (false === $User->validate()->save()) {
+			
+			return $this->error('修改失败');
+		}
+
+		//返回index
+		if ($status === 0) {
+			
+			return $this->success('解冻成功', url('index'));
+		} else {
+
+			return $this->success('冻结成功', url('index'));
+		}
 	}
 
+	/**
+	 * 显示用户细节信息
+	 * @author gaoliming
+	 */
 	public function detail()
 	{
+		//获取V层传过来的id值
+		$id = input('id');
+
+		//取出对象
+		$User = Usermanage::get($id);
+
+		//传给V层
+		$this->assign('User', $User);
+
+		//返回用户首页
 		return $this->fetch();
 	}
 }

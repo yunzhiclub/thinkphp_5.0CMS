@@ -42,4 +42,16 @@ class Usermanage extends Model
 
 		return $Status['0'];
 	}
+
+	/**
+	 * 显示创建时间
+	 * @author gaoliming
+	 */
+	protected $dateFormat = 'Y年m月d日';    // 日期格式
+
+    // 类型转换
+    protected $type = [
+        'create_time' => 'datetime',
+        'update_time' => 'datetime',
+    ];
 }
