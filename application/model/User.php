@@ -25,7 +25,7 @@ class User extends Model
 	{
 		$map = array('id' => $username);
 		$User = self::get($map);
-
+		$time = time();
 		//判断是否取出对应的对象
 		if($User === null)
 		{
@@ -33,7 +33,9 @@ class User extends Model
 		}
 	    if($User->password === $password)
 		{
-		    session('userId' , $User->getData('id'));
+		    session('userId', $User->getData('id'));
+		    $User->last_time_on = $time;
+		    $User->save();
 		    return true;
 		              
 	    }else{
