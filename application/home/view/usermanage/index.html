@@ -37,35 +37,17 @@
                         <th>状态</th>
                         <th>操作</th>
                     </tr>
+                    {volist name="Users" id="User" key="key"}
                     <tr>
-                        <td>1</td>
-                        <td><a href="{:url('detail', 'id=')}">小明</a></td>
-                        <td><a href="{:url('state', 'id=')}">解冻</a></td>
-                        <td><a href="{:url('delete', 'id=')}" class="btn btn-md btn-danger"><i class="fa fa-trash-o "></i>删除</a>
-                            <a href="{:url('edit', 'id=')}" class="btn btn-md btn-primary"><i class="fa fa-pencil"></i>编辑</a></td>
+                        <td>{$key}</td>
+                        <td><a href="{:url('detail?id=' .$User->id)}">{$User->username}</a></td>
+                        <td>{$User->status}</td>
+                        <td><a href="{:url('delete?id=' .$User->getData('id'))}" class="btn btn-md btn-danger"><i class="fa fa-trash-o "></i>删除</a>
+                            <a href="{:url('edit?id=' .$User->id)}" class="btn btn-md btn-primary"><i class="fa fa-pencil"></i>编辑</a></td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td><a href="{:url('detail', 'id=')}">小李</a></td>
-                        <td><a href="{:url('state', 'id=')}">冻结</a></td>
-                        <td><a href="{:url('delete', 'id=')}" class="btn btn-md btn-danger"><i class="fa fa-trash-o "></i>删除</a>
-                            <a href="{:url('edit', 'id=')}" class="btn btn-md btn-primary"><i class="fa fa-pencil"></i>编辑</a></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td><a href="{:url('detail', 'id=')}">张三</a></td>
-                        <td><a href="{:url('state', 'id=')}">冻结</a></td>
-                        <td><a href="{:url('delete', 'id=')}" class="btn btn-md btn-danger"><i class="fa fa-trash-o "></i>删除</a>
-                            <a href="{:url('edit', 'id=')}" class="btn btn-md btn-primary"><i class="fa fa-pencil"></i>编辑</a></td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td><a href="{:url('detail', 'id=')}">四毛</a></td>
-                        <td><a href="{:url('state', 'id=')}">冻结</a></td>
-                        <td><a href="{:url('delete', 'id=')}" class="btn btn-md btn-danger"><i class="fa fa-trash-o "></i>删除</a>
-                            <a href="{:url('edit', 'id=')}" class="btn btn-md btn-primary"><i class="fa fa-pencil"></i>编辑</a></td>
-                    </tr>
+                    {/volist}
                 </table>
+                {$Users->render()}
             </div>
             <div class="col-md-1"></div>
         </div>

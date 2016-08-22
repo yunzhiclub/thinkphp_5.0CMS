@@ -1,9 +1,9 @@
 <?php
 namespace app\home\controller;
 
-use app\home\controller\Parenter;
+use app\home\controller\ParenterController;
 
-class Menu extends Parenter
+class MenuController extends ParenterController
 {
 	public function index()
 	{

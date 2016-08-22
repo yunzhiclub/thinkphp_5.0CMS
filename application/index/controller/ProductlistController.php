@@ -3,7 +3,7 @@ namespace app\index\controller;
 
 use think\Controller;
 
-class Productlist extends Controller
+class ProductlistController extends Controller
 {
 	public function index()
 	{

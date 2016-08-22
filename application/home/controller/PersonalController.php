@@ -1,12 +1,12 @@
 <?php
 namespace app\home\controller;
 
-use app\home\controller\Parenter;
+use app\home\controller\ParenterController;
 
 /**
 *@tangzhenjie
 */
-class Personal extends Parenter
+class PersonalController extends ParenterController
 {
 	public function index()
 	{

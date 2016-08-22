@@ -1,7 +1,7 @@
 <?php
 namespace app\home\controller;
 
-use app\home\controller\Parenter;
+use app\home\controller\ParenterController;
 
 class SystemsetController extends ParenterController
 {
@@ -14,4 +14,5 @@ class SystemsetController extends ParenterController
 	{
 		return $this->redirect(url('index'));
 	}
+
 }
