@@ -14,12 +14,10 @@ class ParenterController extends Controller
         */
 	public function __construct()
 	{
-		parent::__construct();
-                //验证用户是否登录      
+                parent::__construct();
                 if(!User::islogin())
                 {
-                	//如果没登录就跳转到对应的页面
-                	return $this->error('请先登录', url('Login/index'));
+                        return $this->error('请先登录', url('Login/index'));
                 }
-	}
+        }
 }
