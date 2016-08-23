@@ -1,4 +1,56 @@
 {extend name="index" /}
     {block name="body"}
-        <h3>显示个人信息</h3>
+        <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-10">
+
+                                <a href="{:url('index')}" class="btn btn-md btn-primary"><i class="glyphicon glyphicon-chevron-left">&nbsp;</i>返回</a>
+                            </div>
+                            <div class="col-md-2">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <table class="table table-bordered table table-hover">
+                    <tr class="info">
+                        <th>ID</th>
+                        <th>姓名</th>
+                        <th>用户名</th>
+                        <th>邮箱</th>
+                        <th>密码</th>
+                        <th>性别</th>
+                        <th>状态</th>
+                        <th>创建时间</th>
+                        <th>上次更新时间</th>
+                    </tr>
+                    <tr>
+                        <td>{$User->id}</td>
+                        <td>{$User->name}</td>
+                        <td>{$User->username}</td>
+                        <td>{$User->email}</td>
+                        <td>{$User->password}</td>
+                        <td>{$User->sex}</td>
+                        <td>{$User->status}</td>
+                        <td>{$User->create_time}</td>
+                        <td>{$User->update_time}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
     {/block}
