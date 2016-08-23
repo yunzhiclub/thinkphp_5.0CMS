@@ -36,6 +36,7 @@
                                 <th>名称</th>
                                 <th>权重</th>
                                 <th>状态</th>
+                                <th>权限</th>
                                 <th>操作</th>
                             </tr>
                         </thead>
@@ -46,6 +47,7 @@
                                 <td>{$Menu->name}</td>
                                 <td>{$Menu->weight}</td>
                                 <td>{$Menu->status}</td>
+                                <td>{$Menu->is_permission}</td>
                                 <td>
                                     <a class="btn btn-md btn-primary" href="{:url('Menu/edit?id='.$Menu->id)}"><i class="fa fa-pencil"></i> 编辑</a>
                                     <a class="btn btn-md btn-danger" href="{:url('delete?id='.$Menu->id)}"><i class="fa fa-trash-o "></i> 删除</a>

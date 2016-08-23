@@ -62,7 +62,7 @@ class MenuController extends ParenterController
 			'status' => input('post.status'),
 			'is_permission' => input('post.is_permission')
         );
-    	$Menu = new Menu;
+    	$Menu = Menu::get(input('post.id/d'));
     	if(false === $Menu->validate(true)->save($data))
     	{
     		return $this->error('添加失败', url('add'));
