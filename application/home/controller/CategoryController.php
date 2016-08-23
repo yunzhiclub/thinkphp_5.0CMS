@@ -38,21 +38,16 @@ class CategoryController extends ParenterController
     	/**
 		*@author tangzhenjie
 		*/
-		if(input('post.id') === '')
+		
+		$id = input('post.id');
+		$Category = Category::get($id);
+		
+		$data = input('post.');
+		
+		if(false === $Category->validate(true)->save($data))
 		{
-			$Category = new Category;
-			echo 'tanzghej';
+			return $this->error('更新失败'.$Category->getError(), url('index'));
 		}else{
-			$id = input('post.name');
-		    $Category = Category::get($id);
-		    var_dump($id);
-		    var_dump($Category);
-		}
-		die();
-		$name = input('post.name');
-		$Category->name = $name;
-		if($Category->save())
-		{
 			return $this->success('更新成功', url('index'));
 		}
     }
@@ -83,10 +78,12 @@ class CategoryController extends ParenterController
 		*@author tangzhenjie
 		*/
 		$Category = new Category;
-		$Category->name = input('post.name');
-		if($Category->save())
+		$data = input('post.');
+		if(false === $Category->validate(true)->save($data))
 		{
+			return $this->error('添加失败'.$Category->getError(), url('index'));
+		}else{
 			return $this->success('添加成功', url('index'));
-		}	
+		}
 	}
 }
