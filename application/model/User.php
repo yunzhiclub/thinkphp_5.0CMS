@@ -34,7 +34,8 @@ class User extends Model
 	    if($User->password === $password)
 		{
 		    session('userId', $User->getData('id'));
-		    $User->last_time_on = $time;
+		    $User->last_time_on = $User->login_time_on;
+		    $User->login_time_on = $time;
 		    $User->save();
 		    return true;
 		              
