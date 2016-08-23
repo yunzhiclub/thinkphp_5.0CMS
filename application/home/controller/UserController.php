@@ -27,29 +27,119 @@ class UserController extends ParenterController
         return $this->fetch();
     }
 
+    /**
+     * @author gaoliming
+     */
     public function add()
     {
+        //返回添加首页
+        return $this->fetch();
+    }
+
+    /**
+     * 编辑数据
+     * @author gaoliming
+     */
+    public function edit()
+    {
+        //获取ID
+        $id = input('id');
+
+        //取出对象
+        $User = User::get($id);
+
+        //传递对象
+        $this->assign('User', $User);
+
+        //返回给用户
         return $this->fetch();
     }
     
-    public function insert()
+    /**
+     * 保存数据
+     * @author gaoliming
+     */
+    public function save()
     {
-        return $this->redirect("index");
+        //判断两次密码是否一样
+        if (input('post.password') !== input('post.newpassword')) {
+            
+            return $this->error('两次密码不一样');
+        }
+
+        //获取传过来的ID
+        $id = input('post.id');
+
+        //判断是新增还是更新
+        if (null === $id) {
+            
+            //新增
+            $User = new User;
+        } else {
+
+            //更新
+            $User = User::get($id);
+        }
+
+        //获取传过来的数据
+        $data = array('username' => input('post.username'),
+                'name' => input('post.name'),
+                'password' => input('post.password'),
+                'email' => input('post.email'),
+         );
+
+        //保存并验证
+        if (false === $User->validate()->save($data)) {
+            
+            return $this->error('保存失败' . $User->getError());
+        }
+
+        return $this->success('保存成功', url('index'));
+        
     }
 
-    public function edit()
-    {
-        return $this->fetch();
-    }
-     
-    public function update()
-    {
-        return $this->redirect('index');
-    }
-
+    /**
+     * 删除数据
+     * @author gaoliming
+     */
     public function delete()
     {
-       return $this->redirect('index');
+       //获取传过来的id值
+       $id = input('id');
+
+       //取出对象
+       $User = User::get($id);
+       if (null === $User) {
+           
+           return $this->error('未找到相关记录');
+       }
+
+       //删除对象
+       if (false === $User->delete()) {
+           
+           return $this->error('删除失败');
+       }
+
+       //返回首页
+       return $this->success('删除成功', url('index'));
     }
 
+    /**
+     * 像是个人详情
+     * @author  gaoliming
+     */
+    public function detail()
+    {
+        //获取V层传过来的id值
+        $id = input('id');
+
+        //取出对象
+        $User = User::get($id);
+
+        //传给V层
+        $this->assign('User', $User);
+
+        //返回用户首页
+        return $this->fetch();
+    }
 }
