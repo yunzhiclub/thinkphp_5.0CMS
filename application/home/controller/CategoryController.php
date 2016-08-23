@@ -14,7 +14,6 @@ class CategoryController extends ParenterController
 		*/
 
 		$name = input('get.name');
-        $page = input('page/d') < 1 ?1 : input('page/d');
         $pageSize = 2;
         $Category  = new Category;
         $Categorys = $Category->where('name', 'like', '%' . $name . '%')->paginate($pageSize);

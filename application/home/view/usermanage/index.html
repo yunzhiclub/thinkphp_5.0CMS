@@ -33,6 +33,7 @@
                 <table class="table table-bordered table table-hover">
                     <tr class="info">
                         <th>序号</th>
+                        <th>姓名</th>
                         <th>用户名</th>
                         <th>状态</th>
                         <th>操作</th>
@@ -40,9 +41,11 @@
                     {volist name="Users" id="User" key="key"}
                     <tr>
                         <td>{$key}</td>
+                        <td>{$User->name}</td>
                         <td><a href="{:url('detail?id=' .$User->id)}">{$User->username}</a></td>
-                        <td>{$User->status}</td>
-                        <td><a href="{:url('delete?id=' .$User->getData('id'))}" class="btn btn-md btn-danger"><i class="fa fa-trash-o "></i>删除</a>
+                        <td><a href="{:url('state?id=' .$User->id)}" class="btn btn-md btn-primary">{$User->status}</a>
+                        </td>
+                        <td><a href="{:url('delete?id=' .$User->id)}" class="btn btn-md btn-danger"><i class="fa fa-trash-o "></i>删除</a>
                             <a href="{:url('edit?id=' .$User->id)}" class="btn btn-md btn-primary"><i class="fa fa-pencil"></i>编辑</a></td>
                     </tr>
                     {/volist}
