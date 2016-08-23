@@ -65,9 +65,9 @@ class MenuController extends ParenterController
     	$Menu = Menu::get(input('post.id/d'));
     	if(false === $Menu->validate(true)->save($data))
     	{
-    		return $this->error('添加失败', url('add'));
+    		return $this->error('更新失败', url('add'));
     	}else{
-    		return $this->success('添加成功', url('index'));
+    		return $this->success('更新成功', url('index'));
     	}
    }
 
