@@ -1,38 +1,62 @@
 {extend name="index" /}
-{block name="body"}
-<div class="container">
-    <div class="row">
-        <div class="col-md-1">
+    {block name="body"}
+        <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <form class="form-inline" action="{:url('',input('get.'))}">
+                                    <div class="form-group">
+                                        <label class="sr-only" for="name"></label>
+                                        <input name="name" type="text" class="form-control" placeholder="姓名..." value="{:input('get.name')}">
+                                        <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i>&nbsp;查询</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-2"><a href="{:url('add')}" class="btn btn-primary" style="margin-left: 60px;
+"><i class="glyphicon glyphicon-plus"></i>&nbsp;增加</a></div>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-7">
-            <form class="form-horizontal" action="{:url('save')}" method="post">
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label"></label>
-                    <div class="col-sm-10">
-                        <img src="/thinkphp_5.0CMS/public/img/big.jpg" class="img-thumbnail">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">网站名字</label>
-                    <div class="col-sm-10">
-                        <input type="email" class="form-control" id="inputEmail3" placeholder="网站名字">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">页脚设置</label>
-                    <div class="col-sm-10">
-                        <input type="email" class="form-control" id="inputEmail3" placeholder="页脚设置">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default btn btn-primary"><i class="glyphicon glyphicon-ok"></i>&nbsp;保存</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="col-md-4">
+        <br />
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <table class="table table-bordered table table-hover">
+                    <tr class="info">
+                        <th>序号</th>
+                        <th>公司名称</th>
+                        <th>公司名称是否显示</th>
+                        <th>页脚名称</th>
+                        <th>页脚名称是否显示</th>
+                        <th>操作</th>
+                    </tr>
+                    {volist name="Systemsets" id="Systemset" key="key"}
+                    <tr>
+                        <td>{$key}</td>
+                        <td><img src="/thinkphp_5.0CMS/public/img/big.jpg" width="28" height="28"><a href="{:url('detail?id=' .$Systemset->id)}">{$Systemset->name}</a></td>
+                        <td>{$Systemset->is_show}</td>
+                        <td>{$Systemset->footer_name}</td>
+                        <td>{$Systemset->is_display}</td>
+                        <td><a href="{:url('delete?id=' .$Systemset->getData('id'))}" class="btn btn-md btn-danger"><i class="fa fa-trash-o "></i>删除</a>
+                            <a href="{:url('edit?id=' .$Systemset->getData('id'))}" class="btn btn-md btn-primary"><i class="fa fa-pencil"></i>编辑</a></td>
+                    </tr>
+                    {/volist}
+                </table>
+                {$Systemsets->render()}
+            </div>
+            <div class="col-md-1"></div>
         </div>
     </div>
-</div>
-{/block}
+    {/block}
+
+    
+
