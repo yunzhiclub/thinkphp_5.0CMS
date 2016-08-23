@@ -3,7 +3,7 @@ namespace app\index\controller;
 
 use think\Controller;
 
-class Newsinform extends Controller
+class NewsinformController extends Controller
 {
 	public function index()
 	{
