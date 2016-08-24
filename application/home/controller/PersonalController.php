@@ -47,7 +47,8 @@ class PersonalController extends ParenterController
         $data = array(
         	'name' => input('post.name'),
         	'username' => input('post.username'),
-        	'password' => input('post.newpassword'));
+        	'password' => input('post.newpassword'),
+        	'email' => input('post.email'));
         //保存数据
 		if($User->validate(true)->save($data) === false)
 		{
