@@ -38,8 +38,28 @@ class Article extends Model
      */
     public function getAboutUs()
     {
-        $map = array('category_id' => 3,);
+        //找出关于我们对应的id
+        $Categorys = Category::all();
+        foreach ($Categorys as $value) {
+            
+            if ($value->getData('name') === '关于我们') {
+                
+                $id = $value->id;
+            }
+        }
+
+        //设定索引
+        $map = array('category_id' => $id,);
 
         return Article::get($map);
+    }
+
+    /**
+     * 获取产品的对象
+     * @author gaoliming
+     */
+    public function getProduct($id)
+    {
+        return Article::get($id);
     }
 }

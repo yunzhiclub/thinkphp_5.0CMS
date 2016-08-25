@@ -2,9 +2,7 @@
 namespace app\home\controller;
 
 use app\model\Category;
-/**
-* @author gaoliming
-*/
+
 class CategoryController extends ParenterController
 {
 	public function index()
