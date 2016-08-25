@@ -31,4 +31,15 @@ class Article extends Model
 	{
 		return $this->belongsTo("category");
 	}
+
+    /**
+     * 返回关于我们的对象
+     * @author  galiming
+     */
+    public function getAboutUs()
+    {
+        $map = array('category_id' => 3,);
+
+        return Article::get($map);
+    }
 }
