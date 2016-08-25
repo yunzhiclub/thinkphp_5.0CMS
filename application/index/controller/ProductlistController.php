@@ -9,6 +9,14 @@ class ProductlistController extends Controller
 {
 	public function index()
 	{
+		//获取产品列表的所有对象
+		$Products = new Article;
+		$Products = $Products->getAllProdects();
+
+		//向V层传递
+		$this->assign('Products', $Products);
+
+		//返回用户
 		return $this->fetch();
 	}
 
