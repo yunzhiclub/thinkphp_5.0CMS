@@ -64,8 +64,8 @@ class Article extends Model
     }
 
 
-    /*
-     * 获取新闻通知的对象（$news）
+    /**
+     *  获取新闻通知的对象（$news）
      * @author liuyanzhao 
      */
     public function getNews($id)
@@ -73,6 +73,29 @@ class Article extends Model
         //对应的article表里的文章
         return Article::get($id);
     }
+    /**
+     * 做下一步的新闻列表页
+     * @author liuyanzhao
+     */
+    public function showNews()
+    { 
+        $PageSize = 20;
+        //找出产品列表对应的ID
+        $Categorys = Category::all();
+        foreach ($Categorys as $value) {
+            
+            if ($value->getData('name') == '新闻列表') {
+                
+                $id = $value->id;
+            }
+        }
 
- 
+       
+        $map = array('category_id' => $id, );
+
+        
+        $Article = new Article;
+        return $Article->where($map)->paginate($PageSize);
+    }
+    
 }

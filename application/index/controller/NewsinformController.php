@@ -7,13 +7,15 @@ use think\db\Query;
 
 class NewsinformController extends Controller
 {
-	/*
-	@author:liuyanzhao
+	/**
+	 *@author liuyanzhao
 	 */
 	public function index()
 	{
+        $News =	new Article;
+        $News = $News->showNews();
         
-        
+        $this->assign('News', $News);
         return $this->fetch();
 	}
 
@@ -21,9 +23,6 @@ class NewsinformController extends Controller
 	{
 		//利用id确定文章
 		$id   = input('id');
-		if () {
-			# code...
-		}
 		//实例化$News
 		$News = new Article;
 		//把对应的文章给$News
