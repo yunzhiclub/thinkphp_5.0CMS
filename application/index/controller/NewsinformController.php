@@ -3,6 +3,7 @@ namespace app\index\controller;
 
 use think\Controller;
 use app\model\Article;
+use think\db\Query;
 
 class NewsinformController extends Controller
 {
@@ -11,13 +12,18 @@ class NewsinformController extends Controller
 	 */
 	public function index()
 	{
-		return $this->fetch();
+        
+        
+        return $this->fetch();
 	}
 
 	public function detail()
 	{
 		//利用id确定文章
 		$id   = input('id');
+		if () {
+			# code...
+		}
 		//实例化$News
 		$News = new Article;
 		//把对应的文章给$News
@@ -26,5 +32,6 @@ class NewsinformController extends Controller
 		$this->assign('News', $News);
 		//返回V层
 		return $this->fetch();
+
 	}
 }

@@ -34,7 +34,7 @@ class Article extends Model
 
     /**
      * 返回关于我们的对象
-     * @author  galiming
+     * @author  gaoliming
      */
     public function getAboutUs()
     {
@@ -73,4 +73,6 @@ class Article extends Model
         //对应的article表里的文章
         return Article::get($id);
     }
+
+ 
 }
