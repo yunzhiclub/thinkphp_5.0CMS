@@ -62,4 +62,15 @@ class Article extends Model
     {
         return Article::get($id);
     }
+
+
+    /*
+     * 获取新闻通知的对象（$news）
+     * @author liuyanzhao 
+     */
+    public function getNews($id)
+    {
+        //对应的article表里的文章
+        return Article::get($id);
+    }
 }
