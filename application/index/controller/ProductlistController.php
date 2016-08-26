@@ -32,12 +32,18 @@ class ProductlistController extends Controller
 	{
 		//接收穿过来的id值
 		$id = input('id');
+
 		//取出对象
 		$Product = new Article;
+
+		//对象点击量+1
+		$Product->plus($id);
+
+		//取出对象
 		$Product = $Product->getProduct($id);
 
 		//向V层传值
-		$this->assign('Product', $Product);
+		$this->assign('New', $Product);
 
 		//返回用户
 		return $this->fetch();

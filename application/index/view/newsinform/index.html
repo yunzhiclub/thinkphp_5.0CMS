@@ -2,24 +2,41 @@
 <div class="copyrights">Collect from <a href="http://www.cssmoban.com/">Website Template</a></div>
 <!--=======content================================-->
 <div id="content">
+    <div class="ic">More Website Templates @ TemplateMonster.com - July 22, 2013!</div>
+    <div class="slider-relative">
+        <div class="slider-block">
+            <div class="slider">
+                <ul class="items">
+                    <li><a href="{:url('detail')}"><img src="/thinkphp_5.0CMS/public/index/images/slider-1.jpg" alt=""></a>
+                        <div class="banner">Our Customers are Our Priority</div>
+                    </li>
+                    <li><a href="{:url('detail')}"><img src="/thinkphp_5.0CMS/public/index/images/slider-2.jpg" alt=""></a>
+                        <div class="banner">Creative Problem-Solving</div>
+                    </li>
+                    <li><a href="{:url('detail')}"><img src="/thinkphp_5.0CMS/public/index/images/slider-3.jpg" alt=""></a>
+                        <div class="bannesr">Imagination is Our Power</div>
+                    </li>
+                    <li><a href="{:url('detail')}"><img src="/thinkphp_5.0CMS/public/index/images/slider-4.jpg" alt=""></a>
+                        <div class="banner">The World of Opportunities</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <div class="bg-2">
         <div class="container_12">
             <div class="grid_6">
                 <div>
-                    <h2 class="indent-1" style="margin-top:-80px;">热门搜索</h2>
+                    <h2 class="indent-1">热门搜索</h2>
                     <div class="wrap box-2 border-1">
                         <ul>
                             <li>
-                                <a href="{:url('Productlist/detail')}" title="我校在第九届全国大学生节能减排社会实践与科技竞赛中再获佳绩" target="_parent">我校在第九届全国大学生节能减排社会实践与科技竞赛中再获佳…</a>
-                                <span>[2016-08-15]</span>
+                                <a href="{:url('detail?id=')}" title="123456" target="_blank"></a>
+                                <span>4563132</span>
                             </li>
                             <li>
-                                <a href="{:url('detail')}" title="河北省委常委、纪委书记陈超英一行到我校大学科技园沧州园区考察调研" target="_parent">河北省委常委、纪委书记陈超英一行到我校大学科技园沧州园区考…</a>
-                                <span>[2016-08-15]</span>
-                            </li>
-                            <li>
-                                <a href="{:url('detail')}" title="天津市人大常委会副主任王宝弟一行参观考察我校大学科技园企业" target="_parent">天津市人大常委会副主任王宝弟一行参观考察我校大学科技园企…</a>
-                                <span>[2016-08-14]</span>
+                                <a href="{:url('detail?id=')}" title="123456" target="_blank"></a>
+                                <span>4563132</span>
                             </li>
                         </ul>
                         <br>
@@ -28,15 +45,28 @@
                 </div>
             </div>
             <div class="grid_6">
-                <h2 class="indent-1" style="margin-top:-80px;">新闻</h2>
+                <h2 class="indent-1">新闻</h2>
                 <ul>
-                    {volist name="Articles" id="Article"}
-                    <div class="grid_12">
-                        <img src="">
-                        <a href="{:url('detail?id=' . $Article->id)}">{$Article->title}</a> <span>&nbsp;     [2016-08-15]</span>
-                    </div>
-                    {/volist}
-                    <div>{$Articles->render()}</div>
+                    <li>
+                        <a href="{:url('detail')}" title="我校在第九届全国大学生节能减排社会实践与科技竞赛中再获佳绩" target="_blank">我校在第九届全国大学生节能减排社会实践与科技竞赛中再获佳…</a>
+                        <span>[2016-08-15]</span>
+                    </li>
+                    <li>
+                        <a href="{:url('detail')}" title="河北省委常委、纪委书记陈超英一行到我校大学科技园沧州园区考察调研" target="_blank">河北省委常委、纪委书记陈超英一行到我校大学科技园沧州园区考…</a>
+                        <span>[2016-08-15]</span>
+                    </li>
+                    <li>
+                        <a href="{:url('detail')}" title="天津市人大常委会副主任王宝弟一行参观考察我校大学科技园企业" target="_blank">天津市人大常委会副主任王宝弟一行参观考察我校大学科技园企…</a>
+                        <span>[2016-08-14]</span>
+                    </li>
+                    <li>
+                        <a href="{:url('detail')}" title="我校组织开展实验室安全大检查" target="_blank">我校组织开展实验室安全大检查</a>
+                        <span>[2016-08-12]</span>
+                    </li>
+                    <li>
+                        <a href="{:url('detail')}" title="任丘市领导来我校考察调研" target="_blank">任丘市领导来我校考察调研</a>
+                        <span>[2016-08-08]</span>
+                    </li>
                 </ul>
             </div>
         </div>

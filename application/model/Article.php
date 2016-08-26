@@ -5,7 +5,7 @@ use think\Model;
 
 class Article extends Model
 {
-	public function getIstopAttr($value)
+    public function getIstopAttr($value)
     {
         $status = array('0'=>'否','1'=>'是');
         $istop = $status[$value];
@@ -27,10 +27,10 @@ class Article extends Model
             return $status[0];
         }
     }
-	public function category()
-	{
-		return $this->belongsTo("category");
-	}
+    public function category()
+    {
+        return $this->belongsTo("category");
+    }
 
     /**
      * 返回关于我们的对象
@@ -89,6 +89,30 @@ class Article extends Model
         return Article::get($id);
     }
 
+    /**
+     * 获取首页点击量前五的新闻
+     * @author gaoliming
+     */
+    public function getMoreClickNum()
+    {
+        $Article = new Article;
+
+        return $Article->order('clicknum', 'desc')->limit(5)->select();
+    }
+
+    /**
+     * 对点击量+1
+     * @author  gaoliming>
+     */
+    public function plus($id)
+    {
+        $Article = Article::get($id);
+
+        $Article->clicknum = $Article->clicknum + 1;
+
+        //保存点击量
+        $Article->save();
+    }
 
     /**
      *  获取新闻通知的对象（$news）
@@ -122,5 +146,4 @@ class Article extends Model
         $Article = new Article;
         return $Article->where($map)->order('create_time', 'desc')->paginate($PageSize);
     }
-    
 }
