@@ -13,7 +13,7 @@ class MenuController extends ParenterController
 		*@tangzhenjie
 		*/
 		$name = input('get.name');
-        $pageSize = 2;
+        $pageSize = 5;
         $Menu  = new Menu;
         $Menus = $Menu->where('name', 'like', '%' . $name . '%')->paginate($pageSize);
 		$this->assign('Menus', $Menus);

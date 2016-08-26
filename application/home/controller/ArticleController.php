@@ -17,7 +17,7 @@ class ArticleController extends ParenterController
         *@tangzhenjie
         */
         $title = input('get.title');
-        $pageSize = 2;
+        $pageSize = 5;
         $Article  = new Article;
         $Articles = $Article->where('title', 'like', '%' . $title . '%')->paginate($pageSize);
         $this->assign('Articles', $Articles);
