@@ -77,7 +77,7 @@ class Article extends Model
 
         //返回对象
         $Article = new Article;
-        return $Article->where($map)->paginate($PageSize);
+        return $Article->where($map)->order('create_time' , 'desc')->paginate($PageSize);
     }
 
     /**

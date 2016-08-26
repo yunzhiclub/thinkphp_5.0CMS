@@ -7,6 +7,10 @@ use app\model\Article;
 
 class ProductlistController extends Controller
 {
+
+	/**
+	 * @author gaoliming
+	 */
 	public function index()
 	{
 		//获取产品列表的所有对象
