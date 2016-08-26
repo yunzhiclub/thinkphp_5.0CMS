@@ -151,8 +151,8 @@ class Article extends Model
                 $id = $value->id;
             }
         }
-
-        $map = array('category_id' => $id, );
+        
+        $map = array('category_id' => $id);
 
         $Article = new Article;
         return $Article->where($map)->order('create_time', 'desc')->paginate($PageSize);
