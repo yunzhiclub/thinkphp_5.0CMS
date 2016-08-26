@@ -3,15 +3,20 @@ namespace app\index\controller;
 
 use think\Controller;
 use app\model\Article;
+use think\db\Query;
 
 class NewsinformController extends Controller
 {
-	/*
-	@author:liuyanzhao
+	/**
+	 *@author liuyanzhao
 	 */
 	public function index()
 	{
-		return $this->fetch();
+        $News =	new Article;
+        $News = $News->showNews();
+        
+        $this->assign('News', $News);
+        return $this->fetch();
 	}
 
 	public function detail()
@@ -26,5 +31,6 @@ class NewsinformController extends Controller
 		$this->assign('News', $News);
 		//返回V层
 		return $this->fetch();
+
 	}
 }
