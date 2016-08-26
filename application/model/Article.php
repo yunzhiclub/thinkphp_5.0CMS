@@ -88,4 +88,30 @@ class Article extends Model
     {
         return Article::get($id);
     }
+
+    /**
+     * 获取首页点击量前五的新闻
+     * @author gaoliming
+     */
+    public function getMoreClickNum()
+    {
+        $Article = new Article;
+
+        return $Article->order('clicknum', 'desc')->limit(5)->select();
+    }
+
+    /**
+     * 对点击量+1
+     * @author  gaoliming>
+     */
+    public function plus($id)
+    {
+        $Article = Article::get($id);
+
+        $Article->clicknum = $Article->clicknum + 1;
+
+        //保存点击量
+        $Article->save();
+    }
+
 }
