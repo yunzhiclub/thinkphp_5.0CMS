@@ -1,21 +1,13 @@
 {extend name="index" /} {block name="body"}
 <div class="container">
     <div class="row-fluid">
-        <div class="col-md-12">
-            <form action="" method="post">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <form action="" method="get">
                 <div class="row">
-                    <div class="col-md-2">
-                        <select class="form-control">
-                            <foreach name="" item="module">
-                                <option value="">前台菜单</option>
-                                <option value="">后台菜单</option>
-                                <option value="">全部</option>
-                            </foreach>
-                        </select>
-                    </div>
                     <div class="col-md-3">
                         <div class="input-group custom-search-form">
-                            <input class="form-control" name="" placeholder="标题..." type="text" value="" />
+                            <input class="form-control" name="name" placeholder="标题..." type="text" value="{:input('get.name')}" />
                             <span class="input-group-btn">
                                 <button class="btn btn-default" type="submit">
                                     <i class="fa fa-search"></i>
@@ -23,8 +15,11 @@
                             </span>
                         </div>
                     </div>
+                    <div class="col-md-2">
+                    </div>
                     <div class="col-md-2 col-md-offset-5">
-                        <a href="{:url('Menu/add')}" class="btn btn-info"><i class="glyphicon glyphicon-plus"></i> 新增</a>
+                        <div class="col-md-2"><a href="{:url('add')}" class="btn btn-primary" style="margin-left: 40px;
+"><i class="glyphicon glyphicon-plus"></i>&nbsp;增加</a></div>
                     </div>
                 </div>
             </form>
@@ -34,36 +29,41 @@
                     </div>
                     <!-- /input-group -->
                     <!-- Table -->
-                    <table class="table table-bordered table-striped table-hover">
+                    <table class="table table-bordered table table-hover">
                         <thead>
-                            <tr>
+                            <tr class="info">
                                 <th>序号</th>
                                 <th>名称</th>
-                                <th>类别</th>
+                                <th>权重</th>
                                 <th>状态</th>
+                                <th>权限</th>
                                 <th>操作</th>
                             </tr>
                         </thead>
                         <tbody>
+                            {volist name="Menus" id="Menu" key="key"}
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{$key}</td>
+                                <td>{$Menu->name}</td>
+                                <td>{$Menu->weight}</td>
+                                <td>{$Menu->status}</td>
+                                <td>{$Menu->is_permission}</td>
                                 <td>
-                                    <a class="btn btn-md btn-primary" href="{:url('Menu/edit')}"><i class="fa fa-pencil"></i> 编辑</a>
-                                    <a class="btn btn-md btn-danger" href="{:url('delete')}"><i class="fa fa-trash-o "></i> 删除</a>
+                                    <a class="btn btn-md btn-primary" href="{:url('Menu/edit?id='.$Menu->id)}"><i class="fa fa-pencil"></i> 编辑</a>
+                                    <a class="btn btn-md btn-danger" href="{:url('delete?id='.$Menu->id)}"><i class="fa fa-trash-o "></i> 删除</a>
                                 </td>
                             </tr>
-                            </foreach>
+                            {/volist}
                         </tbody>
                     </table>
+                    {$Menus->render()}
                 </div>
                 <nav>
                     <Yunzhi:page totalcount="totalCount" />
                 </nav>
             </div>
         </div>
+        <div class="col-md-1"></div>
     </div>
 </div>
 {/block}

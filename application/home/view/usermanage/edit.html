@@ -1,50 +1,63 @@
-{extend name="index" /} {block name="body"}
+{extend name="index" /}
+{block name="body"}
 <div class="container">
     <div class="row">
         <div class="col-md-1">
         </div>
         <div class="col-md-7">
-            <form class="form-horizontal" action="{:url('update')}" method="post">
+            <form class="form-horizontal" action="{:url('save')}" method="post">
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
+                    <label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" id="inputEmail3" placeholder="Name">
+                        <input type="text" class="form-control" id="inputEmail3" value="{$User->username}" name = 'username'>
+                        <input type="hidden" name="id" value="{$User->id}">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Sex</label>
+                    <label for="inputEmail3" class="col-sm-2 control-label">姓名</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" id="inputEmail3" placeholder="Sex">
+                        <input type="text" class="form-control" id="inputEmail3" value="{$User->name}" name="name">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-                    <div class="col-sm-10">
-                        <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                    <label for="sex" class="col-md-2 control-label">性别:</label>
+                    <div class="col-md-10">
+                        <input id="man" type="radio" name="sex" {eq value='0' name="$User->getData('sex')" }checked="checked"{/eq} value="0" />
+                        <label for="man">&nbsp;男</label>&nbsp;
+                        <input id="woman" type="radio" name="sex" {eq value='1' name="$User->getData('sex')" }checked="checked"{/eq} value="1" />
+                        <label for="woman">&nbsp;女</label>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                    <label for="inputEmail3" class="col-sm-2 control-label">邮箱</label>
                     <div class="col-sm-10">
-                        <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                        <input type="email" class="form-control" id="inputEmail3" value="{$User->email}" name="email">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">状态</label>
+                    <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
                     <div class="col-sm-10">
-                        <div class="btn-group">
-                            <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Small button <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                ...
-                            </ul>
-                        </div>
+                        <input type="password" class="form-control" id="inputPassword3" value="{$User->password}" name="password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">确认密码</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="inputPassword3" name="newpassword" value="{$User->password}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="status" class="col-md-2 control-label">状态:</label>
+                    <div class="col-md-10">
+                        <input id="dongjie" type="radio" name="status" value="0" {eq value="0" name="$User->getData('status')" }checked="checked"{/eq}/>
+                        <label for="dongjie">&nbsp;冻结</label>&nbsp;
+                        <input id="jiedong" type="radio" name="status" value="1" {eq value="1" name="$User->getData('status')" }checked="checked"{/eq}/>
+                        <label for="jiedong">&nbsp;解冻</label>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default btn btn-primary"><i class="glyphicon glyphicon-plus"></i>&nbsp;add</button>
+                        <button type="submit" class="btn btn-default btn btn-primary"><i class="glyphicon glyphicon-ok"></i>&nbsp;保存</button>
                     </div>
                 </div>
             </form>

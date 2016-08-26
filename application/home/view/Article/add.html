@@ -1,0 +1,61 @@
+{extend name="index" /} {block name="body"}
+<div class="container">
+    <div class="row">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-7">
+            <form class="form-horizontal" action="{:url('insert')}" method="post">
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">类别</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="category_id">
+                            
+                                {volist name="Categorys" id="Category"}
+                                <option value="{$Category->id}">{$Category->name}</option>
+                                {/volist}
+                        
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">名称</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputEmail3" placeholder="名称" name="title" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">内容</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputEmail3" placeholder="内容" name="body" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="is_recomment" class="col-sm-2 control-label">推荐</label>
+                    <div class="col-sm-10">
+                        <input id="man" type="radio" name="is_recomment" value="1" />
+                        <label for="man">&nbsp;是</label>&nbsp;
+                        <input id="woman" type="radio" name="is_recomment" value="0" />
+                        <label for="woman">&nbsp;否</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="is_top" class="col-sm-2 control-label">置顶</label>
+                    <div class="col-sm-10">
+                        <input id="ma" type="radio" name="is_top" value="1" />
+                        <label for="ma">&nbsp;是</label>&nbsp;
+                        <input id="woma" type="radio" name="is_top" value="0" />
+                        <label for="woma">&nbsp;否</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary">保存</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-4">
+        </div>
+    </div>
+</div>
+{/block}
