@@ -50,11 +50,4 @@ class IndexController extends Controller
     	//返回首页
     	return $this->fetch($string . '\detail');
     }
-<<<<<<< HEAD
-    public function moreArticle()
-    {
-    	return $this->fetch;
-    }
-=======
->>>>>>> refs/remotes/origin/development
 }
