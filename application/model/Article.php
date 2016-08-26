@@ -55,6 +55,32 @@ class Article extends Model
     }
 
     /**
+     * 返回所有的产品
+     * @author gaoliming
+     */
+    public function getAllProdects()
+    {
+        //设定分页的大小
+        $PageSize = 1;
+        //找出产品列表对应的ID
+        $Categorys = Category::all();
+        foreach ($Categorys as $value) {
+            
+            if ($value->getData('name') === '产品列表') {
+                
+                $id = $value->id;
+            }
+        }
+
+        //设定索引
+        $map = array('category_id' => $id, );
+
+        //返回对象
+        $Article = new Article;
+        return $Article->where($map)->order('create_time' , 'desc')->paginate($PageSize);
+    }
+
+    /**
      * 获取产品的对象
      * @author gaoliming
      */
