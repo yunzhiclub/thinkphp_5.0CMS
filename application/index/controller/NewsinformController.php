@@ -9,8 +9,12 @@ class NewsinformController extends Controller
 {
 	public function index()
 	{
-		//返回首页
-		return $this->fetch();
+
+        $News =	new Article;
+        $News = $News->showNews();
+        
+        $this->assign('News', $News);
+        return $this->fetch();
 	}
 
 	public function detail()
