@@ -79,23 +79,22 @@ class Article extends Model
      */
     public function showNews()
     { 
-        $PageSize = 20;
-        //找出产品列表对应的ID
+        $PageSize = 10;
+        
         $Categorys = Category::all();
-        foreach ($Categorys as $value) {
+        foreach ($Categorys as $value) 
+        {
             
             if ($value->getData('name') == '新闻列表') {
-                
+                //取出对应的id
                 $id = $value->id;
             }
         }
 
-       
         $map = array('category_id' => $id, );
 
-        
         $Article = new Article;
-        return $Article->where($map)->paginate($PageSize);
+        return $Article->where($map)->order('create_time', 'desc')->paginate($PageSize);
     }
     
 }
