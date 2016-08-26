@@ -5,7 +5,18 @@ use think\Model;
 
 class Article extends Model
 {
-	public function getIstopAttr($value)
+
+    /**
+     * 自动时间转换
+     * @author  gaoliming
+     */
+     protected $dateFormat = 'Y-m-d';    // 日期格式
+
+    // 类型转换
+    protected $type = [
+        'create_time' => 'datetime',
+    ];
+    public function getIstopAttr($value)
     {
         $status = array('0'=>'否','1'=>'是');
         $istop = $status[$value];
@@ -27,10 +38,10 @@ class Article extends Model
             return $status[0];
         }
     }
-	public function category()
-	{
-		return $this->belongsTo("category");
-	}
+    public function category()
+    {
+        return $this->belongsTo("category");
+    }
 
     /**
      * 返回关于我们的对象
@@ -55,6 +66,32 @@ class Article extends Model
     }
 
     /**
+     * 返回所有的产品
+     * @author gaoliming
+     */
+    public function getAllProdects()
+    {
+        //设定分页的大小
+        $PageSize = 1;
+        //找出产品列表对应的ID
+        $Categorys = Category::all();
+        foreach ($Categorys as $value) {
+            
+            if ($value->getData('name') === '产品列表') {
+                
+                $id = $value->id;
+            }
+        }
+
+        //设定索引
+        $map = array('category_id' => $id, );
+
+        //返回对象
+        $Article = new Article;
+        return $Article->where($map)->order('create_time' , 'desc')->paginate($PageSize);
+    }
+
+    /**
      * 获取产品的对象
      * @author gaoliming
      */
@@ -63,6 +100,30 @@ class Article extends Model
         return Article::get($id);
     }
 
+    /**
+     * 获取首页点击量前五的新闻
+     * @author gaoliming
+     */
+    public function getMoreClickNum()
+    {
+        $Article = new Article;
+
+        return $Article->order('clicknum', 'desc')->limit(5)->select();
+    }
+
+    /**
+     * 对点击量+1
+     * @author  gaoliming>
+     */
+    public function plus($id)
+    {
+        $Article = Article::get($id);
+
+        $Article->clicknum = $Article->clicknum + 1;
+
+        //保存点击量
+        $Article->save();
+    }
 
     /**
      *  获取新闻通知的对象（$news）
@@ -96,5 +157,4 @@ class Article extends Model
         $Article = new Article;
         return $Article->where($map)->order('create_time', 'desc')->paginate($PageSize);
     }
-    
 }

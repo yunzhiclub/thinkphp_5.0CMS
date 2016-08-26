@@ -1,6 +1,18 @@
 {extend name="index" /} {block name="content"}
 <div class="copyrights">Collect from <a href="http://www.cssmoban.com/">Website Template</a></div>
 <!--=======content================================-->
+<script type="text/javascript">   
+        window.onbeforeunload = function() {   
+            var n = window.event.screenX - window.screenLeft;   
+            var b = n > document.documentElement.scrollWidth-20;   
+            if(b && window.event.clientY < 0 || window.event.altKey){   
+                alert("这是一个关闭操作而非刷新");   
+                window.event.returnValue = ""; //此处放你想要操作的代码 
+            }else{
+                alert("这是一个刷新操作而非关闭");   
+            }
+        }  
+</script>
 <div id="content">
     <div class="bg-2">
         <div class="container_12">
@@ -9,9 +21,9 @@
                 <div style="text-align:center;"> <img src="/thinkphp_5.0CMS/public/img/ben.png" alt="产品" title="图片"></div>
                 <div>
                     <h2 style="text-align:center;padding-bottom: 40px;
-padding-top: 40px;}">{$Product->title}</h2></div>
+padding-top: 40px;}">{$New->title}</h2></div>
                 <div>
-                    <p style="text-indent: 28pt; margin: 0cm 0cm 0pt; mso-char-indent-count: 2.0">{$Product->body}</p>
+                    <p style="text-indent: 28pt; margin: 0cm 0cm 0pt; mso-char-indent-count: 2.0">{$New->body}</p>
                 </div>
                 <br />
                 <br />
