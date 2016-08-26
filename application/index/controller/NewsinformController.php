@@ -12,10 +12,9 @@ class NewsinformController extends Controller
 	 */
 	public function index()
 	{
-        $News =	new Article;
-        $News = $News->showNews();
-        
-        $this->assign('News', $News);
+        $Article =	new Article;
+        $Articles = $Article->showNews(input('get.page'));
+        $this->assign('Articles', $Articles);
         return $this->fetch();
 	}
 

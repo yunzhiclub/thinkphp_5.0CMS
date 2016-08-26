@@ -103,7 +103,7 @@ class Article extends Model
      * 做下一步的新闻列表页
      * @author liuyanzhao
      */
-    public function showNews()
+    public function showNews($page)
     { 
         $PageSize = 10;
         

@@ -2,12 +2,11 @@
 <div class="copyrights">Collect from <a href="http://www.cssmoban.com/">Website Template</a></div>
 <!--=======content================================-->
 <div id="content">
-
     <div class="bg-2">
         <div class="container_12">
             <div class="grid_6">
                 <div>
-                    <h2 class="indent-1"  style="margin-top:-80px;">热门搜索</h2>
+                    <h2 class="indent-1" style="margin-top:-80px;">热门搜索</h2>
                     <div class="wrap box-2 border-1">
                         <ul>
                             <li>
@@ -31,13 +30,13 @@
             <div class="grid_6">
                 <h2 class="indent-1" style="margin-top:-80px;">新闻</h2>
                 <ul>
-                     {volist name="News" id="News"}
+                    {volist name="Articles" id="Article"}
                     <div class="grid_12">
                         <img src="">
-                        <a href="{:url('detail?id=' . $News->id)}">{$News->title}</a>  <span>&nbsp;     [2016-08-15]</span>
-
+                        <a href="{:url('detail?id=' . $Article->id)}">{$Article->title}</a> <span>&nbsp;     [2016-08-15]</span>
                     </div>
-                    {/volist} 
+                    {/volist}
+                    <div>{$Articles->render()}</div>
                 </ul>
             </div>
         </div>
