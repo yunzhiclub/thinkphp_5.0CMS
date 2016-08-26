@@ -61,10 +61,10 @@
 
 
 .pagination {
-	bottom: -33px;
+	bottom: 100px;
 	position: absolute;
 	right: 50%;
-	margin-right:-45px;
+	margin-right:-350px;
 	z-index: 999;
 }
 
@@ -83,8 +83,8 @@
 	-o-transition: 0s ease;
 	-webkit-transition: 0s ease;
 	height: 10px;
-	border:2px solid #000;
-	background:#000;
+	border:2px solid #f1f1f1f1;
+	background:#f1f1f1f1;
 	border-radius:50px;
 }
 

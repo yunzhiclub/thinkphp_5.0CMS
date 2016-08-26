@@ -2,9 +2,7 @@
 namespace app\home\controller;
 
 use app\model\Category;
-/**
-* @author gaoliming
-*/
+
 class CategoryController extends ParenterController
 {
 	public function index()
@@ -14,7 +12,7 @@ class CategoryController extends ParenterController
 		*/
 
 		$name = input('get.name');
-        $pageSize = 2;
+        $pageSize = 5;
         $Category  = new Category;
         $Categorys = $Category->where('name', 'like', '%' . $name . '%')->paginate($pageSize);
 		$this->assign('Categorys', $Categorys);
