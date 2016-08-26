@@ -17,8 +17,13 @@ class ProductlistController extends Controller
 		$Products = new Article;
 		$Products = $Products->getAllProdects();
 
+		//取出点击量前五
+		$New = new Article;
+		$News = $New->getMoreClickNum();
+
 		//向V层传递
 		$this->assign('Products', $Products);
+		$this->assign('News', $News);
 
 		//返回用户
 		return $this->fetch();

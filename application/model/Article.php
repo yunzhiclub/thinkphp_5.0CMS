@@ -5,6 +5,17 @@ use think\Model;
 
 class Article extends Model
 {
+
+    /**
+     * 自动时间转换
+     * @author  gaoliming
+     */
+     protected $dateFormat = 'Y-m-d';    // 日期格式
+
+    // 类型转换
+    protected $type = [
+        'create_time' => 'datetime',
+    ];
     public function getIstopAttr($value)
     {
         $status = array('0'=>'否','1'=>'是');
@@ -140,8 +151,8 @@ class Article extends Model
                 $id = $value->id;
             }
         }
-
-        $map = array('category_id' => $id, );
+        
+        $map = array('category_id' => $id);
 
         $Article = new Article;
         return $Article->where($map)->order('create_time', 'desc')->paginate($PageSize);

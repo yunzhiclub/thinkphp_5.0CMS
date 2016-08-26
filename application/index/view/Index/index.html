@@ -32,13 +32,16 @@
                         <ul>
                         {volist name="News" id="New"}
                             <li>
-                                <a href="{:url('detail?id=' . $New->id)}" title="{$New->title}" target="_blank">{$New->title}</a>
-                                <span>{$New->create_time}</span>
+                                <a href="{:url('detail?id=' . $New->id)}" title="{$New->title}" target="_blank"><?php
+                                echo mb_substr($New->title, 0, 10, 'utf-8');
+                                ?>...                            
+                                </a>
+                                <span>[{$New->create_time}]</span>
                             </li>
                         {/volist}
                         </ul>
                         <br>
-                        <a href="#" class="btn">more</a>
+                        <a href="{:url('Subpage/index')}" class="btn">MORE</a>
                     </div>
                 </div>
             </div>
