@@ -8,5 +8,8 @@ class IndexController extends Controller
     {
         return $this->fetch();
     }
-    
+    public function moreArticle()
+    {
+    	return $this->fetch;
+    }
 }
