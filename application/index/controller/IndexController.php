@@ -12,8 +12,12 @@ class IndexController extends Controller
 		$New = new Article;
 		$News = $New->getMoreClickNum();
 
+        //取出置顶,推荐的文章
+        $TopNews = $New->getTopNews();
+
 		//向V层传值
 		$this->assign('News', $News);
+        $this->assign('TopNews', $TopNews);
 
 
 		//返回首页
