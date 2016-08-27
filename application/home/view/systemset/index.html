@@ -33,6 +33,7 @@
                 <table class="table table-bordered table table-hover">
                     <tr class="info">
                         <th>序号</th>
+                        <th>logal</th>
                         <th>公司名称</th>
                         <th>公司名称是否显示</th>
                         <th>页脚名称</th>
@@ -42,7 +43,8 @@
                     {volist name="Systemsets" id="Systemset" key="key"}
                     <tr>
                         <td>{$key}</td>
-                        <td><img src="/thinkphp_5.0CMS/public/img/big.jpg" width="28" height="28"><a href="{:url('detail?id=' .$Systemset->id)}">{$Systemset->name}</a></td>
+                        </td>
+                        <td>{$Systemset->name}</td>
                         <td>{$Systemset->is_show}</td>
                         <td>{$Systemset->footer_name}</td>
                         <td>{$Systemset->is_display}</td>
