@@ -27,51 +27,48 @@
         <div class="container_12">
             <div class="grid_6">
                 <div>
-                    <h2 class="indent-1">热门搜索</h2>
+                    <div id="header">
+                        <h2>热门搜索</h2>
+                        <a href="{:url('Subpage/index')}" class="btn">MORE</a>
+                    </div>
                     <div class="wrap box-2 border-1">
                         <ul>
+                        {volist name="News" id="New"}
                             <li>
-                                <a href="{:url('detail')}" title="我校在第九届全国大学生节能减排社会实践与科技竞赛中再获佳绩" target="_blank">我校在第九届全国大学生节能减排社会实践与科技竞赛中再获佳…</a>
-                                <span>[2016-08-15]</span>
+                                <a href="{:url('detail?id=' . $New->id)}" title="{$New->title}" target="_blank"><?php
+                                echo mb_substr($New->title, 0, 10, 'utf-8');
+                                ?>...                            
+                                </a>
+                                <span>[{$New->create_time}]</span>
                             </li>
-                            <li>
-                                <a href="{:url('detail')}" title="河北省委常委、纪委书记陈超英一行到我校大学科技园沧州园区考察调研" target="_blank">河北省委常委、纪委书记陈超英一行到我校大学科技园沧州园区考…</a>
-                                <span>[2016-08-15]</span>
-                            </li>
-                            <li>
-                                <a href="{:url('detail')}" title="天津市人大常委会副主任王宝弟一行参观考察我校大学科技园企业" target="_blank">天津市人大常委会副主任王宝弟一行参观考察我校大学科技园企…</a>
-                                <span>[2016-08-14]</span>
-                            </li>
+                        {/volist}
                         </ul>
                         <br>
-                        <a href="#" class="btn">more</a>
                     </div>
                 </div>
             </div>
             <div class="grid_6">
-                <h2 class="indent-1">新闻</h2>
+                <div >
+                   <div id="header">
+                        <h2>热门搜索</h2>
+                        <a href="{:url('Subpage/index')}" class="btn">MORE</a>
+                    </div>
+                </div>
+                <div class="wrap box-2">
                 <ul>
-                    <li>
-                        <a href="{:url('detail')}" title="我校在第九届全国大学生节能减排社会实践与科技竞赛中再获佳绩" target="_blank">我校在第九届全国大学生节能减排社会实践与科技竞赛中再获佳…</a>
-                        <span>[2016-08-15]</span>
-                    </li>
-                    <li>
-                        <a href="{:url('detail')}" title="河北省委常委、纪委书记陈超英一行到我校大学科技园沧州园区考察调研" target="_blank">河北省委常委、纪委书记陈超英一行到我校大学科技园沧州园区考…</a>
-                        <span>[2016-08-15]</span>
-                    </li>
-                    <li>
-                        <a href="{:url('detail')}" title="天津市人大常委会副主任王宝弟一行参观考察我校大学科技园企业" target="_blank">天津市人大常委会副主任王宝弟一行参观考察我校大学科技园企…</a>
-                        <span>[2016-08-14]</span>
-                    </li>
-                    <li>
-                        <a href="{:url('detail')}" title="我校组织开展实验室安全大检查" target="_blank">我校组织开展实验室安全大检查</a>
-                        <span>[2016-08-12]</span>
-                    </li>
-                    <li>
-                        <a href="{:url('detail')}" title="任丘市领导来我校考察调研" target="_blank">任丘市领导来我校考察调研</a>
-                        <span>[2016-08-08]</span>
-                    </li>
+                    {volist name="TopNews" id="TopNew"}
+                    <li style="float:left;margin-right: 25px;">
+                        <a href="{:url('detail?id=' . $TopNew->id)}"><img src="/thinkphp_5.0CMS/public/img/ben.png" alt="{$TopNew->title}" width="100px"></a>
+                        <p style="margin-top:10px">
+                            <a href="{:url('detail?id=' . $TopNew->id)}"><?php
+                                echo mb_substr($TopNew->title, 0, 5, 'utf-8');
+                            ?>
+                            </a>
+                            {eq name="$TopNew->is_mark" value="3"}置顶{else /}推荐{/eq}
+                        </p>
+                    {/volist}
                 </ul>
+                </div>  
             </div>
         </div>
     </div>

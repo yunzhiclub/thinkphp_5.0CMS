@@ -6,36 +6,40 @@
         <div class="container_12">
             <div class="grid_6">
                 <div>
-                    <h2 class="indent-1">热门搜索</h2>
+                    <div id="header">
+                        <h2>热门搜索</h2>
+                        <a href="{:url('Subpage/index')}" class="btn">MORE</a>
+                    </div>
                     <div class="wrap box-2 border-1">
                         <ul>
+                        {volist name="News" id="New"}
                             <li>
-                                <a href="{:url('detail')}" title="我校在第九届全国大学生节能减排社会实践与科技竞赛中再获佳绩" target="_blank">我校在第九届全国大学生节能减排社会实践与科技竞赛中再获佳…</a>
-                                <span>[2016-08-15]</span>
+                                <a href="{:url('detail?id=' . $New->id)}" title="{$New->title}" target="_blank"><?php
+                                echo mb_substr($New->title, 0, 10, 'utf-8');
+                                ?>...                            
+                                </a>
+                                <span>[{$New->create_time}]</span>
                             </li>
-                            <li>
-                                <a href="{:url('detail')}" title="河北省委常委、纪委书记陈超英一行到我校大学科技园沧州园区考察调研" target="_blank">河北省委常委、纪委书记陈超英一行到我校大学科技园沧州园区考…</a>
-                                <span>[2016-08-15]</span>
-                            </li>
-                            <li>
-                                <a href="{:url('detail')}" title="天津市人大常委会副主任王宝弟一行参观考察我校大学科技园企业" target="_blank">天津市人大常委会副主任王宝弟一行参观考察我校大学科技园企…</a>
-                                <span>[2016-08-14]</span>
-                            </li>
+                        {/volist}
                         </ul>
                         <br>
-                        <a href="#" class="btn">more</a>
                     </div>
                 </div>
             </div>
             <div class="grid_6">
-                <div>
-                    <h2 class="indent-1">产品列表</h2>
-                </div>
+                <div id="header">
+                        <h2>热门搜索</h2>
+                        <a href="{:url('Subpage/index')}" class="btn">MORE</a>
+                    </div>
                 <div class="container_12">
                 {volist name="Products" id="Product"}
                     <div class="grid_2">
                         <a href="{:url('detail?id=' . $Product->id)}"><img src="/thinkphp_5.0CMS/public/img/ben.png" alt="{$Product->title}" width="100px"></a>
-                        <p>{$Product->title}</p>
+                        <p style="margin-top:10px">
+                            <?php
+                                echo mb_substr($Product->title, 0, 10, 'utf-8');
+                            ?>
+                        </p>
                     </div>
                     {/volist} 
                     <div style="margin-bottom:100px">
