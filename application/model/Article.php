@@ -72,7 +72,7 @@ class Article extends Model
     public function getAllProdects()
     {
         //设定分页的大小
-        $PageSize = 1;
+        $PageSize = 6;
         //找出产品列表对应的ID
         $Categorys = Category::all();
         foreach ($Categorys as $value) {
