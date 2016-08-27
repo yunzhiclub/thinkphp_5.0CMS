@@ -72,7 +72,7 @@ class Article extends Model
     public function getAllProdects()
     {
         //设定分页的大小
-        $PageSize = 1;
+        $PageSize = 2;
         //找出产品列表对应的ID
         $Categorys = Category::all();
         foreach ($Categorys as $value) {
@@ -156,5 +156,23 @@ class Article extends Model
 
         $Article = new Article;
         return $Article->where($map)->order('create_time', 'desc')->paginate($PageSize);
+    }
+
+    /**
+     * 取出置顶的文章
+     * @author  gaoliming
+     */
+    public function getTopNews()
+    {
+
+        //制定分页大小
+        $PageSize = 4;
+
+        $Article = new Article;
+
+        //查询
+        
+        return $Article->where('is_mark', '>=', 2)->order('is_mark', 'desc')->paginate($PageSize);
+        
     }
 }
