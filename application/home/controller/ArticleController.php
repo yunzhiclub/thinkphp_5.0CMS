@@ -39,9 +39,25 @@ class ArticleController extends ParenterController
         return $this->fetch();
     }
     
-    public function update()
+    public function update(Request $request)
     {
+        // 获取表单上传文件
+        $file = $request->file('file');
+        // 上传文件验证
+        $result = $this->validate(['file' => $file], ['file'=>'require|image'],['file.require' => '请选择上传文件', 'file.image' => '非法图像文件']);
+        if(true !== $result){
+            $this->error($result);
+        }
+
+        // 移动到框架应用根目录/public/uploads/ 目录下
+        $info = $file->move(ROOT_PATH . 'public' . DS . 'images');
+
+        $path = $info->getSaveName();
+
+        $savepath = '\thinkphp_5.0CMS\public\images\\' . $path;
+
         $data = input('post.');
+
         if (input('post.is_top') === '1' && input('post.is_recomment') === '1') {
             
             $data['is_mark'] = 3;
@@ -58,14 +74,31 @@ class ArticleController extends ParenterController
             
             $data['is_mark'] = 0;
         }
+
         $id = input('post.id');
+
         $Article = Article::get($id);
+
+        $ArticleContent = new ArticleContent;
+
+        $ArticleContent->url = $savepath;
+        
         if(false === $Article->validate(true)->save($data))
         {
-            return $this->error('更新失败' . $Article->getError());
-        }else{
-            return $this->success('更新成功', url('index'));
+            return $this->error('编辑失败'.$Article->getError(), url('add'));
         }
+
+        $datas = $Article->where('id', '=', $id)->find();
+
+        $ArticleContent->article_id = $datas->id;
+
+        if(false === $ArticleContent->save())
+        {
+            return $this->error('编辑失败'.$ArticleContent->getError(), url('add'));
+        }
+
+        return $this->success('编辑成功', url('index'));
+
     }
 
     public function delete()
@@ -104,11 +137,10 @@ class ArticleController extends ParenterController
 
         // 移动到框架应用根目录/public/uploads/ 目录下
         $info = $file->move(ROOT_PATH . 'public' . DS . 'images');
-        dump($info);
 
         $path = $info->getSaveName();
-        dump($path);
-        $savepath = '\public\images\\' . $path;
+
+        $savepath = '\thinkphp_5.0CMS\public\images\\' . $path;
         $data = input('post.');
 
         if (input('post.is_top') === '1' && input('post.is_recomment') === '1') {
