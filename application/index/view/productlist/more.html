@@ -1,0 +1,31 @@
+{extend name="index" /} {block name="content"}
+<div class="copyrights">Collect from <a href="http://www.cssmoban.com/">Website Template</a></div>
+<!--=======content================================-->
+<div id="content">
+    <div class="bg-2">
+        <div class="container_12">
+            <div class="grid_12">
+                <div id="header">
+                        <h2>产品列表</h2>
+                       
+                    </div>
+                <div class="container_12" style="width:500px;">
+                {volist name="Products" id="Product"}
+                    <div class="grid_2" style="width:100px;">
+                        <a href="{:url('detail?id=' . $Product->id)}"><img src="/thinkphp_5.0CMS/public/img/ben.png" alt="{$Product->title}" width="100px"></a>
+                        <p style="margin-top:10px">
+                            <?php
+                                echo mb_substr($Product->title, 0, 10, 'utf-8');
+                            ?>
+                        </p>
+                    </div>
+                    {/volist} 
+                    {$Products->render()}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{/block}

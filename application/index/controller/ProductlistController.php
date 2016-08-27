@@ -53,4 +53,16 @@ class ProductlistController extends Controller
 		//返回用户
 		return $this->fetch();
 	}
+	/**
+	 * @author liuyanzhao 
+	 */
+	public function more()
+	{	
+		$Products = new Article;
+		$Products = $Products->getAllProdects();
+		//向V层传递
+		$this->assign('Products', $Products);
+		//返回V层
+		return $this->fetch();
+	}
 }
