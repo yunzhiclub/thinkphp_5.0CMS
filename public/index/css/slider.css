@@ -1,7 +1,7 @@
 /*Slider*/
 .slider-relative {
 	position:relative;
-	padding-top:40px;
+	padding-top:0px;
 }
 .items {
 	display: none;	

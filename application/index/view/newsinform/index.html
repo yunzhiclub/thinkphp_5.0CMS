@@ -6,18 +6,31 @@
         <div class="container_12">
             <div class="grid_6">
                 <div>
-                    <h2 class="indent-1" style="margin-top:-80px;">热门搜索</h2>
+                    <div id="header">
+                        <h2>热门搜索</h2>
+                        <a href="{:url('Subpage/index')}" class="btn">MORE</a>
+                    </div>
                     <div class="wrap box-2 border-1">
                         <ul>
-                           
+                        {volist name="News" id="New"}
+                            <li>
+                                <a href="{:url('detail?id=' . $New->id)}" title="{$New->title}" target="_blank"><?php
+                                echo mb_substr($New->title, 0, 10, 'utf-8');
+                                ?>...                            
+                                </a>
+                                <span>[{$New->create_time}]</span>
+                            </li>
+                        {/volist}
                         </ul>
                         <br>
-                        <a href="#" class="btn">more</a>
                     </div>
                 </div>
             </div>
             <div class="grid_6">
-                <h2 class="indent-1" style="margin-top:-80px;">新闻</h2>
+                <div id="header">
+                        <h2>热门搜索</h2>
+                        <a href="{:url('Subpage/index')}" class="btn">MORE</a>
+                    </div>
                 <ul>
                     {volist name="Articles" id="Article"}
                     <div class="grid_12">

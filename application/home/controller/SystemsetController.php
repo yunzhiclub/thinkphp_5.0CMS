@@ -56,13 +56,9 @@ class SystemsetController extends ParenterController
         $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
         $savename = $info->getSaveName();
         $savepath = $info->getRealPath();
-        dump($savename);
-        dump(input('post.'));
         $Systemset = new Systemset;
         $Systemset->name = input('post.name');
-        dump($Systemset->name);
         $Systemset->is_show = input('post.is_show');
-        dump($Systemset->is_show);
         $Systemset->footer_name = input('post.footer_name');
         $Systemset->is_display = input('post.is_display');
         $Systemset->url = $savepath;
@@ -88,7 +84,6 @@ class SystemsetController extends ParenterController
     {
         // 获取表单上传文件
         $file = $request->file('file');
-  
 
         // 上传文件验证
         $result = $this->validate(['file' => $file], ['file'=>'require|image'],['file.require' => '请选择上传文件', 'file.image' => '非法图像文件']);
