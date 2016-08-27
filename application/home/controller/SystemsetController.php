@@ -55,19 +55,18 @@ class SystemsetController extends ParenterController
         // 移动到框架应用根目录/public/uploads/ 目录下
         $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
         $savename = $info->getSaveName();
-        $savepath = $info->getRealPath();
+        $path = $info->getSaveName();
+        $savepath = '\thinkphp_5.0CMS\public\uploads\\' . $path;
         $Systemset = new Systemset;
-        $Systemset->name = input('post.name');
-        $Systemset->is_show = input('post.is_show');
-        $Systemset->footer_name = input('post.footer_name');
-        $Systemset->is_display = input('post.is_display');
-        $Systemset->url = $savepath;
 
-        if ($info&&($Systemset->save())) {
+        $data = input('post.');
+        $data['url'] = $savepath;
+
+        if ($info&&($Systemset->validate(true)->save($data))) {
             $this->success('文件上传成功：' . $info->getRealPath(),url('index'));
         } else {
             // 上传失败获取错误信息
-            $this->error($file->getError());
+            $this->error($file->getError() . $Systemset->getError());
         }
 
     }
@@ -105,19 +104,17 @@ class SystemsetController extends ParenterController
         // 移动到框架应用根目录/public/uploads/ 目录下
         $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
         $savename = $info->getSaveName();
-        $savepath = $info->getRealPath();
+        $path = $info->getSaveName();
+        $savepath = '\thinkphp_5.0CMS\public\uploads\\' . $path;
 
-        $Systemset->name = input('post.name');
-        $Systemset->is_show = input('post.is_show');
-        $Systemset->footer_name = input('post.footer_name');
-        $Systemset->is_display = input('post.is_display');
-        $Systemset->url = $savepath;
+        $data = input('post.');
+        $data['url'] = $savepath;
 
-        if ($info&&($Systemset->save())) {
+        if ($info&&($Systemset->validate()->save($data))) {
             $this->success('文件上传成功：' . $info->getRealPath(),url('index'));
         } else {
             // 上传失败获取错误信息
-            $this->error($file->getError());
+            $this->error($file->getError() . $Systemset->getError());
         }
 
     }
