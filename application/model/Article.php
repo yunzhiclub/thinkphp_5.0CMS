@@ -140,13 +140,13 @@ class Article extends Model
      */
     public function showNews($page)
     { 
-        $PageSize = 10;
+        $PageSize = 6;
         
         $Categorys = Category::all();
         foreach ($Categorys as $value) 
         {
             
-            if ($value->getData('name') == '新闻列表') {
+            if ($value->getData('name') === '新闻列表') {
                 //取出对应的id
                 $id = $value->id;
             }
@@ -174,5 +174,24 @@ class Article extends Model
         
         return $Article->where('is_mark', '>=', 2)->order('is_mark', 'desc')->paginate($PageSize);
         
+    }
+    /**
+     * @author liuyanzhao
+     * 获取所有的文章
+     */
+    public function getAllArticle()
+    {
+        $PageSize = 6;
+        
+        $Categorys = Category::all();
+        foreach ($Categorys as $value) 
+        {
+                $id = $value->id;
+        }
+
+        $map = array('category_id' => $id, );
+
+        $Article = new Article;
+        return $Article->where($map)->order('create_time', 'desc')->paginate($PageSize);
     }
 }

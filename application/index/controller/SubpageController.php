@@ -14,7 +14,7 @@ class SubpageController extends Controller
 	public function index()
 	{
         $Article =	new Article;
-        $Articles = $Article->showNews(input('get.page'));
+        $Articles = $Article->getAllArticle(input('get.page'));
         $this->assign('Articles', $Articles);
         return $this->fetch();
 	}
