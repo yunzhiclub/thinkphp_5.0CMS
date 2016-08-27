@@ -107,7 +107,7 @@ class ArticleController extends ParenterController
 
         $path = $info->getSaveName();
 
-        $savepath = '\public\images\\' . $path;
+        $savepath = '\thinkphp_5.0CMS\public\images\\' . $path;
         $data = input('post.');
 
         if (input('post.is_top') === '1' && input('post.is_recomment') === '1') {
