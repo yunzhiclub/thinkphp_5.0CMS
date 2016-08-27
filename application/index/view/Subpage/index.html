@@ -1,0 +1,23 @@
+{extend name="index" /} {block name="content"}
+
+<div id="content">
+    <div class="bg-2">
+        <div class="container_12">
+            <div class="grid_12">
+                <h2 class="indent-1" style="margin-top:-80px;">新闻</h2>
+                <ul>
+                    {volist name="Articles" id="Article"}
+                    <div class="grid_12">
+                        <img src="">
+                        <a href="{:url('detail?id=' . $Article->id)}">{$Article->title}</a> <span>&nbsp;     [2016-08-15]</span>
+                    </div>
+                    {/volist}
+                    <div style="margin-left:-100px;">{$Articles->render()}</div>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+{/block}
