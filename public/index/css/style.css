@@ -321,3 +321,6 @@ footer a:hover {color: #16445c;}
 .soc-icon li a {display:block;}
 .soc-icon li a img {opacity:0.46;}
 .soc-icon li a:hover img {opacity:1;}
+
+#header h2{margin:20px 0 10px 0;display: inline-block;}
+#header a{margin:18px 0 10px 220px;display: inline-block;}

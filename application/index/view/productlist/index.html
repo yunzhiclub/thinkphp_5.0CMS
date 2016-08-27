@@ -6,7 +6,10 @@
         <div class="container_12">
             <div class="grid_6">
                 <div>
-                    <h2 class="indent-1">热门搜索</h2>
+                    <div id="header">
+                        <h2>热门搜索</h2>
+                        <a href="{:url('Subpage/index')}" class="btn">MORE</a>
+                    </div>
                     <div class="wrap box-2 border-1">
                         <ul>
                         {volist name="News" id="New"}
@@ -20,14 +23,14 @@
                         {/volist}
                         </ul>
                         <br>
-                        <a href="{:url('Subpage/index')}" class="btn">MORE</a>
                     </div>
                 </div>
             </div>
             <div class="grid_6">
-                <div>
-                    <h2 class="indent-1">产品列表</h2>
-                </div>
+                <div id="header">
+                        <h2>热门搜索</h2>
+                        <a href="{:url('Subpage/index')}" class="btn">MORE</a>
+                    </div>
                 <div class="container_12">
                 {volist name="Products" id="Product"}
                     <div class="grid_2">
