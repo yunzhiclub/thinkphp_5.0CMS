@@ -39,11 +39,27 @@ class ArticleController extends ParenterController
     public function update()
     {
         $data = input('post.');
+        if (input('post.is_top') === '1' && input('post.is_recomment') === '1') {
+            
+            $data['is_mark'] = 3;
+        }
+        if (input('post.is_top') === '0' && input('post.is_recomment') === '1') {
+            
+            $data['is_mark'] = 2;
+        }
+        if (input('post.is_top') === '1' && input('post.is_recomment') === '0') {
+            
+            $data['is_mark'] = 1;
+        }
+        if (input('post.is_top') === '0' && input('post.is_recomment') === '0') {
+            
+            $data['is_mark'] = 0;
+        }
         $id = input('post.id');
         $Article = Article::get($id);
         if(false === $Article->validate(true)->save($data))
         {
-            return $this->error('更新失败', url('index'));
+            return $this->error('更新失败' . $Article->getError());
         }else{
             return $this->success('更新成功', url('index'));
         }
@@ -74,6 +90,22 @@ class ArticleController extends ParenterController
     {
         $data = input('post.');
         $Article = new Article;
+        if (input('post.is_top') === '1' && input('post.is_recomment') === '1') {
+            
+            $data['is_mark'] = 3;
+        }
+        if (input('post.is_top') === '0' && input('post.is_recomment') === '1') {
+            
+            $data['is_mark'] = 2;
+        }
+        if (input('post.is_top') === '1' && input('post.is_recomment') === '0') {
+            
+            $data['is_mark'] = 1;
+        }
+        if (input('post.is_top') === '0' && input('post.is_recomment') === '0') {
+            
+            $data['is_mark'] = 0;
+        }
         if(false === $Article->validate(true)->save($data))
         {
             return $this->error('添加失败'.$Article->getError(), url('add'));
