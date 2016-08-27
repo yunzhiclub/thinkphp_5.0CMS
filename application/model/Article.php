@@ -72,7 +72,7 @@ class Article extends Model
     public function getAllProdects()
     {
         //设定分页的大小
-        $PageSize = 2;
+        $PageSize = 6;
         //找出产品列表对应的ID
         $Categorys = Category::all();
         foreach ($Categorys as $value) {
@@ -108,7 +108,7 @@ class Article extends Model
     {
         $Article = new Article;
 
-        return $Article->order('clicknum', 'desc')->limit(5)->select();
+        return $Article->order('clicknum', 'desc')->limit(7)->select();
     }
 
     /**
@@ -140,7 +140,7 @@ class Article extends Model
      */
     public function showNews($page)
     { 
-        $PageSize = 6;
+        $PageSize = 10;
         
         $Categorys = Category::all();
         foreach ($Categorys as $value) 
@@ -182,7 +182,7 @@ class Article extends Model
     public function getAllArticle()
     {
         //设置分页信息
-        $PageSize = 10;
+        $PageSize = 20;
         //用$map传入id
         $map = array('category_id' => 1,);//1 是新闻的文章
 
