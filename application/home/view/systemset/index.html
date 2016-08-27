@@ -43,6 +43,7 @@
                     {volist name="Systemsets" id="Systemset" key="key"}
                     <tr>
                         <td>{$key}</td>
+                        <td><img src="{$Systemset->url}" width="28" height="28"><a href="{:url('detail?id=' .$Systemset->id)}"></a>
                         </td>
                         <td>{$Systemset->name}</td>
                         <td>{$Systemset->is_show}</td>
