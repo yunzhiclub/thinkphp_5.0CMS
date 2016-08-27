@@ -53,4 +53,11 @@ class ProductlistController extends Controller
 		//返回用户
 		return $this->fetch();
 	}
+	/**
+	 * @author liuyanzhao 
+	 */
+	public function moreProducts()
+	{
+		
+	}
 }
