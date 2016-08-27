@@ -2,6 +2,7 @@
 namespace app\index\controller;
 use think\Controller;
 
+use app\index\controller\ParenterController;
 use app\model\Article;
 
 class IndexController extends Controller

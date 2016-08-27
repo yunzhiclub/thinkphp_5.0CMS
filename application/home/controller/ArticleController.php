@@ -104,11 +104,10 @@ class ArticleController extends ParenterController
 
         // 移动到框架应用根目录/public/uploads/ 目录下
         $info = $file->move(ROOT_PATH . 'public' . DS . 'images');
-        dump($info);
 
         $path = $info->getSaveName();
-        dump($path);
-        $savepath = '\public\images\\' . $path;
+
+        $savepath = '\thinkphp_5.0CMS\public\images\\' . $path;
         $data = input('post.');
 
         if (input('post.is_top') === '1' && input('post.is_recomment') === '1') {
