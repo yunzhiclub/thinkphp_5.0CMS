@@ -56,8 +56,13 @@ class ProductlistController extends Controller
 	/**
 	 * @author liuyanzhao 
 	 */
-	public function moreProducts()
-	{
-		
+	public function more()
+	{	
+		$Products = new Article;
+		$Products = $Products->getAllProdects();
+		//向V层传递
+		$this->assign('Products', $Products);
+		//返回V层
+		return $this->fetch();
 	}
 }
