@@ -166,7 +166,7 @@ class Article extends Model
     {
 
         //制定分页大小
-        $PageSize = 4;
+        $PageSize = 6;
 
         $Article = new Article;
 
@@ -181,15 +181,10 @@ class Article extends Model
      */
     public function getAllArticle()
     {
-        $PageSize = 6;
-        
-        $Categorys = Category::all();
-        foreach ($Categorys as $value) 
-        {
-                $id = $value->id;
-        }
-
-        $map = array('category_id' => $id, );
+        //设置分页信息
+        $PageSize = 10;
+        //用$map传入id
+        $map = array('category_id' => 1,);//1 是新闻的文章
 
         $Article = new Article;
         return $Article->where($map)->order('create_time', 'desc')->paginate($PageSize);
