@@ -44,11 +44,16 @@ class IndexController extends Controller
     	//获取ID
     	$id = input('id');
 
+        //取出首页的logal与页脚
+        $Systemset = new Systemset;
+        $Systemset = $Systemset->where('is_show', '=', 1)->where('is_display', '=', 1)->find();
+
     	//判断类型
     	$Article = Article::get($id);
 
     	//传值
-    	$this->assign('New', $Article);
+    	$this->assign('News', $Article);
+        $this->assign('Systemset', $Systemset);
 
     	switch ($Article->category_id) {
     		case '2':
