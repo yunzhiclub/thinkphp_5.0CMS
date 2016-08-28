@@ -72,8 +72,12 @@ class ProductlistController extends Controller
 	{	
 		$Products = new Article;
 		$Products = $Products->getAllProdects();
+		//取出首页的logal与页脚
+        $Systemset = new Systemset;
+        $Systemset = $Systemset->where('is_show', '=', 1)->where('is_display', '=', 1)->find();
 		//向V层传递
 		$this->assign('Products', $Products);
+		$this->assign('Systemset', $Systemset);
 		//返回V层
 		return $this->fetch();
 	}
