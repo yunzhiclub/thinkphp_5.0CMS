@@ -57,7 +57,7 @@ class ArticleController extends ParenterController
 
         $path = $info->getSaveName();
 
-        $savepath = '\thinkphp_5.0CMS\public\images\\' . $path;
+        $savepath = '/thinkphp_5.0CMS/public/images/' . $path;
 
         $data = input('post.');
 
@@ -163,7 +163,7 @@ class ArticleController extends ParenterController
 
         $path = $info->getSaveName();
 
-        $savepath = '\thinkphp_5.0CMS\public\images\\' . $path;
+        $savepath = '/thinkphp_5.0CMS/public/images/' . $path;
         $data = input('post.');
 
 

@@ -34,6 +34,10 @@ class SubpageController extends Controller
 		$News = new Article;
 		//把对应的文章给$News
 		$News = $News->getNews($id);
+        //取出首页的logal与页脚
+        $Systemset = new Systemset;
+        $Systemset = $Systemset->where('is_show', '=', 1)->where('is_display', '=', 1)->find();
+        $this->assign('Systemset', $Systemset);
 		//向V层传值
 		$this->assign('News', $News);
 		//返回V层

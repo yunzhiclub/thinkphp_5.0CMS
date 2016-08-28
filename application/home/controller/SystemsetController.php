@@ -56,7 +56,7 @@ class SystemsetController extends ParenterController
         $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
         $savename = $info->getSaveName();
         $path = $info->getSaveName();
-        $savepath = '\thinkphp_5.0CMS\public\uploads\\' . $path;
+        $savepath = '/thinkphp_5.0CMS/public/images/' . $path;
         $Systemset = new Systemset;
 
         $data = input('post.');
@@ -105,7 +105,7 @@ class SystemsetController extends ParenterController
         $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
         $savename = $info->getSaveName();
         $path = $info->getSaveName();
-        $savepath = '\thinkphp_5.0CMS\public\uploads\\' . $path;
+        $savepath = '/thinkphp_5.0CMS/public/images/' . $path;
 
         $data = input('post.');
         $data['url'] = $savepath;
