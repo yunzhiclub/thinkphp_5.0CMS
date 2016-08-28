@@ -5,6 +5,8 @@ use think\Controller;
 
 use app\model\Article;
 
+use app\model\Systemset;
+
 class ProductlistController extends Controller
 {
 
@@ -17,6 +19,10 @@ class ProductlistController extends Controller
 		$Products = new Article;
 		$Products = $Products->getAllProdects();
 
+		//取出首页的logal与页脚
+        $Systemset = new Systemset;
+        $Systemset = $Systemset->where('is_show', '=', 1)->where('is_display', '=', 1)->find();
+
 		//取出点击量前五
 		$New = new Article;
 		$News = $New->getMoreClickNum();
@@ -24,6 +30,7 @@ class ProductlistController extends Controller
 		//向V层传递
 		$this->assign('Products', $Products);
 		$this->assign('News', $News);
+		$this->assign('Systemset', $Systemset);
 
 		//返回用户
 		return $this->fetch();
