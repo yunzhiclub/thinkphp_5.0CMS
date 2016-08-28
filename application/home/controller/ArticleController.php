@@ -46,21 +46,8 @@ class ArticleController extends ParenterController
     {
         // 获取表单上传文件
         $file = $request->file('file');
-        // 上传文件验证
-        $result = $this->validate(['file' => $file], ['file'=>'require|image'],['file.require' => '请选择上传文件', 'file.image' => '非法图像文件']);
-        if(true !== $result){
-            $this->error($result);
-        }
 
-        // 移动到框架应用根目录/public/uploads/ 目录下
-        $info = $file->move(ROOT_PATH . 'public' . DS . 'images');
-
-        $path = $info->getSaveName();
-
-        $savepath = '/thinkphp_5.0CMS/public/images/' . $path;
-
-        $data = input('post.');
-
+        //判断存入的状态
         if (input('post.is_top') === '1' && input('post.is_recomment') === '1') {
             
             $data['is_mark'] = 3;
@@ -78,36 +65,59 @@ class ArticleController extends ParenterController
             $data['is_mark'] = 0;
         }
 
-        $id = input('post.id');
+        //接收post的数组
+        $data = input('post.');
 
-        //删除存文章url表中的数据
-        $map = array('article_id' => $id, );
-        $ArticleContent = new ArticleContent;
-        $ArticleContent = $ArticleContent->where($map)->find();
-        if (false === $ArticleContent->delete()) {
+        //获取id
+        $id = input('id');
+
+        if (null !== $file) {
+
+            // 上传文件验证
+            $result = $this->validate(['file' => $file], ['file'=>'require|image'],['file.require' => '请选择上传文件', 'file.image' => '非法图像文件']);
+            if(true !== $result){
+                $this->error($result);
+            }
+
+            // 移动到框架应用根目录/public/uploads/ 目录下
+            $info = $file->move(ROOT_PATH . 'public' . DS . 'images');
+
+            $path = $info->getSaveName();
+
+            $savepath = '/thinkphp_5.0CMS/public/images/' . $path;
+
+
             
-            return $this->error('删除失败' . $ArticleContent->getError());
+
+            $id = input('post.id');
+
+            //删除存文章url表中的数据
+            $map = array('article_id' => $id, );
+            $ArticleContent = new ArticleContent;
+            $ArticleContent = $ArticleContent->where($map)->find();
+            if (false === $ArticleContent->delete()) {
+                
+                return $this->error('删除失败' . $ArticleContent->getError());
+            }
+
+            //存储表中的数据
+            $ArticleContent = new ArticleContent;
+            $ArticleContent->url = $savepath;
+            $ArticleContent->article_id = $id;
+
+            if(false === $ArticleContent->save())
+            {
+                return $this->error('编辑失败'.$ArticleContent->getError());
+            }
         }
 
         $Article = Article::get($id);
 
-        $ArticleContent = new ArticleContent;
-
-        $ArticleContent->url = $savepath;
-        
         if(false === $Article->validate(true)->save($data))
         {
-            return $this->error('编辑失败'.$Article->getError(), url('add'));
+            return $this->error('编辑失败'.$Article->getError());
         }
 
-        $datas = $Article->where('id', '=', $id)->find();
-
-        $ArticleContent->article_id = $datas->id;
-
-        if(false === $ArticleContent->save())
-        {
-            return $this->error('编辑失败'.$ArticleContent->getError(), url('add'));
-        }
 
         return $this->success('编辑成功', url('index'));
 
