@@ -149,12 +149,9 @@ class ArticleController extends ParenterController
     *@liuxi gaoliming tangzhenjie
     */
     public function insert(Request $request)
-    {  
+    { 
         // 获取表单上传文件
         $file = $request->file('file');
-        dump($file);
-        die();
-
         // 上传文件验证
         $result = $this->validate(['file' => $file], ['file'=>'require|image'],['file.require' => '请选择上传文件', 'file.image' => '非法图像文件']);
         if(true !== $result){
@@ -168,6 +165,7 @@ class ArticleController extends ParenterController
 
         $savepath = '\thinkphp_5.0CMS\public\images\\' . $path;
         $data = input('post.');
+
 
         if (input('post.is_top') === '1' && input('post.is_recomment') === '1') {
             
