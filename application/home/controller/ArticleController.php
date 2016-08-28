@@ -38,7 +38,10 @@ class ArticleController extends ParenterController
         $this->assign('Categorys', $Categorys);
         return $this->fetch();
     }
-    
+
+    /**
+     * @author liuxi gaoliming
+     */
     public function update(Request $request)
     {
         // 获取表单上传文件
@@ -77,6 +80,15 @@ class ArticleController extends ParenterController
 
         $id = input('post.id');
 
+        //删除存文章url表中的数据
+        $map = array('article_id' => $id, );
+        $ArticleContent = new ArticleContent;
+        $ArticleContent = $ArticleContent->where($map)->find();
+        if (false === $ArticleContent->delete()) {
+            
+            return $this->error('删除失败' . $ArticleContent->getError());
+        }
+
         $Article = Article::get($id);
 
         $ArticleContent = new ArticleContent;
@@ -104,14 +116,25 @@ class ArticleController extends ParenterController
     public function delete()
     {
         /**
-        *@tangzhenjie
+        *@tangzhenjie gaoliming
         */
         $id = input('id/d');
         $Article = Article::get($id);
-        if($Article->delete())
-        {
-            return $this->success('删除成功', url('index'));
+
+        //删除存文章url表中的数据
+        $map = array('article_id' => $id, );
+        $ArticleContent = new ArticleContent;
+        $ArticleContent = $ArticleContent->where($map)->find();
+        if (false === $ArticleContent->delete()) {
+            
+            return $this->error('删除失败' . $ArticleContent->getError());
         }
+        if(false === $Article->delete())
+        {
+            return $this->success('删除失败' . $Article->getError());
+        }
+
+        return $this->success('删除成功', url('index'));
     }
 
     public function add()
@@ -126,9 +149,12 @@ class ArticleController extends ParenterController
     *@liuxi gaoliming tangzhenjie
     */
     public function insert(Request $request)
-    {
+    {  
         // 获取表单上传文件
         $file = $request->file('file');
+        dump($file);
+        die();
+
         // 上传文件验证
         $result = $this->validate(['file' => $file], ['file'=>'require|image'],['file.require' => '请选择上传文件', 'file.image' => '非法图像文件']);
         if(true !== $result){

@@ -15,7 +15,7 @@ class Systemset extends Model
 			'1' => '是',
 		 );
 
-		if ($value === '0' || $value === '1') {
+		if ($value === 0 || $value === 1) {
 			
 			return $status[$value];
 		}
@@ -33,7 +33,7 @@ class Systemset extends Model
 			'1' => '是',
 		 );
 
-		if ($value === '0' || $value === '1') {
+		if ($value === 0 || $value === 1) {
 			
 			return $status[$value];
 		}

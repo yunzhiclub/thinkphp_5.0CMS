@@ -189,4 +189,32 @@ class Article extends Model
         $Article = new Article;
         return $Article->where($map)->order('create_time', 'desc')->paginate($PageSize);
     }
+
+    /**
+     * 获取文章图片所保存的地址
+     * @author  gaoliming 
+     */
+    public function getArticleContent($id)
+    {
+        //索引
+        $map = array('article_id' => $id, );
+
+        $ArticleContent = new ArticleContent;
+
+        return $ArticleContent->where($map)->find();
+    }
+
+    /**
+     * 获取SliderShow的图片
+     * @author  gaoliming 
+     */
+    public function getSliderShow()
+    {
+        //索引
+        $map = array('is_mark' => 3, );
+
+        $Article = new Article;
+        //返回
+        return $Article->where($map)->order('create_time', 'desc')->select();
+    }
 }
