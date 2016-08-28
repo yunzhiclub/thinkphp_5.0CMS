@@ -13,7 +13,7 @@ class MenuController extends ParenterController
 		*@tangzhenjie
 		*/
 		$name = input('get.name');
-        $pageSize = 2;
+        $pageSize = 5;
         $Menu  = new Menu;
         $Menus = $Menu->where('name', 'like', '%' . $name . '%')->paginate($pageSize);
 		$this->assign('Menus', $Menus);
@@ -32,6 +32,8 @@ class MenuController extends ParenterController
     	*/
     	$data = input('post.');
     	$Menu = new Menu;
+        $data['url'] = $data['module'] . '/' . $data['controller'] . '/' . $data['action'];
+
     	if(false === $Menu->validate(true)->save($data))
     	{
     		return $this->error('添加失败', url('add'));
@@ -54,15 +56,17 @@ class MenuController extends ParenterController
     	*@tangzhenjie
     	*/
     	$data = array(
-    		'name' => input('post.name'), 
-			'module' => input('post.module'), 
-			'controller' => input('post.controller'),
-			'action' => input('post.action'),
-			'weight' => input('post.weight'),
-			'status' => input('post.status'),
-			'is_permission' => input('post.is_permission')
+    		'name'          => input('post.name'), 
+			'module'        => input('post.module'), 
+			'controller'    => input('post.controller'),
+			'action'        => input('post.action'),
+			'weight'        => input('post.weight'),
+			'status'        => input('post.status'),
+			'is_permission' => input('post.is_permission'),
         );
     	$Menu = Menu::get(input('post.id/d'));
+        $data['url'] = $data['module'] . '/' . $data['controller'] . '/' . $data['action'];
+        dump($Menu->validate(true)->save($data));
     	if(false === $Menu->validate(true)->save($data))
     	{
     		return $this->error('更新失败', url('add'));

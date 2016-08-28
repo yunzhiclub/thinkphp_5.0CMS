@@ -18,10 +18,8 @@
 <link href="/thinkphp_5.0CMS/public/home/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <!--webuploader-->
 <link href="/thinkphp_5.0CMS/public/lib/webuploader/css/webuploader.css" rel="stylesheet" />
-
 <link href="/thinkphp_5.0CMS/public/css/style.css" rel="stylesheet" />
 <link href="/thinkphp_5.0CMS/public/jquery-ui-1.11.4.custom/jquery-ui-1.11.4.custom/jquery-ui.min.css" rel="stylesheet" />
-
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -32,3 +30,41 @@
 <script src="/thinkphp_5.0CMS/public/home/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="/thinkphp_5.0CMS/public/js/angular.min.js"></script>
 <script src="/thinkphp_5.0CMS/public/jquery-ui-1.11.4.custom/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+<script charset="utf-8" src="/thinkphp_5.0CMS/public/editor/kindeditor-all-min.js"></script>
+<script charset="utf-8" src="/thinkphp_5.0CMS/public/editor/lang/zh-CN.js"></script>
+<script>
+var editor;
+KindEditor.ready(function(K) {
+    editor = K.create('textarea[name="content"]', {
+        allowFileManager: true,
+        width: '500px'
+    });
+    K('input[name=getHtml]').click(function(e) {
+        alert(editor.html());
+    });
+    K('input[name=isEmpty]').click(function(e) {
+        alert(editor.isEmpty());
+    });
+    K('input[name=getText]').click(function(e) {
+        alert(editor.text());
+    });
+    K('input[name=selectedHtml]').click(function(e) {
+        alert(editor.selectedHtml());
+    });
+    K('input[name=setHtml]').click(function(e) {
+        editor.html('<h3>Hello KindEditor</h3>');
+    });
+    K('input[name=setText]').click(function(e) {
+        editor.text('<h3>Hello KindEditor</h3>');
+    });
+    K('input[name=insertHtml]').click(function(e) {
+        editor.insertHtml('<strong>插入HTML</strong>');
+    });
+    K('input[name=appendHtml]').click(function(e) {
+        editor.appendHtml('<strong>添加HTML</strong>');
+    });
+    K('input[name=clear]').click(function(e) {
+        editor.html('');
+    });
+});
+</script>

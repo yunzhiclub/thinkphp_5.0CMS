@@ -44,6 +44,47 @@ class Usermanage extends Model
 	}
 
 	/**
+	*登录操作
+	*@tangzhenjie
+	*/
+	static public function login($username, $password)
+	{
+		$map = array('username' => $username);
+		$Usermanage = self::get($map);
+		if($Usermanage === null)
+		{
+			return false;
+		}
+		if($Usermanage->password === $password)
+		{
+			if($Usermanage->getData('status') === 1)
+			{
+				session('style', 'tangzhenjie');
+				session('usermanageId', $Usermanage->id);
+				return true;
+			}else{
+				return false;
+			}
+		}else{
+			return false;
+		}
+	}
+	/**
+	*登录操作
+	*@tangzhenjie
+	*/
+	static public function islogin()
+	{
+		$userId = session('usermanageId');
+		if(isset($userId))
+		{
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	/**
 	 * 显示创建时间
 	 * @author gaoliming
 	 */
