@@ -12,7 +12,7 @@ class NewsinformController extends Controller
 	 */
 	public function index()
 	{
-		//取出点击量的前五条新闻
+		//取出点击量的前7条新闻
 		$New = new Article;
 		$News = $New->getMoreClickNum();
 

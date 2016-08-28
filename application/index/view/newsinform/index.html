@@ -34,8 +34,9 @@
                 <ul>
                     {volist name="Articles" id="Article"}
                     <div class="grid_12">
-                        <img src="">
-                        <a href="{:url('detail?id=' . $Article->id)}">{$Article->title}</a> <span>&nbsp;     [2016-08-15]</span>
+                        
+                        <a href="{:url('detail?id=' . $Article->id)}">{$Article->title}</a> 
+                        <span>[ {$Article->create_time} ]</span>
                     </div>
                     {/volist}
                    
