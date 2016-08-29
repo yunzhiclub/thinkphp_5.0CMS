@@ -8,8 +8,9 @@
     <div class="container">
         <ul>
             {volist name="SliderShows" id="SliderShow"}
-                <li><img src="{$SliderShow->getArticleContent($SliderShow->id)->url}" alt="{$SliderShow->title}">
-                    <div class="banner">{$SliderShow->title}</div>
+                <li><a href="{:url('detail?id=' . $SliderShow->id)}"><img src="{$SliderShow->getArticleContent($SliderShow->id)->url}" alt="{$SliderShow->title}">
+                    </a>
+                <div class="banner">{$SliderShow->title}</div>
                 </li>
             {/volist}
         </ul>
