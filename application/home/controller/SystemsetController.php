@@ -56,7 +56,7 @@ class SystemsetController extends ParenterController
         $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
         $savename = $info->getSaveName();
         $path = $info->getSaveName();
-        $savepath = '/thinkphp_5.0CMS/public/images/' . $path;
+        $savepath = '/thinkphp_5.0CMS/public/uploads/' . $path;
         $Systemset = new Systemset;
 
         $data = input('post.');
@@ -81,40 +81,59 @@ class SystemsetController extends ParenterController
      
     public function update(Request $request)
     {
+        //获取post的数组
+        $data = input('post.');
+
+        //获取id
+        $id = input('id');
+
+        $Systemset = Systemset::get($id);
+
         // 获取表单上传文件
         $file = $request->file('file');
+        if (null === $file) {
 
-        // 上传文件验证
-        $result = $this->validate(['file' => $file], ['file'=>'require|image'],['file.require' => '请选择上传文件', 'file.image' => '非法图像文件']);
-        if(true !== $result){
-            $this->error($result);
-        }
+            $data['url'] = $Systemset->url;
+            if (false === $Systemset->validate()->save($data)) {
+                
+                return $this->error('更新失败' . $Systemset->getError());
+            }
+            
+            return $this->success('更新成功', url('index'));
 
-
-        if(input('post.id') === '')
-        {
-            $Systemset = new Systemset;
-            echo '错误';
-        }else{
-            $id = input('post.id');
-            $Systemset = Systemset::get($id);
-
-        }
-
-        // 移动到框架应用根目录/public/uploads/ 目录下
-        $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
-        $savename = $info->getSaveName();
-        $path = $info->getSaveName();
-        $savepath = '/thinkphp_5.0CMS/public/images/' . $path;
-
-        $data = input('post.');
-        $data['url'] = $savepath;
-
-        if ($info&&($Systemset->validate()->save($data))) {
-            $this->success('文件上传成功：' . $info->getRealPath(),url('index'));
         } else {
-            // 上传失败获取错误信息
-            $this->error($file->getError() . $Systemset->getError());
+
+            // 上传文件验证
+            $result = $this->validate(['file' => $file], ['file'=>'require|image'],['file.require' => '请选择上传文件', 'file.image' => '非法图像文件']);
+            if(true !== $result){
+                $this->error($result);
+            }
+
+
+            if(input('post.id') === '')
+            {
+                $Systemset = new Systemset;
+                echo '错误';
+            }else{
+                $id = input('post.id');
+                $Systemset = Systemset::get($id);
+
+            }
+
+            // 移动到框架应用根目录/public/uploads/ 目录下
+            $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
+            $savename = $info->getSaveName();
+            $path = $info->getSaveName();
+            $savepath = '/thinkphp_5.0CMS/public/uploads/' . $path;
+
+            //存储路径
+            $data['url'] = $savepath;
+            if ($info&&($Systemset->validate()->save($data))) {
+                $this->success('文件上传成功：' . $info->getRealPath(),url('index'));
+            } else {
+                // 上传失败获取错误信息
+                $this->error($file->getError() . $Systemset->getError());
+            }
         }
 
     }
