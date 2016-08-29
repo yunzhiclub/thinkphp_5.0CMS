@@ -1,25 +1,20 @@
-{extend name="index" /}
-{block name="content"}
-<div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >Website Template</a></div>
-
+{extend name="index" /} {block name="content"}
+<div class="copyrights">Collect from <a href="http://www.cssmoban.com/">Website Template</a></div>
 <!--=======content================================-->
 <div class="container" style="background-color:white;">
-	<div class="slider-relative">
+    <div class="slider-relative">
         <div class="slider-block">
             <div class="slider" style="position:absolute">
                 <img src="{$Article->getArticleContent($Article->id)->url}" alt="{$Article->title}">
-                
             </div>
         </div>
     </div>
-
 </div>
-<div style="width:1025px;margin:80px auto 0 auto;">
-    <h1 style="font-size:100px;margin-left:500px;">{$Article->title}</h1>
-	
-		<p style="text-indent:25px;">
-			{$Article->content}
-		</p>
-		<br/>
-	</div>
+<div style="width:1025px;margin:80px auto 0 auto;background-color:#fff;">
+    <h1 style="font-size:50px;margin-left:350px;">{$Article->title}</h1>
+    <p style="text-indent:25px;font-size:20px;">
+        {$Article->content}
+    </p>
+    <br/>
+</div>
 {/block}

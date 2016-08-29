@@ -42,17 +42,17 @@
             <div class="grid_6">
                 <div >
                    <div id="header">
-                        <h2>热门搜索</h2>
+                        <h2>热门产品</h2>
                         <a href="{:url('Productlist/more')}" class="btn">MORE</a>
                     </div>
                 </div>
                 <div class="wrap box-2">
                 <ul>
                     {volist name="TopNews" id="TopNew"}
-                    <li style="float:left;margin-right: 25px;">
-                        <a href="{:url('detail?id=' . $TopNew->id)}"><img src="{$TopNew->getArticleContent($TopNew->id)->url}" alt="{$TopNew->title}" width="100px" height="50px"></a>
-                        <div style="margin:10px;"></div>
-                        <p style="margin-top:10px;padding-top:10px;">
+                    <li style="float:left;margin-right: 12px;">
+                        <a href="{:url('detail?id=' . $TopNew->id)}"><img src="{$TopNew->getArticleContent($TopNew->id)->url}" alt="{$TopNew->title}" width="120px" height="80px"></a>
+                        
+                        <p>
                             <a href="{:url('detail?id=' . $TopNew->id)}"><?php
                                 echo mb_substr($TopNew->title, 0, 12, 'utf-8');
                             ?>
