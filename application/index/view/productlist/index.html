@@ -30,9 +30,9 @@
                         <a href="{:url('more')}" class="btn">MORE</a>
                     </div>
                 <ul style="width:500px;">
-                {volist name="Products" id="Product"}
+                {volist name="Products" id="Product"} 
                     <li class="grid_2" style="width:100px;">
-                        <a href="{:url('detail?id=' . $Product->id)}"><img src="{$Product->getArticleContent($Product->id)->url}" alt="{$Product->title}" width="100px"></a>
+                        <a href="{:url('detail?id=' . $Product->id)}"><img src="{$Product->getArticleContent($Product->id)->url}" alt="{$Product->title}" width="100px" height="100px" ></a>
                         <p style="margin-top:10px">
                             <?php
                                 echo mb_substr($Product->title, 0, 10, 'utf-8');
@@ -41,7 +41,9 @@
                     </li>
                     {/volist} 
                     
+                    
                 </ul>
+                
             </div>
         </div>
     </div>
