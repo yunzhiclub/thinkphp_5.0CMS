@@ -17,7 +17,7 @@
                $Menus = $Menu->where(['status' => '1','is_permission' => '0'])->select();
              
             }else{
-                $Menus = $Menu->where(['status' => '1','is_permission' => '1'])->select();
+                $Menus = $Menu->where(['is_permission' => '0'])->select();
            
             }
            
@@ -26,7 +26,7 @@
             <li><a href="{:url($Menu->url)}">{$Menu->name}</a></li>
         {/volist}
         
-<!--                 <li class="current"><a href="{:url('Index/index')}">首页</a></li>
+              <!--  <li class="current"><a href="{:url('Index/index')}">首页</a></li>
                 <li
                 <?php 
                 if(session('style')==null)
@@ -35,11 +35,11 @@
                 else{
                    echo 'style="display:inline;"';}
                 ?>
-
-
+               
+               
                 ><a href="{:url('Newsinform/index')}">新闻通知</a></li>
                 <li><a href="{:url('Productlist/index')}">产品列表</a></li>
-                <li style="margin-right: 180px;"><a href="{:url('Aboutus/index')}">关于我们</a></li> -->
+                <li style="margin-right: 180px;"><a href="{:url('Aboutus/index')}">关于我们</a></li> --> 
                 <li><a href="{:url('Login/index')}">登录</a></li>
                 <li><a href="{:url('Login/logout')}">退出</a></li>
             </ul>
