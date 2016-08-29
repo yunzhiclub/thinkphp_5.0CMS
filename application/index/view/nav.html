@@ -14,10 +14,10 @@
             $Menu = new \app\model\Menu;
             if(session('usermanageId') === null)
             {
-               $Menus = $Menu->where(['status' => '1'])->select();
+               $Menus = $Menu->where(['status' => '1','is_permission' => '0'])->select();
              
             }else{
-                $Menus = $Menu->select();
+                $Menus = $Menu->where(['is_permission' => '0'])->select();
            
             }
            
