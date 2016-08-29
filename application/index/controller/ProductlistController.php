@@ -48,6 +48,10 @@ class ProductlistController extends Controller
 		//取出对象
 		$Product = new Article;
 
+		//取出首页的logal与页脚
+        $Systemset = new Systemset;
+        $Systemset = $Systemset->where('is_show', '=', 1)->where('is_display', '=', 1)->find();
+
 		//对象点击量+1
 		$Product->plus($id);
 
@@ -55,7 +59,8 @@ class ProductlistController extends Controller
 		$Product = $Product->getProduct($id);
 
 		//向V层传值
-		$this->assign('New', $Product);
+		$this->assign('News', $Product);
+		$this->assign('Systemset', $Systemset);
 
 		//返回用户
 		return $this->fetch();
@@ -67,8 +72,12 @@ class ProductlistController extends Controller
 	{	
 		$Products = new Article;
 		$Products = $Products->getAllProdects();
+		//取出首页的logal与页脚
+        $Systemset = new Systemset;
+        $Systemset = $Systemset->where('is_show', '=', 1)->where('is_display', '=', 1)->find();
 		//向V层传递
 		$this->assign('Products', $Products);
+		$this->assign('Systemset', $Systemset);
 		//返回V层
 		return $this->fetch();
 	}

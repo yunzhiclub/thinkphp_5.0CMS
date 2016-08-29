@@ -40,12 +40,16 @@ class NewsinformController extends Controller
 	{
 		//利用id确定文章
 		$id   = input('id');
+		//取出首页的logal与页脚
+        $Systemset = new Systemset;
+        $Systemset = $Systemset->where('is_show', '=', 1)->where('is_display', '=', 1)->find();
 		//实例化$News
 		$News = new Article;
 		//把对应的文章给$News
 		$News = $News->getNews($id);
 		//向V层传值
 		$this->assign('News', $News);
+		$this->assign('Systemset', $Systemset);
 		//返回V层
 		return $this->fetch();
 

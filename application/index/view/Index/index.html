@@ -3,18 +3,18 @@
 <!--=======content================================-->
 <div id="content">
     <div class="ic">More Website Templates @ TemplateMonster.com - July 22, 2013!</div>
-    <div class="slider-relative">
-        <div class="slider-block">
-            <div class="slider">
-                <ul class="items">
-                {volist name="SliderShows" id="SliderShow"}
-                    <li><img src="{$SliderShow->getArticleContent($SliderShow->id)->url}" alt="{$SliderShow->title}">
-                        <div class="banner">Our Customers are Our Priority</div>
-                    </li>
-                {/volist}
-                </ul>
-            </div>
-        </div>
+
+    <div class="slidershow">
+    <div class="container">
+        <ul>
+            {volist name="SliderShows" id="SliderShow"}
+                <li><img src="{$SliderShow->getArticleContent($SliderShow->id)->url}" alt="{$SliderShow->title}">
+                    <div class="banner">{$SliderShow->title}</div>
+                </li>
+            {/volist}
+        </ul>
+    </div>
+
     </div>
     <div class="bg-2">
         <div class="container_12">
@@ -25,17 +25,15 @@
                         <a href="{:url('Subpage/index')}" class="btn">MORE</a>
                     </div>
                     <div class="wrap box-2 border-1">
-                        <ul>
                         {volist name="News" id="New"}
-                            <li>
+                            <h6 style="margin-top:0px">
                                 <a href="{:url('detail?id=' . $New->id)}" title="{$New->title}" target="_blank"><?php
                                 echo mb_substr($New->title, 0, 10, 'utf-8');
                                 ?>...                            
                                 </a>
                                 <span>[{$New->create_time}]</span>
-                            </li>
+                            </h6>
                         {/volist}
-                        </ul>
                         <br>
                     </div>
                 </div>

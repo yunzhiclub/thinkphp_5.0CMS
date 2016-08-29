@@ -83,8 +83,8 @@
 	-o-transition: 0s ease;
 	-webkit-transition: 0s ease;
 	height: 10px;
-	border:2px solid #f1f1f1f1;
-	background:#f1f1f1f1;
+	border:2px solid #000;
+	background:#000;
 	border-radius:50px;
 }
 
