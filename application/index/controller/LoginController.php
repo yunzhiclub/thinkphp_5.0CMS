@@ -26,7 +26,6 @@ class LoginController extends Controller
 
 	public function logout()
 	{
-		session('style', null);
 		session('usermanageId', null);
 		return $this->success('退出成功', url('Index/index'));
 	}

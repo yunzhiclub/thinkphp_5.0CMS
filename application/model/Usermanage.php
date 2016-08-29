@@ -59,7 +59,6 @@ class Usermanage extends Model
 		{
 			if($Usermanage->getData('status') === 1)
 			{
-				session('style', 'tangzhenjie');
 				session('usermanageId', $Usermanage->id);
 				return true;
 			}else{

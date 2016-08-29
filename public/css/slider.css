@@ -4,13 +4,13 @@
     border:0;	
 }
 .container {
-    width:1000px;
+    width:1025px;
     height:333px;
     margin:0px auto;
     overflow:hidden;
 }
 .container ul {
-    width:3000px; 
+    width:3075px; 
     list-style:none;
     position:relative;
     left:0;
@@ -59,10 +59,10 @@
         left:0px; /**first**/
     }
     31.25%, 56.25% {
-        left:-1100px; /**second**/
+        left:-1025px; /**second**/
     }
     62.5%, 87.5% {
-        left:-2200px; /**third**/
+        left:-2050px; /**third**/
     }
     93.75%{
       left: 0;/**end**/
@@ -73,10 +73,10 @@
         left:0px; /**first**/
     }
     31.25%, 56.25% {
-        left:-1000px; /**second**/
+        left:-1025px; /**second**/
     }
     62.5%, 87.5% {
-        left:-2000px; /**third**/
+        left:-2050px; /**third**/
     }
     93.75%{
       left: 0;/**end**/
