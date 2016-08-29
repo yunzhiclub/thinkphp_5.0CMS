@@ -12,13 +12,13 @@
                     </div>
                     <div class="wrap box-2 border-1">
                         {volist name="News" id="New"}
-                            <h6 style="margin-top:0px">
-                                <a href="{:url('detail?id=' . $New->id)}" title="{$New->title}" target="_blank"><?php
-                                echo mb_substr($New->title, 0, 10, 'utf-8');
-                                ?>...                            
+                            <h3 style="margin-top:0px">
+                                <a href="{:url('detail?id=' . $New->id)}" title="{$New->title}" target="_blank" style="display:inline;"><?php
+                                echo mb_substr($New->title, 0, 30, 'utf-8');
+                                ?>                            
                                 </a>
-                                <span>[{$New->create_time}]</span>
-                            </h6>
+                                <span style="display:inline;margin-top:0px;">[{$New->create_time}]</span>
+                            </h3>
                         {/volist}
                         <br>
                     </div>
@@ -33,8 +33,9 @@
                     {volist name="Articles" id="Article"}
                     <div class="grid_12">
                         
-                        <a href="{:url('detail?id=' . $Article->id)}">{$Article->title}</a> 
-                        <span>[ {$Article->create_time} ]</span>
+                        <a href="{:url('detail?id=' . $Article->id)}">{$Article->title}</a>
+                       
+                        <div>[{$Article->create_time}]</div>
                     </div>
                     {/volist}
                    
@@ -43,6 +44,5 @@
         </div>
     </div>
 </div>
-</div>
-</div>
+
 {/block}
