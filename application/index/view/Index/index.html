@@ -27,13 +27,13 @@
                     </div>
                     <div class="wrap box-2 border-1">
                         {volist name="News" id="New"}
-                            <h6 style="margin-top:0px">
-                                <a href="{:url('detail?id=' . $New->id)}" title="{$New->title}" target="_blank"><?php
-                                echo mb_substr($New->title, 0, 10, 'utf-8');
-                                ?>...                            
+                            <h3 style="margin-top:0px">
+                                <a href="{:url('detail?id=' . $New->id)}" title="{$New->title}" target="_blank" style="display:inline;"><?php
+                                echo mb_substr($New->title, 0, 30, 'utf-8');
+                                ?>                            
                                 </a>
-                                <span>[{$New->create_time}]</span>
-                            </h6>
+                                <span style="display:inline;margin-top:0px;">[{$New->create_time}]</span>
+                            </h3>
                         {/volist}
                         <br>
                     </div>
@@ -50,14 +50,16 @@
                 <ul>
                     {volist name="TopNews" id="TopNew"}
                     <li style="float:left;margin-right: 25px;">
-                        <a href="{:url('detail?id=' . $TopNew->id)}"><img src="{$TopNew->getArticleContent($TopNew->id)->url}" alt="{$TopNew->title}" width="100px"></a>
-                        <p style="margin-top:10px">
+                        <a href="{:url('detail?id=' . $TopNew->id)}"><img src="{$TopNew->getArticleContent($TopNew->id)->url}" alt="{$TopNew->title}" width="100px" height="50px"></a>
+                        <div style="margin:10px;"></div>
+                        <p style="margin-top:10px;padding-top:10px;">
                             <a href="{:url('detail?id=' . $TopNew->id)}"><?php
-                                echo mb_substr($TopNew->title, 0, 5, 'utf-8');
+                                echo mb_substr($TopNew->title, 0, 12, 'utf-8');
                             ?>
                             </a>
                             {eq name="$TopNew->is_mark" value="3"}置顶{else /}推荐{/eq}
                         </p>
+                    </li>
                     {/volist}
                 </ul>
                 </div>  
