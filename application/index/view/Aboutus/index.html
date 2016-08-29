@@ -8,15 +8,18 @@
         <div class="slider-block">
             <div class="slider" style="position:absolute">
                 <img src="{$Article->getArticleContent($Article->id)->url}" alt="{$Article->title}">
-                <h1 style="background-color:#fff;font-size:100px;">{$Article->title}</h1>
+                
             </div>
         </div>
     </div>
-	<div style="width:1025px;margin:80px auto 0 auto;">
+
+</div>
+<div style="width:1025px;margin:80px auto 0 auto;">
+    <h1 style="font-size:100px;margin-left:500px;">{$Article->title}</h1>
+	
 		<p style="text-indent:25px;">
 			{$Article->content}
 		</p>
-		<br />
+		<br/>
 	</div>
-</div>
 {/block}
