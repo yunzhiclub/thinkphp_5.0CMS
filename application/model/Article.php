@@ -38,6 +38,17 @@ class Article extends Model
             return $status[0];
         }
     }
+    public function getIsslidershowAttr($value)
+    {
+        $status = array('0'=>'否','1'=>'是');
+        $isrecomment = $status[$value];
+        if (isset($isrecomment))
+        {
+            return $isrecomment;
+        } else {
+            return $status[0];
+        }
+    }
     public function category()
     {
         return $this->belongsTo("category");
@@ -211,7 +222,7 @@ class Article extends Model
     public function getSliderShow()
     {
         //索引
-        $map = array('is_mark' => 3, );
+        $map = array('is_slidershow' => 1, );
 
         $Article = new Article;
         //返回
