@@ -7,7 +7,7 @@
 	<div class="slider-relative">
         <div class="slider-block">
             <div class="slider" style="position:absolute">
-                <img src="/thinkphp_5.0CMS/public/index/images/us.jpg" alt="{$Article->title}">
+                <img src="{$Article->getArticleContent($Article->id)->url}" alt="{$Article->title}">
                 <h1 style="background-color:#fff;font-size:100px;">{$Article->title}</h1>
             </div>
         </div>
