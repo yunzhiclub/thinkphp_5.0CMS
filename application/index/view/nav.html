@@ -1,8 +1,8 @@
 <div class="container_12">
     <div class="grid_12">
-        <h1><a href="index.html"><img src="{$Systemset->url}" width="80px" height="60px"></a></h1>
+        <h1><a href="index.html"><img src="{$Systemsetsss}" width="80px" height="60px"></a></h1>
         <center>
-            <p>{$Systemset->name}</p>
+            <p>{$Systemsets}</p>
         </center>
     </div>
 </div>
@@ -14,10 +14,10 @@
             $Menu = new \app\model\Menu;
             if(session('usermanageId') === null)
             {
-               $Menus = $Menu->where(['status' => '1'])->order('weight', 'desc')->select();
+               $Menus = $Menu->where(['status' => '1' , 'is_permission' => '0'])->order('weight', 'desc')->select();
              
             }else{
-                $Menus = $Menu->where(['is_permission' => '0'])->order('weight', 'desc')->select();
+                $Menus = $Menu->where(['status' => '0'])->order('weight', 'desc')->select();
            
             }
            
