@@ -20,19 +20,27 @@ class NewsinformController extends Controller
         //取出置顶,推荐的文章
         $TopNews = $New->getTopNews();
 
-        //取出首页的logal与页脚
+        //取出首页的产品公司名称，页脚，log
         $Systemset = new Systemset;
-        $Systemset = $Systemset->where('is_show', '=', 1)->where('is_display', '=', 1)->find();
+        $Systemsets = $Systemset->getheader();
+        $Systemsetss = $Systemset->getfooter();
+        $Systemsetsss = $Systemset->getUrl();
+        //取出slidershow的图片
+        $SliderShows = $New->getSliderShow();
 
-		//向V层传值
-		$this->assign('News', $News);
+        //向V层传值
+        $this->assign('News', $News);
         $this->assign('TopNews', $TopNews);
+        $this->assign('Systemsets', $Systemsets);
+        $this->assign('Systemsetss', $Systemsetss);
+        $this->assign('Systemsetsss', $Systemsetsss);
+        $this->assign('SliderShows', $SliderShows);
+
  		//实例化Article
         $Article  =	new Article;
         
         $Articles = $Article->showNews(input('get.page'));
         $this->assign('Articles', $Articles);
-        $this->assign('Systemset', $Systemset);
         return $this->fetch();
 	}
 

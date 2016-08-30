@@ -1,4 +1,5 @@
-{extend name="index" /} {block name="content"}
+{extend name="index" /}
+{block name="content"}
 <div class="copyrights">Collect from <a href="http://www.cssmoban.com/">Website Template</a></div>
 <!--=======content================================-->
 <div id="content">
@@ -8,9 +9,8 @@
     <div class="container">
         <ul>
             {volist name="SliderShows" id="SliderShow"}
-                <li><a href="{:url('detail?id=' . $SliderShow->id)}"><img src="{$SliderShow->getArticleContent($SliderShow->id)->url}" alt="{$SliderShow->title}">
+                <li><a href="{:url('detail?id=' . $SliderShow->id)}"><img src="{$SliderShow->getArticleContent($SliderShow->id)->url}">
                     </a>
-                <div class="banner">{$SliderShow->title}</div>
                 </li>
             {/volist}
         </ul>
