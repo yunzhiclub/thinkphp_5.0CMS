@@ -15,31 +15,20 @@ class SystemsetController extends ParenterController
      */
 	public function index()
 	{
-        //接收搜索框传过来的name
-        $name = input('get.name');
-
-        //分页每页的大小
-        $PageSize = 5;
-
-        //取出数据库中的数据
         $Systemset = new Systemset;
-        $Systemsets = $Systemset->where('name', 'like', '%' . $name . '%')->paginate($PageSize);
+        $Systemset = $Systemset->find();
 
-        //向V层传递数据
-        $this->assign('Systemsets', $Systemsets);
-
-        //显示uer列表
-        return $this->fetch();
+        if (empty($Systemset))
+        {
+            return $this->add();
+        } else {
+            return $this->edit();
+        }
 	}
-
-    public function detail()
-    {
-        return $this->fetch();
-    }
 
     public function add()
     {
-        return $this->fetch();
+        return $this->fetch('add');
     }
     
     public function insert(Request $request)
@@ -47,9 +36,8 @@ class SystemsetController extends ParenterController
         // 获取表单上传文件
         $file = $request->file('file');
         // 上传文件验证
-        $result = $this->validate(['file' => $file], ['file'=>'require|image'],['file.require' => '请选择上传文件', 'file.image' => '非法图像文件']);
-        if(true !== $result){
-            $this->error($result);
+        if (empty($file)) {
+            $this->error('请选择上传文件');
         }
 
         // 移动到框架应用根目录/public/uploads/ 目录下
@@ -76,7 +64,7 @@ class SystemsetController extends ParenterController
         $id = input('id/d');
         $Systemset = Systemset::get($id);
         $this->assign('Systemset', $Systemset);
-        return $this->fetch();
+        return $this->fetch('edit');
     }
      
     public function update(Request $request)
@@ -91,24 +79,18 @@ class SystemsetController extends ParenterController
 
         // 获取表单上传文件
         $file = $request->file('file');
-        if (null === $file) {
-
+        if (null === $file)
+        {
             $data['url'] = $Systemset->url;
-            if (false === $Systemset->validate()->save($data)) {
-                
+            if (false === $Systemset->validate()->save($data))
+            {
+
                 return $this->error('更新失败' . $Systemset->getError());
             }
-            
             return $this->success('更新成功', url('index'));
-
-        } else {
-
-            // 上传文件验证
-            $result = $this->validate(['file' => $file], ['file'=>'require|image'],['file.require' => '请选择上传文件', 'file.image' => '非法图像文件']);
-            if(true !== $result){
-                $this->error($result);
-            }
-
+        }
+         else
+        {
 
             if(input('post.id') === '')
             {
@@ -117,36 +99,43 @@ class SystemsetController extends ParenterController
             }else{
                 $id = input('post.id');
                 $Systemset = Systemset::get($id);
-
             }
+
+            if (false === $Systemset->delete())
+            {
+                return $this->error('删除失败' . $Systemset->getError());
+            }
+            
+             $Systemsets = new Systemset;
+             $er = $Systemsets->data($data)->save();
 
             // 移动到框架应用根目录/public/uploads/ 目录下
             $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
-            $savename = $info->getSaveName();
+
             $path = $info->getSaveName();
             $savepath = '/thinkphp_5.0CMS/public/uploads/' . $path;
 
             //存储路径
             $data['url'] = $savepath;
-            if ($info&&($Systemset->validate()->save($data))) {
+            if ($info&&($Systemsets->validate()->save($data))) {
                 $this->success('文件上传成功：' . $info->getRealPath(),url('index'));
             } else {
                 // 上传失败获取错误信息
-                $this->error($file->getError() . $Systemset->getError());
+                $this->error($file->getError() . $Systemsets->getError());
             }
         }
 
     }
 
-    public function delete()
-    {
-        $id = input('id/d');
-        $Systemset = Systemset::get($id);
-        if($Systemset->delete())
-        {
-            return $this->success('删除成功', url('index'));
-        }
-    }
+    // public function delete()
+    // {
+    //     $id = input('id/d');
+    //     $Systemset = Systemset::get($id);
+    //     if($Systemset->delete())
+    //     {
+    //         return $this->success('删除成功', url('index'));
+    //     }
+    // }
 
     // 文件上传提交
 

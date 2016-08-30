@@ -18,7 +18,7 @@
                     <div class="col-md-10">
                         <input id="man" type="radio" name="is_show" {eq name="$Systemset->getData('is_show')" value="0" } checked="checked" {/eq} value="0" />
                         <label for="man">&nbsp;否</label>&nbsp;
-                        <input id="woman" type="radio" name="is_show" {eq name="$Systemset->getData('is_show')" value="1" } checked="checked" {/eq}  value="1" />
+                        <input id="woman" type="radio" name="is_show" {eq name="$Systemset->getData('is_show')" value="1" } checked="checked" {/eq} value="1" />
                         <label for="woman">&nbsp;是</label>
                     </div>
                 </div>
@@ -38,9 +38,17 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="name" class="col-sm-2 control-label">缩图</label>
+                    <label for="name" class="col-sm-2 control-label">上传logo</label>
                     <div class="col-sm-10">
                         <input id="file_upload" type="file" class="file" name="file" multiple="true">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 text-right">缩图</label>
+                    <div class="col-md-10">
+                        <img class="img-responsive" src="{$Systemset->url}" hight="210px" width="180px">
+                        <div class="col-md-3">
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
