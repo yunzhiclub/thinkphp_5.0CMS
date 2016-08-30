@@ -23,7 +23,7 @@ class User extends Model
 
 	static public function login($username , $password)
 	{
-		$map = array('id' => $username);
+		$map = array('username' => $username);
 		$User = self::get($map);
 		$time = time();
 		//判断是否取出对应的对象

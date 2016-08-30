@@ -15,7 +15,7 @@ class AboutusController extends Controller
     	$Article = new Article;
     	$Article = $Article->getAboutUs();
 
-        //取出首页的logal与页脚
+        //取出首页的logo与页脚
         $Systemset = new Systemset;
         $Systemset = $Systemset->where('is_show', '=', 1)->where('is_display', '=', 1)->find();
 
