@@ -15,31 +15,20 @@ class SystemsetController extends ParenterController
      */
 	public function index()
 	{
-        //接收搜索框传过来的name
-        $name = input('get.name');
-
-        //分页每页的大小
-        $PageSize = 5;
-
-        //取出数据库中的数据
         $Systemset = new Systemset;
-        $Systemsets = $Systemset->where('name', 'like', '%' . $name . '%')->paginate($PageSize);
+        $Systemset = $Systemset->find();
 
-        //向V层传递数据
-        $this->assign('Systemsets', $Systemsets);
-
-        //显示uer列表
-        return $this->fetch();
+        if (empty($Systemset))
+        {
+            return $this->add();
+        } else {
+            return $this->edit();
+        }
 	}
-
-    public function detail()
-    {
-        return $this->fetch();
-    }
 
     public function add()
     {
-        return $this->fetch();
+        return $this->fetch('add');
     }
     
     public function insert(Request $request)
@@ -76,7 +65,7 @@ class SystemsetController extends ParenterController
         $id = input('id/d');
         $Systemset = Systemset::get($id);
         $this->assign('Systemset', $Systemset);
-        return $this->fetch();
+        return $this->fetch('edit');
     }
      
     public function update(Request $request)
@@ -104,7 +93,7 @@ class SystemsetController extends ParenterController
         } else {
 
             // 上传文件验证
-            $result = $this->validate(['file' => $file], ['file'=>'require|image'],['file.require' => '请选择上传文件', 'file.image' => '非法图像文件']);
+            $result = $this->validate(['file' => $file], ['file'=>'require|image', 'file'=>'fileSize:1024'],['file.require' => '请选择上传文件', 'file.image' => '非法图像文件']);
             if(true !== $result){
                 $this->error($result);
             }
