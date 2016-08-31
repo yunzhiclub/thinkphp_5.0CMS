@@ -14,11 +14,14 @@
             $Menu = new \app\model\Menu;
             if(session('usermanageId') === null)
             {
-               $Menus = $Menu->where(['status' => '1' , 'is_permission' => '0'])->order('weight', 'desc')->select();
+               $Menus = $Menu->where(['status' => '1' ,'is_permission' => '0'])->order('weight', 'desc')->select();
              
             }else{
-                $Menus = $Menu->where(['status' => '0'])->order('weight', 'desc')->select();
-           
+                
+                
+                $Menus = $Menu->where("status=1 AND controller<>'Login'")->order('weight', 'desc')->select();
+                $Me = $Menu->where(['status' => '1', 'controller' => 'Login', 'action'=>'logout'])->find();
+                $Menus[] = $Me;
             }
            
         ?>
