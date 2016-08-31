@@ -40,4 +40,50 @@ class Systemset extends Model
 
 		return $status['0'];
 	}
+
+	public function getheader()
+	{
+		$Systemset = new Systemset;
+		$Systemsets = $Systemset->where('is_show', '=', 1)->find();
+		
+		if(null === $Systemsets)
+        {
+        	return '';
+        }
+        else
+        {
+            return $Systemsets->getData('name');
+        }
+	}
+
+	public function getfooter()
+	{
+		$Systemset = new Systemset;
+		$Systemsets = $Systemset->where('is_display', '=', 1)->find();
+		
+		if(null === $Systemsets)
+        {
+        	return '';
+        }
+        else
+        {
+        	return $Systemsets->getData('footer_name');
+
+        }
+	}
+
+    public function getUrl()
+    {
+
+        if(array() === $data = Systemset::all())
+        {
+            return '';
+        }
+        else
+        {
+            $data = $data[0];
+            return $data->getData('url');
+        }
+    }
+
 }

@@ -6,8 +6,13 @@ use app\model\Article;
 use think\db\Query;
 use app\model\Systemset;
 
-class SubpageController extends Controller
+class SubpageController extends ParentController
 {
+
+	public function __construct()
+	{
+		parent::__construct();
+	}
 	/**
 	 * @author liuyanzhao
 	 * 
@@ -17,12 +22,6 @@ class SubpageController extends Controller
         $Article =	new Article;
         $Articles = $Article->getAllArticle(input('get.page'));
         $this->assign('Articles', $Articles);
-
-        //取出首页的logal与页脚
-        $Systemset = new Systemset;
-        $Systemset = $Systemset->where('is_show', '=', 1)->where('is_display', '=', 1)->find();
-        $this->assign('Systemset', $Systemset);
-
         return $this->fetch();
 	}
 
