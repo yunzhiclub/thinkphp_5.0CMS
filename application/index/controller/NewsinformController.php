@@ -6,33 +6,29 @@ use app\model\Article;
 use think\db\Query;
 use app\model\Systemset;
 
-class NewsinformController extends Controller
+class NewsinformController extends ParentController
 {
-	/**
-	 *@author liuyanzhao
-	 */
-	public function index()
-	{
-		//取出点击量的前7条新闻
+
+	public function __construct()
+    {
+        parent::__construct();
+    }
+
+    public function index()
+    {
 		$New = new Article;
-		$News = $New->getMoreClickNum();
 
-        //取出置顶,推荐的文章
-        $TopNews = $New->getTopNews();
+        //取出slidershow的图片
+        $SliderShows = $New->getSliderShow();
 
-        //取出首页的logal与页脚
-        $Systemset = new Systemset;
-        $Systemset = $Systemset->where('is_show', '=', 1)->where('is_display', '=', 1)->find();
+        //向V层传值
+        $this->assign('SliderShows', $SliderShows);
 
-		//向V层传值
-		$this->assign('News', $News);
-        $this->assign('TopNews', $TopNews);
  		//实例化Article
         $Article  =	new Article;
         
         $Articles = $Article->showNews(input('get.page'));
         $this->assign('Articles', $Articles);
-        $this->assign('Systemset', $Systemset);
         return $this->fetch();
 	}
 
