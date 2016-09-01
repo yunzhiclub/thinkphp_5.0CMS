@@ -94,4 +94,6 @@ class Usermanage extends Model
         'create_time' => 'datetime',
         'update_time' => 'datetime',
     ];
+
+    
 }
