@@ -228,4 +228,120 @@ class Article extends Model
         //返回
         return $Article->where($map)->order('create_time', 'desc')->select();
     }
+
+    /**
+    * 获取数据
+    * @param string  $title 搜索的题目
+    * @return object 
+    * @author tangzhenjie
+    */
+    public function getlist($title)
+    {   
+        //分页条数
+        $pageSize = 5;
+        return $this->where('title', 'like', '%'.$title.'%')->paginate($pageSize);
+    }
+
+   /**
+    * 删除数据
+    * @param  int   $id 传入的id
+    * @return boolean
+    * @author tangzhenjie
+    */
+   public function move($id)
+   {
+        $ArticleContent = new ArticleContent;
+        //找出文章对应的附表对应的数据
+        $ArticleContents = $ArticleContent->where('article_id', $id)->find();
+        //删除附表的数据
+        if(false === $ArticleContents->delete())
+        {
+            return false;
+        }
+        //删除文章表中的数据
+        $Article = Article::get($id);
+        if(false === $Article->delete())
+        {
+            return false;
+        }
+        return true;
+   }
+
+   /**
+   * 新增和更新数据的保存操作
+   * @param string   $savepath 用户的图片的的位置
+   * @param array    $data 从v层获取的数据
+   * @return boolean
+   * @author liuxi gaoliming
+   */
+   public function insert($savepath, $data)
+   {
+        //根据is_top AND is_recomment决定$data['is_mark']的值
+        if($data['is_top'] === '1' && $data['is_recomment'] === '1') {
+            
+            $data['is_mark'] = 3;
+        }
+        if($data['is_top'] === '0' && $data['is_recomment'] === '1') {
+            
+            $data['is_mark'] = 2;
+        }
+        if($data['is_top'] === '1' && $data['is_recomment'] === '0') {
+            
+            $data['is_mark'] = 1;
+        }
+        if($data['is_top'] === '0' && $data['is_recomment'] === '0') {
+            
+            $data['is_mark'] = 0;
+        }
+        //判断是新增还是更新
+        if(isset($data['id'])){
+            //执行更新的操作
+
+            //删除存放文章的数据
+            $map = array('article_id' => $data['id']);
+            $ArticleContent = new ArticleContent;
+            $ArticleContent = $ArticleContent->where($map)->find();
+            if($ArticleContent ==! null)
+            {
+               if (false === $ArticleContent->delete()) {
+                
+                return false;
+               }  
+            }
+            
+
+            //向存放文章的数据表存入新的数据
+            $Articlecontent = new ArticleContent;
+            $Articlecontent->url = $savepath;
+            $Articlecontent->article_id = $data['id'];
+            if(false === $Articlecontent->save()){
+                return false;
+            }
+
+            //向文章的数据表里面存入更新数据
+            $Article = self::get($data['id']);
+            if(false === $Article->validate(true)->save($data)){
+                return false;
+            }
+            return true;
+        }
+
+        
+        //执行新增操作
+        $Article = new self;
+        //向文章表中存入数据并获取存入的id
+        if(false === $id = $Article->validate(true)->save($data)){
+            return false;
+        }
+        //向文章详情表中存入数据
+        $ArticleContent = new ArticleContent;
+        $ArticleContent->url = $savepath;
+        $ArticleContent->article_id = $id;
+        if(false === $ArticleContent->save())
+        {
+            return false;
+        }
+
+        return true;
+   }
 }
