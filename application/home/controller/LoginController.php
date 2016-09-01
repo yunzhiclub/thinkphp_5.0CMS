@@ -16,12 +16,12 @@ class LoginController extends Controller
 		return $this->fetch();
 	}
     
-    
+    /**
+    * 登录操作
+	* @author tangzhenjie
+	*/
 	public function login()
 	{
-		/**
-		*@tangzhenjie
-		*/
 		if(User::login(input('post.username') , input('post.password')))
         {
         	return $this->success('登录成功' , url('Index/index'));
@@ -30,12 +30,12 @@ class LoginController extends Controller
         }
 	}
 
-	//注销
+	/**
+    * 注销
+	* @author tangzhenjie
+	*/
 	public function logout()
 	{
-		/**
-		*@tangzhenjie
-		*/
 		session('userId', null);
 		return $this->success('注销成功' , url('index'));
 	}

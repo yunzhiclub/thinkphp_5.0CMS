@@ -20,8 +20,7 @@ class Article extends Model
     {
         $status = array('0'=>'否','1'=>'是');
         $istop = $status[$value];
-        if (isset($istop))
-        {
+        if (isset($istop)) {
             return $istop;
         } else {
             return $status[0];
@@ -31,8 +30,7 @@ class Article extends Model
     {
         $status = array('0'=>'否','1'=>'是');
         $isrecomment = $status[$value];
-        if (isset($isrecomment))
-        {
+        if (isset($isrecomment)) {
             return $isrecomment;
         } else {
             return $status[0];
@@ -42,8 +40,7 @@ class Article extends Model
     {
         $status = array('0'=>'否','1'=>'是');
         $isrecomment = $status[$value];
-        if (isset($isrecomment))
-        {
+        if (isset($isrecomment)) {
             return $isrecomment;
         } else {
             return $status[0];
@@ -63,9 +60,7 @@ class Article extends Model
         //找出关于我们对应的id
         $Categorys = Category::all();
         foreach ($Categorys as $value) {
-            
             if ($value->getData('name') === '关于我们') {
-                
                 $id = $value->id;
             }
         }
@@ -87,9 +82,7 @@ class Article extends Model
         //找出产品列表对应的ID
         $Categorys = Category::all();
         foreach ($Categorys as $value) {
-            
-            if ($value->getData('name') === '产品列表') {
-                
+            if ($value->getData('name') === '产品列表'){ 
                 $id = $value->id;
             }
         }
@@ -154,10 +147,9 @@ class Article extends Model
         $PageSize = 10;
         
         $Categorys = Category::all();
-        foreach ($Categorys as $value) 
-        {
-            
-            if ($value->getData('name') === '新闻列表') {
+        foreach ($Categorys as $value) {
+            if ($value->getData('name') === '新闻列表') 
+            {
                 //取出对应的id
                 $id = $value->id;
             }
@@ -208,7 +200,7 @@ class Article extends Model
     public function getArticleContent($id)
     {
         //索引
-        $map = array('article_id' => $id, );
+        $map = array('article_id' => $id);
 
         $ArticleContent = new ArticleContent;
 
@@ -222,7 +214,7 @@ class Article extends Model
     public function getSliderShow()
     {
         //索引
-        $map = array('is_slidershow' => 1, );
+        $map = array('is_slidershow' => 1);
 
         $Article = new Article;
         //返回
@@ -254,14 +246,12 @@ class Article extends Model
         //找出文章对应的附表对应的数据
         $ArticleContents = $ArticleContent->where('article_id', $id)->find();
         //删除附表的数据
-        if(false === $ArticleContents->delete())
-        {
+        if (false === $ArticleContents->delete()) {
             return false;
         }
         //删除文章表中的数据
         $Article = Article::get($id);
-        if(false === $Article->delete())
-        {
+        if (false === $Article->delete()) {
             return false;
         }
         return true;
@@ -277,35 +267,30 @@ class Article extends Model
    public function insert($savepath, $data)
    {
         //根据is_top AND is_recomment决定$data['is_mark']的值
-        if($data['is_top'] === '1' && $data['is_recomment'] === '1') {
+        if ($data['is_top'] === '1' && $data['is_recomment'] === '1') {
             
             $data['is_mark'] = 3;
         }
-        if($data['is_top'] === '0' && $data['is_recomment'] === '1') {
-            
+        if ($data['is_top'] === '0' && $data['is_recomment'] === '1') {
             $data['is_mark'] = 2;
         }
-        if($data['is_top'] === '1' && $data['is_recomment'] === '0') {
-            
+        if ($data['is_top'] === '1' && $data['is_recomment'] === '0') {
             $data['is_mark'] = 1;
         }
-        if($data['is_top'] === '0' && $data['is_recomment'] === '0') {
-            
+        if ($data['is_top'] === '0' && $data['is_recomment'] === '0') {
             $data['is_mark'] = 0;
         }
         //判断是新增还是更新
-        if(isset($data['id'])){
+        if (isset($data['id'])) {
             //执行更新的操作
 
             //删除存放文章的数据
             $map = array('article_id' => $data['id']);
             $ArticleContent = new ArticleContent;
             $ArticleContent = $ArticleContent->where($map)->find();
-            if($ArticleContent ==! null)
-            {
+            if ($ArticleContent ==! null) {
                if (false === $ArticleContent->delete()) {
-                
-                return false;
+                    return false;
                }  
             }
             
@@ -314,13 +299,13 @@ class Article extends Model
             $Articlecontent = new ArticleContent;
             $Articlecontent->url = $savepath;
             $Articlecontent->article_id = $data['id'];
-            if(false === $Articlecontent->save()){
+            if (false === $Articlecontent->save()) {
                 return false;
             }
 
             //向文章的数据表里面存入更新数据
             $Article = self::get($data['id']);
-            if(false === $Article->validate(true)->save($data)){
+            if (false === $Article->validate(true)->save($data)) {
                 return false;
             }
             return true;
@@ -330,18 +315,16 @@ class Article extends Model
         //执行新增操作
         $Article = new self;
         //向文章表中存入数据并获取存入的id
-        if(false === $id = $Article->validate(true)->save($data)){
+        if (false === $id = $Article->validate(true)->save($data)) {
             return false;
         }
         //向文章详情表中存入数据
         $ArticleContent = new ArticleContent;
         $ArticleContent->url = $savepath;
         $ArticleContent->article_id = $id;
-        if(false === $ArticleContent->save())
-        {
+        if (false === $ArticleContent->save()) {
             return false;
         }
-
         return true;
    }
 }
