@@ -30,7 +30,7 @@ class CategoryController extends ParenterController
 	public function edit()
 	{
 		//返回编辑的页面
-		$id = input('id/d');
+		$id       = input('id/d');
 		$Category = Category::get($id);
 		$this->assign('Category', $Category);
 		return $this->fetch();
@@ -43,7 +43,7 @@ class CategoryController extends ParenterController
     public function update()
     {
 		//获取v层传过来的数据
-		$data = input('post.');
+		$data     = input('post.');
 		$Category = new Category;
 
 		//判断是否保存成功
@@ -59,7 +59,7 @@ class CategoryController extends ParenterController
 	*/
 	public function delete()
 	{
-		$id = input('id/d');
+		$id       = input('id/d');
 		$Category = Category::get($id);
 		if ($Category->delete()) {
 			return $this->success('删除成功', url('index'));

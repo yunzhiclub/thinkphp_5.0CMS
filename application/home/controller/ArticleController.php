@@ -38,9 +38,9 @@ class ArticleController extends ParenterController
     public function edit()
     {
         //返回编辑的页面
-        $id = input('id/d');
-        $Article = Article::get($id);
-        $Category = new Category;
+        $id        = input('id/d');
+        $Article   = Article::get($id);
+        $Category  = new Category;
         $Categorys = $Category->select();
         $this->assign('Article', $Article);
         $this->assign('Categorys', $Categorys);
@@ -67,13 +67,13 @@ class ArticleController extends ParenterController
         }
 
         // 移动到框架应用根目录/public/uploads/ 目录下
-        $info = $file->move(ROOT_PATH . 'public' . DS . 'images');
+        $info     = $file->move(ROOT_PATH . 'public' . DS . 'images');
 
         //获取存储路径
-        $path = $info->getSaveName();
+        $path     = $info->getSaveName();
         $savepath = '/thinkphp_5.0CMS/public/images/' . $path;
 
-        $Article = new Article;
+        $Article  = new Article;
         if ($Article->insert($savepath, input('post.'))) {
             return $this->success('保存成功', url('index'));
         }
@@ -90,7 +90,7 @@ class ArticleController extends ParenterController
         if ($Article->move(input('id/d'))) {
             return $this->success('删除成功', url('index'));
         } else {
-            return $this->error('删除失败'.$Article->getError());
+            return $this->error('删除失败' . $Article->getError());
         }
     }
 
@@ -101,7 +101,7 @@ class ArticleController extends ParenterController
     */
     public function add()
     {
-        $Category = new Category;
+        $Category  = new Category;
         $Categorys = $Category->select();
 
         //向模板传入类别

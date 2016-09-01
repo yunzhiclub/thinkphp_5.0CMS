@@ -28,13 +28,12 @@ class Category extends Model
     {
     	if (isset($data['id'])) {
     		$Category = Category::get($data['id']);
-    	}else{
+    	} else {
     		$Category = new Category;
     	}
 
     	$map = array('name' => $data['name']);
-    	if(false === $Category->validate(true)->save($map))
-    	{
+    	if (false === $Category->validate(true)->save($map)) {
     		return false;
     	}
     	return true;
