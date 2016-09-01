@@ -5,54 +5,61 @@ use app\model\Category;
 
 class CategoryController extends ParenterController
 {
+	/**
+	* 取出数据
+	* @return template 模板
+	* @author tangzhenjie 
+	*/
 	public function index()
 	{
-		/**
-		*@author tangzhenjie
-		*/
-
-		$name = input('get.name');
-        $pageSize = 5;
-        $Category  = new Category;
-        $Categorys = $Category->where('name', 'like', '%' . $name . '%')->paginate($pageSize);
+		$Category  = new Category;
+        //取出文章
+        $Categorys = $Category->getlist(input('get.name'));
+        //向模板传值
 		$this->assign('Categorys', $Categorys);
+		//渲染模板
 		return $this->fetch();
 	}
+
+
+	/**
+	* 获得编辑页面
+	* @return template 模板
+	* @author tangzhenjie
+	*/
 	public function edit()
 	{
-		/**
-		*@author tangzhenjie
-		*/
 		//返回编辑的页面
 		$id = input('id/d');
 		$Category = Category::get($id);
 		$this->assign('Category', $Category);
 		return $this->fetch();
 	}
-    
+
+    /**
+    * 新增和更新的保存操作
+	* @author tangzhenjie
+	*/
     public function update()
     {
-    	/**
-		*@author tangzhenjie
-		*/
-		
-		$id = input('post.id');
-		$Category = Category::get($id);
-		
+		//获取v层传过来的数据
 		$data = input('post.');
-		
-		if(false === $Category->validate(true)->save($data))
+		$Category = new Category;
+
+		//判断是否保存成功
+		if($Category->insert($data))
 		{
-			return $this->error('更新失败'.$Category->getError(), url('index'));
-		}else{
-			return $this->success('更新成功', url('index'));
+			return $this->success('保存成功', url('index'));
 		}
+		return $this->error('保存失败', url('index'));
     }
+
+    /**
+    * 删除数据
+	* @author tangzhenjie
+	*/
 	public function delete()
 	{
-		/**
-		*@author tangzhenjie
-		*/
 		$id = input('id/d');
 		$Category = Category::get($id);
 		if($Category->delete())
@@ -61,26 +68,12 @@ class CategoryController extends ParenterController
 		}
 	}
 
+	/**
+	* @return template 模板
+	* @author tangzhenjie
+	*/
 	public function add()
 	{
-		/**
-		*@author tangzhenjie
-		*/
 		return $this->fetch();
-	}
-
-	public function insert()
-	{
-		/**
-		*@author tangzhenjie
-		*/
-		$Category = new Category;
-		$data = input('post.');
-		if(false === $Category->validate(true)->save($data))
-		{
-			return $this->error('添加失败'.$Category->getError(), url('index'));
-		}else{
-			return $this->success('添加成功', url('index'));
-		}
 	}
 }
