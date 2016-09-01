@@ -54,8 +54,8 @@
                         
                         <p>
                             <a href="{:url('detail?id=' . $TopNew->id)}"><?php
-                                echo mb_substr($TopNew->title, 0, 12, 'utf-8');
-                            ?>
+                                echo mb_substr($TopNew->title, 0, 6, 'utf-8');
+                            ?>...
                             </a>
                             {eq name="$TopNew->is_mark" value="3"}置顶{else /}推荐{/eq}
                         </p>
