@@ -56,13 +56,13 @@ class ArticleController extends ParenterController
     {
         //获取表单上传文件
         $file = $request->file('file');
-        if($file === null){
+        if ($file === null) {
             return $this->error('请输入图像', url('index'));
         }
 
         //验证图片
-        $result = $this->validate(['file' => $file], ['file'=>'require|image'],['file.require' => '请选择上传文件', 'file.image' => '非法图像文件']);
-        if(true !== $result){
+        $result = $this->validate(['file' => $file], ['file'=>'require|image'], ['file.require' => '请选择上传文件', 'file.image' => '非法图像文件']);
+        if (true !== $result) {
             return $this->error($result);
         }
 
@@ -74,7 +74,7 @@ class ArticleController extends ParenterController
         $savepath = '/thinkphp_5.0CMS/public/images/' . $path;
 
         $Article = new Article;
-        if($Article->insert($savepath, input('post.'))){
+        if ($Article->insert($savepath, input('post.'))) {
             return $this->success('保存成功', url('index'));
         }
 
@@ -87,10 +87,9 @@ class ArticleController extends ParenterController
     public function delete()
     {
         $Article = new Article;
-        if($Article->move(input('id/d')))
-        {
+        if ($Article->move(input('id/d'))) {
             return $this->success('删除成功', url('index'));
-        }else{
+        } else {
             return $this->error('删除失败'.$Article->getError());
         }
     }

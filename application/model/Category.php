@@ -26,8 +26,7 @@ class Category extends Model
     */
     public function insert($data)
     {
-    	if(isset($data['id']))
-    	{
+    	if (isset($data['id'])) {
     		$Category = Category::get($data['id']);
     	}else{
     		$Category = new Category;

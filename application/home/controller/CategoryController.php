@@ -47,8 +47,7 @@ class CategoryController extends ParenterController
 		$Category = new Category;
 
 		//判断是否保存成功
-		if($Category->insert($data))
-		{
+		if ($Category->insert($data)) {
 			return $this->success('保存成功', url('index'));
 		}
 		return $this->error('保存失败', url('index'));
@@ -62,8 +61,7 @@ class CategoryController extends ParenterController
 	{
 		$id = input('id/d');
 		$Category = Category::get($id);
-		if($Category->delete())
-		{
+		if ($Category->delete()) {
 			return $this->success('删除成功', url('index'));
 		}
 	}
