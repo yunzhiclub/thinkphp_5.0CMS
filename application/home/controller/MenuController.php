@@ -33,8 +33,7 @@ class MenuController extends ParenterController
     	$data = input('post.');
     	$Menu = new Menu;
         $data['url'] = $data['module'] . '/' . $data['controller'] . '/' . $data['action'];
-        dump($data['url']);
-        die();
+
     	if(false === $Menu->validate(true)->save($data))
     	{
     		return $this->error('添加失败', url('add'));
