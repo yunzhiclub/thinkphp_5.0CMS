@@ -44,4 +44,59 @@ class User extends Model
 	    }
 	
 	}
+
+	/**
+     * @param  $name [<搜索的关键字>]
+     * @return paginate object usermanages
+     * @author  gaoliming 
+     */
+    public function ListUsers($name)
+    {
+
+        //分页每页的大小
+        $PageSize = 5;
+
+        //取出数据库中的数据
+        $User = new User;
+        return $User->where('name', 'like', '%' . $name . '%')->paginate($PageSize);
+    }
+
+    /**
+     * @param  $[data] <post数组> $id [编辑的键值]
+     * @return bool
+     * @author gaoliming
+     */
+    public function UserSave($data,$id)
+    {
+    	//判断两次密码是否一样
+        if ($data['password'] !== $data['newpassword']) {
+            
+            return $this->error('两次密码不一样');
+        }
+
+        //判断是新增还是更新
+        if (null === $id) {
+            
+            //新增
+            $User = new User;
+        } else {
+
+            //更新
+            $User = User::get($id);
+        }
+
+        //获取传过来的数据
+        $datas = array('username' => $data['username'],
+                'name' => $data['name'],
+                'password' => $data['password'],
+                'email' => $data['email'],
+         );
+         //保存并验证
+        if (false === $User->validate()->save($datas)) {
+            
+            return false ;
+        }
+
+        return true;
+    }
 }
