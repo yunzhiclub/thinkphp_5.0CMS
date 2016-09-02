@@ -5,6 +5,12 @@ use think\Model;
 
 class User extends Model
 {
+
+    /**
+     * 设置时间戳的格式
+     * @return string 时间戳
+     * @author tangzhenjie
+     */
 	protected $dateFormat = 'Y/m/d';
     protected $type       = [
         // 设置last_time_on为时间戳类型（整型）
@@ -13,33 +19,31 @@ class User extends Model
 	static public function islogin()
 	{
 		$userId = session('userId');
-		if(isset($userId))
-		{
+		if (isset($userId)) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}
 
 	static public function login($username , $password)
 	{
-		$map = array('username' => $username);
+		$map  = array('username' => $username);
 		$User = self::get($map);
 		$time = time();
 		//判断是否取出对应的对象
-		if($User === null)
+		if ($User === null)
 		{
 			return false;
 		}
-	    if($User->password === $password)
-		{
+	    if ($User->password === $password) {
 		    session('userId', $User->getData('id'));
-		    $User->last_time_on = $User->login_time_on;
+		    $User->last_time_on  = $User->login_time_on;
 		    $User->login_time_on = $time;
 		    $User->save();
 		    return true;
 		              
-	    }else{
+	    } else {
 		    return false;
 	    }
 	
@@ -87,9 +91,9 @@ class User extends Model
 
         //获取传过来的数据
         $datas = array('username' => $data['username'],
-                'name' => $data['name'],
-                'password' => $data['password'],
-                'email' => $data['email'],
+                'name'            => $data['name'],
+                'password'        => $data['password'],
+                'email'           => $data['email'],
          );
          //保存并验证
         if (false === $User->validate()->save($datas)) {
