@@ -15,33 +15,33 @@ class NewsinformController extends ParentController
 	 * @author liuyanzhao
 	 */
 	public function __construct()
-    {
-        parent::__construct();
-    }
+	{
+		parent::__construct();
+	}
 
-    /**
-     * 实现显示新闻页面
-     * @param  
-     * @return template
-     * @author liuyanzhao
-     */
-    public function index()
-    {
+	/**
+	 * 实现显示新闻页面
+	 * @param  
+	 * @return template
+	 * @author liuyanzhao
+	 */
+	public function index()
+	{
 		$New = new Article;
 
-        //取出slidershow的图片
-        $SliderShows = $New->getSliderShow();
+		//取出slidershow的图片
+		$SliderShows = $New->getSliderShow();
 
-        //向V层传值
-        $this->assign('SliderShows', $SliderShows);
+		//向V层传值
+		$this->assign('SliderShows', $SliderShows);
 
- 		//实例化Article
-        $Article  =	new Article;
+		//实例化Article
+		$Article  =	new Article;
 
-        //把$Articles返回V层
-        $Articles = $Article->showNews(input('get.page'));
-        $this->assign('Articles', $Articles);
-        return $this->fetch();
+		//把$Articles返回V层
+		$Articles = $Article->showNews(input('get.page'));
+		$this->assign('Articles', $Articles);
+		return $this->fetch();
 	}
 
 	/**
@@ -56,8 +56,8 @@ class NewsinformController extends ParentController
 		$id   = input('id');
 
 		//取出首页的logo与页脚
-        $Systemset = new Systemset;
-        $Systemset = $Systemset->where('is_show', '=', 1)->where('is_display', '=', 1)->find();
+		$Systemset = new Systemset;
+		$Systemset = $Systemset->where('is_show', '=', 1)->where('is_display', '=', 1)->find();
 
 		//实例化$News
 		$News = new Article;

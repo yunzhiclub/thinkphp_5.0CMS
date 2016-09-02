@@ -1,5 +1,6 @@
 <?php
 namespace app\index\controller;
+
 use think\Controller;
 use app\model\Usermanage;
 use think\View;
@@ -11,19 +12,19 @@ class LoginController extends Controller
 		return $this->fetch();
 	}
 
+	/**
+	 * 实现登陆功能
+	 * @param  
+	 * @return template
+	 * @author tangzhenjie
+	 */
 	public function login()
 	{
-		/**
-		 * 实现登陆功能
-		 * @param  
-		 * @return template
-		 * @author tangzhenjie
-		 */
-		if(Usermanage::login(input('post.username') , input('post.password'))){	
-        	return $this->success('登录成功' , url('Index/index'));
-        } else {
-        	return $this->error('登录失败' , url('index'));
-        }
+		if (Usermanage::login(input('post.username') , input('post.password'))) {	
+			return $this->success('登录成功' , url('Index/index'));
+		} else {
+			return $this->error('登录失败' , url('index'));
+		}
 	}
 
 	/**

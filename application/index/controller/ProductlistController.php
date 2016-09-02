@@ -2,9 +2,7 @@
 namespace app\index\controller;
 
 use think\Controller;
-
 use app\model\Article;
-
 use app\model\Systemset;
 
 class ProductlistController extends ParentController
@@ -51,8 +49,8 @@ class ProductlistController extends ParentController
 		$Product = new Article;
 
 		//取出首页的logal与页脚
-        $Systemset = new Systemset;
-        $Systemset = $Systemset->where('is_show', '=', 1)->where('is_display', '=', 1)->find();
+		$Systemset = new Systemset;
+		$Systemset = $Systemset->where('is_show', '=', 1)->where('is_display', '=', 1)->find();
 
 		//对象点击量+1
 		$Product->plus($id);
@@ -64,9 +62,10 @@ class ProductlistController extends ParentController
 		$this->assign('News', $Product);
 		$this->assign('Systemset', $Systemset);
 
-		//返回用户
+		//返回V层
 		return $this->fetch();
 	}
+
 	/**实现显示更多的功能
 	 * @return template
 	 * @author liuyanzhao 
@@ -77,8 +76,8 @@ class ProductlistController extends ParentController
 		$Products = $Products->getAllProdects();
 
 		//取出首页的logo与页脚
-        $Systemset = new Systemset;
-        $Systemset = $Systemset->where('is_show', '=', 1)->where('is_display', '=', 1)->find();
+		$Systemset = new Systemset;
+		$Systemset = $Systemset->where('is_show', '=', 1)->where('is_display', '=', 1)->find();
 
 		//向V层传递
 		$this->assign('Products', $Products);

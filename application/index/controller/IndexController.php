@@ -1,9 +1,8 @@
 <?php
 namespace app\index\controller;
+
 use think\Controller;
-
 use app\index\controller\ParentController;
-
 use app\model\Article;
 use app\model\Systemset;
 
@@ -58,18 +57,17 @@ class IndexController extends ParentController
 
     	switch ($Article->category_id) {
     		case '2':
-    			$string = 'productlist';
-    			break;
-    		
+                $string = 'productlist';
+                break;
     		case '1':
-    			$string = 'newsinform';
-    	}
+                $string = 'newsinform';
+        }
 
-    	//对象点击量+1
+        //对象点击量+1
 		$Article->plus($id);
 
-    	//返回首页
-    	return $this->fetch($string . '\detail');
+        //返回首页
+        return $this->fetch($string . '\detail');
 
     }
 }
