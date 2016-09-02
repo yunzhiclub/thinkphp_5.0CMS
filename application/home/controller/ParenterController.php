@@ -5,19 +5,19 @@ use think\Controller;
 use app\model\User;
 
 /**
-*@tangzhenjie
+* @author tangzhenjie
 */
 class ParenterController extends Controller
 {
         /**
-        *@tangzhenjie
+        * 判断是否登录
+        * @author tangzhenjie
         */
 	public function __construct()
 	{
-                parent::__construct();
-                if(!User::islogin())
-                {
-                        return $this->error('请先登录', url('Login/index'));
-                }
+            parent::__construct();
+            if (!User::islogin()) {
+                return $this->error('请先登录', url('Login/index'));
+            }
         }
 }

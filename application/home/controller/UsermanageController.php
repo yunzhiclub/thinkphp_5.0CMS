@@ -135,30 +135,38 @@ class UsermanageController extends ParenterController
 		//取出对象
 		$User = Usermanage::get($id);
 
-		//获取状态
-		$status = $User->getData('status');
+		//获取数据
+		$data = [
+			'status' => $User->status,
+			'name' => $User->name,
+			'username' => $User->username,
+			'sex' => $User->getData('sex'),
+			'email' => $User->email,
+			'password' => $User->password,
+
+		];
 
 		//修改状态
-		if ($status === 0) {
+		if ($data['status'] === 0) {
 			
 			//解冻
-			$User->status = 1;
+			$data['status'] = 0;
 
 		} else {
 
 			//冻结
-			$User->status = 0;
+			$data['status'] = 1;
 
 		}
 
 		//进行保存
-		if (false === $User->validate()->save()) {
+		if (false === $User->validate()->save($data)) {
 			
-			return $this->error('修改失败');
+			return $this->error('修改失败' . $User->getError());
 		}
 
 		//返回index
-		if ($status === 0) {
+		if ($data['status'] === 0) {
 			
 			return $this->success('解冻成功', url('index'));
 		} else {

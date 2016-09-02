@@ -10,15 +10,9 @@ class UserController extends ParenterController
      */
     public function index()
     {
-        //接收搜索框传过来的name
-        $name = input('get.name');
-
-        //分页每页的大小
-        $PageSize = 5;
-
-        //取出数据库中的数据
-        $User = new User;
-        $Users = $User->where('name', 'like', '%' . $name . '%')->paginate($PageSize);
+        //获取全部对象
+        $New = new User;
+        $Users = $New->ListUsers(input('get.name'));
 
         //向V层传递数据
         $this->assign('Users', $Users);
@@ -28,6 +22,7 @@ class UserController extends ParenterController
     }
 
     /**
+     * 添加数据的界面
      * @author gaoliming
      */
     public function add()
@@ -61,41 +56,17 @@ class UserController extends ParenterController
      */
     public function save()
     {
-        //判断两次密码是否一样
-        if (input('post.password') !== input('post.newpassword')) {
-            
-            return $this->error('两次密码不一样');
-        }
-
-        //获取传过来的ID
-        $id = input('post.id');
-
-        //判断是新增还是更新
-        if (null === $id) {
-            
-            //新增
-            $User = new User;
-        } else {
-
-            //更新
-            $User = User::get($id);
-        }
-
-        //获取传过来的数据
-        $data = array('username' => input('post.username'),
-                'name' => input('post.name'),
-                'password' => input('post.password'),
-                'email' => input('post.email'),
-         );
-
-        //保存并验证
-        if (false === $User->validate()->save($data)) {
-            
-            return $this->error('保存失败' . $User->getError());
-        }
-
-        return $this->success('保存成功', url('index'));
         
+        //获取保存的结果
+        $User = new User;
+        $result = $User->UserSave(input('post.'), input('post.id'));
+
+        if (false === $result) {
+            
+            return $this->error('保存失败');
+        }
+        
+        return $this->success('保存成功', url('index'));
     }
 
     /**
