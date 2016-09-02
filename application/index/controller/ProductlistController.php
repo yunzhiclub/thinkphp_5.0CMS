@@ -9,13 +9,19 @@ use app\model\Systemset;
 
 class ProductlistController extends ParentController
 {
-	
+	/**
+	 * 构造函数
+	 * @author gaoliming
+	 */
 	public function __construct()
     {
         parent::__construct();
     }
 
 	/**
+	 * 实现显示V层模板
+	 * @param  
+	 * @return template
 	 * @author gaoliming
 	 */
 	public function index()
@@ -33,6 +39,7 @@ class ProductlistController extends ParentController
 
 	/**
 	 * 产品详情页
+	 * @return template 
 	 * @author gaoliming
 	 */
 	public function detail()
@@ -60,19 +67,23 @@ class ProductlistController extends ParentController
 		//返回用户
 		return $this->fetch();
 	}
-	/**
+	/**实现显示更多的功能
+	 * @return template
 	 * @author liuyanzhao 
 	 */
 	public function more()
 	{	
 		$Products = new Article;
 		$Products = $Products->getAllProdects();
+
 		//取出首页的logo与页脚
         $Systemset = new Systemset;
         $Systemset = $Systemset->where('is_show', '=', 1)->where('is_display', '=', 1)->find();
+
 		//向V层传递
 		$this->assign('Products', $Products);
 		$this->assign('Systemset', $Systemset);
+
 		//返回V层
 		return $this->fetch();
 	}
