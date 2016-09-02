@@ -76,7 +76,7 @@ class UserController extends ParenterController
     public function delete()
     {
        //获取传过来的id值
-       $id = input('id');
+       $id   = input('id');
 
        //取出对象
        $User = User::get($id);

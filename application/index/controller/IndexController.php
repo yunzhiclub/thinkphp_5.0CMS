@@ -46,17 +46,23 @@ class IndexController extends ParentController
 
     	switch ($Article->category_id) {
     		case '2':
-    			$string = 'productlist';
+    			$string = 'productlist\detail';
     			break;
     		
     		case '1':
-    			$string = 'newsinform';
+    			$string = 'newsinform\detail';
+                break;
+
+            case '3':
+                $string ='aboutus\index';
+                break;
+
     	}
 
     	//对象点击量+1
 		$Article->plus($id);
 
     	//返回首页
-    	return $this->fetch($string . '\detail');
+    	return $this->fetch($string);
     }
 }
