@@ -1,20 +1,29 @@
 <?php
 namespace app\index\controller;
+
 use think\Controller;
-
 use app\index\controller\ParentController;
-
 use app\model\Article;
 use app\model\Systemset;
 
 class IndexController extends ParentController
 {
+    /**
+     * 构造函数
+     * @author gaoliming
+     */
     public function __construct()
     {
         //先执行父类的构造函数
         parent::__construct();
-
     }
+
+    /**
+     * 实现显示首页的页面
+     * @param  
+     * @return template
+     * @author mengyunzhi
+     */
     public function index()
     {
 		$New = new Article;
@@ -31,7 +40,9 @@ class IndexController extends ParentController
 
     /**
      * 显示详情页
-     * @author  gaoliming
+     * @param  $id
+     * @return string
+     * @author gaoliming
      */
     public function detail()
     {
@@ -46,23 +57,17 @@ class IndexController extends ParentController
 
     	switch ($Article->category_id) {
     		case '2':
-    			$string = 'productlist\detail';
-    			break;
-    		
+                $string = 'productlist';
+                break;
     		case '1':
-    			$string = 'newsinform\detail';
-                break;
+                $string = 'newsinform';
+        }
 
-            case '3':
-                $string ='aboutus\index';
-                break;
-
-    	}
-
-    	//对象点击量+1
+        //对象点击量+1
 		$Article->plus($id);
 
-    	//返回首页
-    	return $this->fetch($string);
+        //返回首页
+        return $this->fetch($string . '\detail');
+
     }
 }
