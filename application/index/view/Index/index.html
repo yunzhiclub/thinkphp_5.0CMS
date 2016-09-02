@@ -56,7 +56,7 @@
                                 echo mb_substr($TopNew->title, 0, 6, 'utf-8');
                             ?>...
                             </a>
-                            {eq name="$TopNew->is_mark" value="3"}置顶{else /}推荐{/eq}
+                            {eq name="$TopNew->getData('is_top')" value="1"}置顶{else /}推荐{/eq}
                         </p>
                     </li>
                     {/volist}
