@@ -16,8 +16,13 @@ class Article extends Model
     protected $type       = [
         'create_time' => 'datetime',
     ];
-  
 
+    /**
+     * 显示是否置顶
+     * @param  int $value
+     * @return string 是/否
+     * @author  tangzhenjie
+     */
     public function getIstopAttr($value)
     {
         $status = array('0'=>'否','1'=>'是');
@@ -29,6 +34,12 @@ class Article extends Model
         }
     }
 
+    /**
+     * 显示是否推荐
+     * @param  int $value 
+     * @return string 是/否
+     * @author  tangzhenjie 
+     */
     public function getIsrecommentAttr($value)
     {
         $status      = array('0'=>'否','1'=>'是');
@@ -40,6 +51,12 @@ class Article extends Model
         }
     }
 
+    /**
+     * 显示是否是slidershow
+     * @param  int $value 
+     * @return string 是/否
+     * @author  gaoliming 
+     */
     public function getIsslidershowAttr($value)
     {
         $status      = array('0'=>'否','1'=>'是');
@@ -50,6 +67,11 @@ class Article extends Model
             return $status[0];
         }
     }
+
+    /**
+     * 关联数据表类别
+     * @author tangzhenjie
+     */
     public function category()
     {
         return $this->belongsTo('category');
@@ -173,14 +195,30 @@ class Article extends Model
     public function getTopNews()
     {
 
-        //制定分页大小
-        $PageSize = 6;
+        $Article = new Article;
 
-        $Article  = new Article;
+        //取出置顶的文章
+        $TopNew = $Article->where('is_top', '=', 1)->where('is_recomment', '=', 1)->select();
 
-        //查询
-        
-        return $Article->where('is_mark', '>=', 2)->order('is_mark', 'desc')->paginate($PageSize);
+        //取出推荐而不置顶的文章
+        $RecommentNew = $Article->where('is_recomment', '=', 1)->where('is_top', '=', 0)->select();
+
+        //取出置顶而不推荐的文章
+        $OnlyTopNew = $Article->where('is_recomment', '=', 0)->where('is_top', '=', 1)->select();
+
+        //拼接数组
+        foreach ($RecommentNew as $value) {
+            
+            array_push($TopNew, $value);
+        }
+        foreach ($OnlyTopNew as $value) {
+            
+            array_push($TopNew, $value);
+
+        }
+
+        //截取数组的前六条
+        return array_slice($TopNew, 0, 6);
         
     }
     /**
@@ -271,20 +309,6 @@ class Article extends Model
    */
    public function insert($savepath, $data)
    {
-        //根据is_top AND is_recomment决定$data['is_mark']的值
-        if ($data['is_top'] === '1' && $data['is_recomment'] === '1') {
-            
-            $data['is_mark'] = 3;
-        }
-        if ($data['is_top'] === '0' && $data['is_recomment'] === '1') {
-            $data['is_mark'] = 2;
-        }
-        if ($data['is_top'] === '1' && $data['is_recomment'] === '0') {
-            $data['is_mark'] = 1;
-        }
-        if ($data['is_top'] === '0' && $data['is_recomment'] === '0') {
-            $data['is_mark'] = 0;
-        }
         //判断是新增还是更新
         if (isset($data['id'])) {
             //执行更新的操作
@@ -316,7 +340,6 @@ class Article extends Model
             return true;
         }
 
-        
         //执行新增操作
         $Article = new self;
         //向文章表中存入数据并获取存入的id

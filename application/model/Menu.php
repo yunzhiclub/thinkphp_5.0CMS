@@ -6,10 +6,10 @@ use think\Model;
 class Menu extends Model
 {
 	/**
-	 * 输出样式转换
-	 * @param  int $value 数据表中status数据
-	 * @return string 
-	 * @author tangzhenjie
+	 * 数字转化为显示的问题
+	 * @param  int $value 
+	 * @return string 显示/不显示
+	 * @author liuxi 
 	 */
 	public function getStatusAttr($value)
 	{

@@ -11,7 +11,7 @@ class UserController extends ParenterController
     public function index()
     {
         //获取全部对象
-        $New = new User;
+        $New   = new User;
         $Users = $New->ListUsers(input('get.name'));
 
         //向V层传递数据
@@ -38,7 +38,7 @@ class UserController extends ParenterController
     public function edit()
     {
         //获取ID
-        $id = input('id');
+        $id   = input('id');
 
         //取出对象
         $User = User::get($id);
@@ -58,7 +58,7 @@ class UserController extends ParenterController
     {
         
         //获取保存的结果
-        $User = new User;
+        $User   = new User;
         $result = $User->UserSave(input('post.'), input('post.id'));
 
         if (false === $result) {
@@ -76,7 +76,7 @@ class UserController extends ParenterController
     public function delete()
     {
        //获取传过来的id值
-       $id = input('id');
+       $id   = input('id');
 
        //取出对象
        $User = User::get($id);
@@ -102,7 +102,7 @@ class UserController extends ParenterController
     public function detail()
     {
         //获取V层传过来的id值
-        $id = input('id');
+        $id   = input('id');
 
         //取出对象
         $User = User::get($id);
