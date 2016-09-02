@@ -6,19 +6,20 @@ use app\model\Usermanage;
 class UsermanageController extends ParenterController
 {
 	/**
+	 * 返回用户的界面
 	 * @author gaoliming
 	 */
 	public function index()
 	{
 		//接收搜索框传过来的name
-		$name = input('get.name');
+		$name     = input('get.name');
 
 		//分页每页的大小
 		$PageSize = 5;
 
 		//取出数据库中的数据
-		$User = new Usermanage;
-		$Users = $User->where('name', 'like', '%' . $name . '%')->paginate($PageSize);
+		$User     = new Usermanage;
+		$Users    = $User->where('name', 'like', '%' . $name . '%')->paginate($PageSize);
 
 		//向V层传递数据
 		$this->assign('Users', $Users);
@@ -28,6 +29,7 @@ class UsermanageController extends ParenterController
 	}
 
 	/**
+	 * 添加的界面
 	 * @author gaoliming
 	 */
 	public function add()
@@ -37,13 +39,13 @@ class UsermanageController extends ParenterController
 	}
 
 	/**
-	 * 删除数据
+	 * 删除数据界面
 	 * @author gaoliming
 	 */
 	public function delete()
 	{
 		//接收id
-		$id = input('id');
+		$id   = input('id');
 
 		//取出对象
 		$User = Usermanage::get($id);
@@ -63,13 +65,13 @@ class UsermanageController extends ParenterController
 	}
 
 	/**
-	 * 编辑数据
+	 * 编辑数据界面
 	 * @author gaoliming	
 	 */
 	public function edit()
 	{
 		//获取id
-		$id = input('id');
+		$id   = input('id');
 
 		//取出对象
 		$User = Usermanage::get($id);
@@ -82,6 +84,7 @@ class UsermanageController extends ParenterController
 	}
 
 	/**
+	 * 添加和删除数据的保存
 	 * @author  gaoliming
 	 */
 	public function save()
@@ -105,12 +108,12 @@ class UsermanageController extends ParenterController
 
 		//对对象进行一一赋值
 		$data = array(
-			'name' => input('post.name'),
+			'name'     => input('post.name'),
 			'username' => input('post.username'),
 			'password' => input('password'),
-			'status' => input('post.status'),
-			'sex' => input('sex'),
-			'email' => input('post.email'),
+			'status'   => input('post.status'),
+			'sex'      => input('sex'),
+			'email'    => input('post.email'),
 			);
 
 		//验证并保存
@@ -124,24 +127,24 @@ class UsermanageController extends ParenterController
 	}
 
 	/**
-	 * 改变状态
+	 * 改变解冻与冻结的状状态
 	 * @author gaoliming
 	 */
 	public function state()
 	{
 		//接收传过来的ID值
-		$id = input('id');
+		$id   = input('id');
 
 		//取出对象
 		$User = Usermanage::get($id);
 
 		//获取数据
 		$data = [
-			'status' => $User->status,
-			'name' => $User->name,
+			'status'   => $User->status,
+			'name'     => $User->name,
 			'username' => $User->username,
-			'sex' => $User->getData('sex'),
-			'email' => $User->email,
+			'sex'      => $User->getData('sex'),
+			'email'    => $User->email,
 			'password' => $User->password,
 
 		];
@@ -182,7 +185,7 @@ class UsermanageController extends ParenterController
 	public function detail()
 	{
 		//获取V层传过来的id值
-		$id = input('id');
+		$id   = input('id');
 
 		//取出对象
 		$User = Usermanage::get($id);
