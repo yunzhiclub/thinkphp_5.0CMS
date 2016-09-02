@@ -7,12 +7,12 @@ use app\model\Systemset;
 
 use app\model\Article;
 
-/**
-* @author gaoliming
-*/
 class ParentController extends Controller
 {
 	/**
+	 * 构造函数
+	 * @param  
+	 * @return object
 	 * @author gaoliming
 	 */
 	public function __construct()

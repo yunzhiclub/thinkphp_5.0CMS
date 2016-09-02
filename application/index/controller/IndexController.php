@@ -10,17 +10,21 @@ use app\model\Systemset;
 class IndexController extends ParentController
 {
     /**
-     * 
-     * @param  
-     * @return 
-     * @author 
+     * 构造函数
+     * @author gaoliming
      */
     public function __construct()
     {
         //先执行父类的构造函数
         parent::__construct();
-
     }
+
+    /**
+     * 实现显示首页的页面
+     * @param  
+     * @return template
+     * @author mengyunzhi
+     */
     public function index()
     {
 		$New = new Article;
@@ -37,9 +41,9 @@ class IndexController extends ParentController
 
     /**
      * 显示详情页
-     * @param  
-     * @return 
-     * @author 
+     * @param  $id
+     * @return string
+     * @author gaoliming
      */
     public function detail()
     {
@@ -66,5 +70,6 @@ class IndexController extends ParentController
 
     	//返回首页
     	return $this->fetch($string . '\detail');
+
     }
 }

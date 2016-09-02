@@ -16,7 +16,7 @@ class LoginController extends Controller
 		/**
 		 * 实现登陆功能
 		 * @param  
-		 * @return 
+		 * @return template
 		 * @author tangzhenjie
 		 */
 		if(Usermanage::login(input('post.username') , input('post.password'))){	
@@ -27,10 +27,10 @@ class LoginController extends Controller
 	}
 
 	/**
-	 * 	
+	 * 实现退出功能
 	 * @param  
-	 * @return 
-	 * @author 
+	 * @return template
+	 * @author tangzhenjie
 	 */
 	public function logout()
 	{
