@@ -119,7 +119,7 @@ class SystemsetController extends ParenterController
             }
             
              $Systemsets = new Systemset;
-             $er = $Systemsets->data($data)->save();
+             $er         = $Systemsets->data($data)->save();
 
             // 移动到框架应用根目录/public/uploads/ 目录下
             $info     = $file->move(ROOT_PATH . 'public' . DS . 'uploads');

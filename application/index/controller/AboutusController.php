@@ -20,7 +20,7 @@ class AboutusController extends ParentController
     	$Article = $Article->getAboutUs();
         
         //将对象传入V层
-        $this->assign('Article', $Article);
+        $this->assign('News', $Article);
 
     	//返回界面
         return $this->fetch();

@@ -5,15 +5,15 @@
     <div class="slider-relative">
         <div class="slider-block">
             <div class="slider" style="position:absolute">
-                <img src="{$Article->getArticleContent($Article->id)->url}" alt="{$Article->title}">
+                <img src="{$News->getArticleContent($News->id)->url}" alt="{$News->title}">
             </div>
         </div>
     </div>
 </div>
 <div style="width:1025px;margin:80px auto 0 auto;background-color:#fff;">
-    <h1 style="font-size:50px;margin-left:350px;">{$Article->title}</h1>
+    <h1 style="font-size:50px;margin-left:350px;">{$News->title}</h1>
     <p style="text-indent:25px;font-size:20px;">
-        {$Article->content}
+        {$News->content}
     </p>
     <br/>
 </div>

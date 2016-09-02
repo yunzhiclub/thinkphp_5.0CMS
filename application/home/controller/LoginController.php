@@ -5,8 +5,8 @@ use think\Controller;
 use app\model\User;
 
 /**
-* @author tangzhenjie
-*/
+ * @author tangzhenjie
+ */
 class LoginController extends Controller
 {
 	/**
