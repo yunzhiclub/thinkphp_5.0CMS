@@ -56,7 +56,5 @@ class SubpageController extends ParentController
 
 		//返回V层
 		return $this->fetch();
-
 	}
-    
 }

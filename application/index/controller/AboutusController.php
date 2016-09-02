@@ -25,8 +25,8 @@ class AboutusController extends ParentController
     public function index()
     {
     	//获取对象
-    	$Article = new Article;
-    	$Article = $Article->getAboutUs();
+        $Article = new Article;
+        $Article = $Article->getAboutUs();
 
         //将对象传入V层，得到关于我们的文章
         $this->assign('Article', $Article);
