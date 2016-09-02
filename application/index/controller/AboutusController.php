@@ -9,10 +9,22 @@ use app\model\Systemset;
 
 class AboutusController extends ParentController
 {
+    /**
+     * 
+     * @param  
+     * @return 
+     * @author 
+     */
     public function __construct()
     {
         parent::__construct();
     }
+    /**
+     * 实现显示关于我们的界面
+     * @param  
+     * @return 
+     * @author 
+     */
     public function index()
     {
     	//获取对象

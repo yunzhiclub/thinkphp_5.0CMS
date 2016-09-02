@@ -9,6 +9,12 @@ use app\model\Systemset;
 
 class IndexController extends ParentController
 {
+    /**
+     * 
+     * @param  
+     * @return 
+     * @author 
+     */
     public function __construct()
     {
         //先执行父类的构造函数
@@ -31,7 +37,9 @@ class IndexController extends ParentController
 
     /**
      * 显示详情页
-     * @author  gaoliming
+     * @param  
+     * @return 
+     * @author 
      */
     public function detail()
     {

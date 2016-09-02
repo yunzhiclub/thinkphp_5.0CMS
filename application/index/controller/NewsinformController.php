@@ -26,7 +26,7 @@ class NewsinformController extends ParentController
 
  		//实例化Article
         $Article  =	new Article;
-        
+        ass
         $Articles = $Article->showNews(input('get.page'));
         $this->assign('Articles', $Articles);
         return $this->fetch();

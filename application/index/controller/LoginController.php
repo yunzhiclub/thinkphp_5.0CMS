@@ -14,16 +14,24 @@ class LoginController extends Controller
 	public function login()
 	{
 		/**
-		*@tangzhenjie
-		*/
-		if(Usermanage::login(input('post.username') , input('post.password')))
-        {	
+		 * 实现登陆功能
+		 * @param  
+		 * @return 
+		 * @author tangzhenjie
+		 */
+		if(Usermanage::login(input('post.username') , input('post.password'))){	
         	return $this->success('登录成功' , url('Index/index'));
-        }else{
+        } else {
         	return $this->error('登录失败' , url('index'));
         }
 	}
 
+	/**
+	 * 	
+	 * @param  
+	 * @return 
+	 * @author 
+	 */
 	public function logout()
 	{
 		session('usermanageId', null);
