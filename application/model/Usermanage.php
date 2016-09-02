@@ -15,7 +15,7 @@ class Usermanage extends Model
 	public function getStatusAttr($value)
 	{
 		$Status = array(
-			'0' => '冻结' ,
+			'0' => '冻结',
 			'1' => '解冻',
 		 );
 		if (0 === $value || 1 === $value) {

@@ -126,40 +126,4 @@ class SystemsetController extends ParenterController
         }
 
     }
-
-    // public function delete()
-    // {
-    //     $id = input('id/d');
-    //     $Systemset = Systemset::get($id);
-    //     if($Systemset->delete())
-    //     {
-    //         return $this->success('删除成功', url('index'));
-    //     }
-    // }
-
-    // 文件上传提交
-
-    // // 文件上传提交
-    // public function update(Request $request)
-    // {
-    //     // 获取表单上传文件
-    //     $file = $request->file('file');
-    //     // 上传文件验证
-    //     $result = $this->validate(['file' => $file], ['file'=>'require|image'],['file.require' => '请选择上传文件', 'file.image' => '非法图像文件']);
-    //     if(true !== $result){
-    //         $this->error($result);
-    //     }
-    //     // 移动到框架应用根目录/public/uploads/ 目录下
-    //     $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
-    //     if ($info) {
-    //         $this->success('文件上传成功：' . $info->getRealPath());
-    //     } else {
-    //         // 上传失败获取错误信息
-    //         $this->error($file->getError());
-    //     }
-
-    // }
-
-
-
 }

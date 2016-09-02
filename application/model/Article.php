@@ -16,6 +16,8 @@ class Article extends Model
     protected $type       = [
         'create_time' => 'datetime',
     ];
+  
+
     public function getIstopAttr($value)
     {
         $status = array('0'=>'否','1'=>'是');
@@ -26,6 +28,7 @@ class Article extends Model
             return $status[0];
         }
     }
+
     public function getIsrecommentAttr($value)
     {
         $status      = array('0'=>'否','1'=>'是');
@@ -36,6 +39,7 @@ class Article extends Model
             return $status[0];
         }
     }
+
     public function getIsslidershowAttr($value)
     {
         $status      = array('0'=>'否','1'=>'是');
@@ -138,6 +142,7 @@ class Article extends Model
         //对应的article表里的文章
         return Article::get($id);
     }
+
     /**
      * 做下一步的新闻列表页
      * @author liuyanzhao
