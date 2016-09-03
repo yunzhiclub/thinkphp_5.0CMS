@@ -16,6 +16,12 @@ class User extends Model
         // 设置last_time_on为时间戳类型（整型）
         'last_time_on' => 'timestamp',
     ];
+
+    /**
+     * 判断是否登录
+     * @return boolean
+     * @author tangzhenjie
+     */
 	static public function islogin()
 	{
 		$userId = session('userId');
@@ -26,14 +32,22 @@ class User extends Model
 		}
 	}
 
-	static public function login($username , $password)
+    /**
+     * 登录操作
+     * @return boolean
+     * @author tangzhenjie
+     */
+	static public function login($username, $password)
 	{
+        //获取登录对象
 		$map  = array('username' => $username);
 		$User = self::get($map);
+        
+        //获取这次登录时间
 		$time = time();
+
 		//判断是否取出对应的对象
-		if ($User === null)
-		{
+		if ($User === null) {
 			return false;
 		}
 	    if ($User->password === $password) {
@@ -42,16 +56,16 @@ class User extends Model
 		    $User->login_time_on = $time;
 		    $User->save();
 		    return true;
-		              
-	    } else {
+		} else {
 		    return false;
 	    }
 	
 	}
 
 	/**
-     * @param  $name [<搜索的关键字>]
-     * @return paginate object usermanages
+     * 查询数据
+     * @param string $name 搜索的关键字
+     * @return object 
      * @author  gaoliming 
      */
     public function ListUsers($name)
@@ -66,7 +80,9 @@ class User extends Model
     }
 
     /**
-     * @param  $[data] <post数组> $id [编辑的键值]
+     * 保存user数据
+     * @param   array $data v层获取的数据
+     * @param   int $id 用户的id
      * @return bool
      * @author gaoliming
      */
@@ -74,7 +90,6 @@ class User extends Model
     {
     	//判断两次密码是否一样
         if ($data['password'] !== $data['newpassword']) {
-            
             return $this->error('两次密码不一样');
         }
 
@@ -95,12 +110,11 @@ class User extends Model
                 'password'        => $data['password'],
                 'email'           => $data['email'],
          );
+
          //保存并验证
         if (false === $User->validate()->save($datas)) {
-            
             return false ;
         }
-
         return true;
     }
 }

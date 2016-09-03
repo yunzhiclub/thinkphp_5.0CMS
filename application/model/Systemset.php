@@ -6,15 +6,16 @@ use think\Model;
 class Systemset extends Model
 {
 	/**
-	 * 显示是公司名称是否显示
-	 * @param int $value
-	 * @return  string 是/否
-	 * @author gaoliming
+	 * 数据显示变换
+	 * @param  int $value 数据表里面isshow的数据
+	 * @return string
+	 * @author tangzhenjie
 	 */
 	public function getIsShowAttr($value)
 	{
-		$status = array('0' => '否',
-			'1'             => '是',
+		$status = array(
+			'0' => '否',
+			'1' => '是',
 		 );
 
 		if ($value === 0 || $value === 1) {
@@ -26,15 +27,16 @@ class Systemset extends Model
 	}
 
 	/**
-	 * 显示页脚名称是否显示
-	 * @param int $value 
-	 * @return  string 是/否
-	 * @author  gaoliming 
+	 * 数据显示变换
+	 * @param  int $value 数据表里面isdisplay的数据
+	 * @return string
+	 * @author tangzhenjie
 	 */
 	public function getIsDisplayAttr($value)
 	{
-		$status = array('0' => '否',
-			    '1'         => '是',
+		$status = array(
+			'0' => '否',
+			'1' => '是',
 		 );
 
 		if ($value === 0 || $value === 1) {
@@ -46,62 +48,51 @@ class Systemset extends Model
 	}
 
 	/**
-	 * 显示公司名称
-	 * @return string 公司名称
+	 * 获得公司的名字
+	 * @return string 
 	 * @author liuxi
 	 */
 	public function getheader()
 	{
-		//取出公司名称
 		$Systemset  = new Systemset;
 		$Systemsets = $Systemset->where('is_show', '=', 1)->find();
 		
-		if(null === $Systemsets) {
-
+		if (null === $Systemsets) {
         	return '';
         } else {
-
             return $Systemsets->getData('name');
         }
 	}
 
 	/**
-	 * 显示页脚
-	 * @return string 页脚
+	 * 获得公司的页脚
+	 * @return string 
 	 * @author liuxi
 	 */
 	public function getfooter()
 	{
-		//取出公司页脚
 		$Systemset  = new Systemset;
 		$Systemsets = $Systemset->where('is_display', '=', 1)->find();
 		
-		if(null === $Systemsets) {
-
+		if (null === $Systemsets) {
         	return '';
         } else {
-
         	return $Systemsets->getData('footer_name');
-
         }
 	}
 
 	/**
-	 * 获取图片logol
-	 * @return string url
+	 * 获得公司的图片地址
+	 * @return string 
 	 * @author liuxi
 	 */
     public function getUrl()
     {
-
-        if(array() === $data = Systemset::all()) {
-
+        if (array() === $data = Systemset::all()) {
             return '';
         } else {
-
             $data = $data[0];
             return $data->getData('url');
         }
     }
-
 }

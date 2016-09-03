@@ -18,6 +18,8 @@ class Menu extends Model
 			'1' =>'显示'
 			);
 		$status = $data[$value];
+
+		//判断$status是否有值
 		if(isset($status))
 		{
 			return $status;
@@ -27,10 +29,10 @@ class Menu extends Model
 	}
 
 	/**
-	 * 数字转化
-	 * @param  into $value
-	 * @return string 所有用户/注册用户
-	 * @author  liuxi 
+	 * 输出样式转换
+	 * @param  int $value 数据表中ispermiss数据
+	 * @return string 
+	 * @author tangzhenjie
 	 */
 	public function getIspermissionAttr($value)
 	{
@@ -38,6 +40,8 @@ class Menu extends Model
 			'0' =>'所有用户',
 			'1' =>'注册用户'
 			);
+
+		//判断$status是否有值
 		$status = $data[$value];
 		if(isset($status))
 		{

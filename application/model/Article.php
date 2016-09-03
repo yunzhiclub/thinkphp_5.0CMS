@@ -164,6 +164,7 @@ class Article extends Model
         //对应的article表里的文章
         return Article::get($id);
     }
+
     /**
      * 做下一步的新闻列表页
      * @author liuyanzhao
